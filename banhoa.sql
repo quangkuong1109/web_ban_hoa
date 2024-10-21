@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2024 at 12:41 PM
+-- Generation Time: Oct 21, 2024 at 12:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -130,6 +130,7 @@ CREATE TABLE `sanpham` (
   `MaSanPham` int(11) NOT NULL,
   `TenSanPham` varchar(200) NOT NULL,
   `MaDanhMuc` int(11) NOT NULL,
+  `Mau` varchar(50) NOT NULL,
   `MoTa` text NOT NULL,
   `Gia` decimal(10,0) NOT NULL,
   `HinhAnh` varchar(200) NOT NULL,
