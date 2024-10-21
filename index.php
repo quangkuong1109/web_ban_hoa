@@ -68,7 +68,7 @@
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Giao hàng nhanh chóng</h1>
                                     <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Với đội ngũ nhân viên giao hàng nhanh chóng,quý khách sẽ được nhận hàng một cách nhanh chóng</p>
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Mua sắm</a>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Mua sắm ngay</a>
                                 </div>
                             </div>
                         </div>
