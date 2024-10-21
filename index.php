@@ -259,7 +259,7 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Hoa hồng bó giấy</a>
+                        <a class="h6 text-decoration-none text-truncate" href="detail.php">Hoa hồng bó giấy</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>200.000 VND</h5><h6 class="text-muted ml-2"><del>250.000 VND</del></h6>
                         </div>
