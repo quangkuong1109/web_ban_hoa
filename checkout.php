@@ -157,13 +157,13 @@
                     <div class="bg-light p-30">
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <input type="radio" class="custom-control-input" name="payment" id="cod">
                                 <label class="custom-control-label" for="cod">Thanh toán khi nhận hàng</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
                                 <label class="custom-control-label" for="banktransfer">Chuyển khoản ngân hàng</label>
                             </div>
                         </div>
