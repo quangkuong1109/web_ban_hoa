@@ -23,6 +23,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/preloader.css" rel="stylesheet">
 
     <!-- Chèn CSS cho side menu -->
     <style>
@@ -138,6 +139,17 @@
     </style>
 </head>
 <body>
+
+<!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+<!-- ***** Preloader End ***** -->
+
 <!-- Topbar Start -->
 <div class="container-fluid">
     <div class="row bg-secondary py-1 px-xl-5">
@@ -304,4 +316,6 @@
     closeBtn.addEventListener('click', function() {
         sideMenu.style.transform = 'translateX(100%)'; // Di chuyển side menu ra khỏi view
     });
+
+
 </script>

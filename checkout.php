@@ -8,7 +8,7 @@
                 <nav class="breadcrumb bg-light mb-30">
                     <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
                     <a class="breadcrumb-item text-dark" href="#">Thanh toán</a>
-                    <span class="breadcrumb-item active">Đặt hàng</span>
+                    <span class="breadcrumb-item active">Tiến hành thanh toán</span>
                 </nav>
             </div>
         </div>
@@ -39,12 +39,8 @@
                             <input class="form-control" type="text" placeholder="+123 456 789">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Địa chỉ 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Địa chỉ 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <label>Địa chỉ nhận hàng</label>
+                            <input class="form-control" type="text" placeholder="Số 218, Lĩnh Nam">
                         </div>
                         <!-- <div class="col-md-6 form-group">
                             <label>Country</label>
@@ -57,12 +53,16 @@
                         </div> -->
                         <div class="col-md-6 form-group">
                             <label>Thành phố</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" placeholder="Hà Nội">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Quận/Huyện</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" placeholder="Hoàng Mike">
                         </div>
+                        <div class="col-md-6 form-group">
+                                <label>Phường/Xã</label>
+                                <input class="form-control" type="text" placeholder="Vĩnh Hưng">
+                            </div>
                         <!-- <div class="col-md-12 form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="newaccount">
@@ -78,15 +78,15 @@
                     </div>
                 </div>
                 <div class="collapse mb-5" id="shipping-address">
-                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shipping Address</span></h5>
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Thông tin chi tiết</span></h5>
                     <div class="bg-light p-30">
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label>First Name</label>
+                                <label>Tên</label>
                                 <input class="form-control" type="text" placeholder="John">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Last Name</label>
+                                <label>Họ</label>
                                 <input class="form-control" type="text" placeholder="Doe">
                             </div>
                             <div class="col-md-6 form-group">
@@ -94,37 +94,24 @@
                                 <input class="form-control" type="text" placeholder="example@email.com">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Mobile No</label>
+                                <label>Số điện thoại</label>
                                 <input class="form-control" type="text" placeholder="+123 456 789">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Address Line 1</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
+                                <label>Địa chỉ nhận hàng</label>
+                                <input class="form-control" type="text" placeholder="Số 218, Lĩnh Nam">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Address Line 2</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
+                                <label>Thành phố</label>
+                                <input class="form-control" type="text" placeholder="Hà Nội">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Country</label>
-                                <select class="custom-select">
-                                    <option selected>United States</option>
-                                    <option>Afghanistan</option>
-                                    <option>Albania</option>
-                                    <option>Algeria</option>
-                                </select>
+                                <label>Quận/Huyện</label>
+                                <input class="form-control" type="text" placeholder="Hoàng Mike">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>City</label>
-                                <input class="form-control" type="text" placeholder="New York">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>State</label>
-                                <input class="form-control" type="text" placeholder="New York">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>ZIP Code</label>
-                                <input class="form-control" type="text" placeholder="123">
+                                <label>Phường/Xã</label>
+                                <input class="form-control" type="text" placeholder="Vĩnh Hưng">
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,15 @@
     
     // Dropdown on mouse hover
     $(document).ready(function () {
+
+        // Page loading animation
+        $("#preloader").animate({
+            'opacity': '0' // Giảm độ mờ xuống 0
+        }, 600, function(){
+            $("#preloader").fadeOut(); // Ẩn hoàn toàn preloader ngay sau khi kết thúc animate
+        });
+
+        // Toggle navbar on hover
         function toggleNavbarMethod() {
             if ($(window).width() > 992) {
                 $('.navbar .dropdown').on('mouseover', function () {
@@ -17,7 +26,6 @@
         toggleNavbarMethod();
         $(window).resize(toggleNavbarMethod);
     });
-    
     
     // Back to top button
     $(window).scroll(function () {
@@ -99,6 +107,5 @@
         }
         button.parent().parent().find('input').val(newVal);
     });
-    
-})(jQuery);
 
+})(jQuery);
