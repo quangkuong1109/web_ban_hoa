@@ -4,7 +4,7 @@
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <h5 class="text-secondary text-uppercase mb-4">CDT Flower</h5>
                 <p class="mb-4">Chúng tôi luôn cố gắng hết sức để đem lại cho khách hàng những bó hoa tươi nhất, được đóng gói và trang trí chỉn chu nhất. <br> <br> Hơn hết cả, chúng tôi luôn muốn đem lại cho khách hàng 1 trải nghiệm mua sắm với 100% sự hài lòng.</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>218 Lĩnh Nam,Hoàng Mai,Hà Nội</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>218 Lĩnh Nam, Hoàng Mai, Hà Nội</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>cdt-flower@gmail.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </form>
-                        <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
+                        <h6 class="text-secondary text-uppercase mt-4 mb-3">Theo dõi chúng tôi</h6>
                         <div class="d-flex">
                             <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>

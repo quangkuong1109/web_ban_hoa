@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>CDT Flower - Thế giới hoa tươi</title>
@@ -135,14 +137,15 @@
         }
     </style>
 </head>
+<body>
 <!-- Topbar Start -->
 <div class="container-fluid">
     <div class="row bg-secondary py-1 px-xl-5">
         <div class="col-lg-6 d-none d-lg-block">
             <div class="d-inline-flex align-items-center h-100">
-                <a class="text-body mr-3" href="">About</a>
-                <a class="text-body mr-3" href="contact.php">Contact</a>
-                <a class="text-body mr-3" href="">Help</a>
+                <a class="text-body mr-3" href="">Về chúng tôi</a>
+                <a class="text-body mr-3" href="contact.php">Liên hệ</a>
+                <a class="text-body mr-3" href="">Trợ giúp</a>
                 <a class="text-body mr-3" href="">FAQs</a>
             </div>
         </div>
