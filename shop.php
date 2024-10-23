@@ -141,16 +141,7 @@
                 </div>
 
                 <?php
-                // Phân trang
-                $host = 'localhost';
-                $username = 'root';
-                $password = '';
-                $database = 'banhoa';
-
-                $conn = mysqli_connect($host, $username, $password, $database);
-                if (!$conn) {
-                    die("Kết nối thất bại: " . mysqli_connect_error());
-                }
+                require_once('db_connect.php');//lệnh lấy kết nối database
 
                 // Số sản phẩm trên mỗi trang
                 $productsPerPage = 9;
