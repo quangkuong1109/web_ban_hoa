@@ -21,43 +21,59 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-4">
-            <!-- Price Start -->
+            <!-- Lọc Giá -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Khoảng giá</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                <form id="price-filter-form">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="price-all">
+                        <input type="radio" class="custom-control-input" name="price-range" value="all" id="price-all" checked>
                         <label class="custom-control-label" for="price-all">Tất cả </label>
-                        <span class="badge border font-weight-normal">1000</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-1">
+                        <input type="radio" class="custom-control-input" name="price-range" value="0-250000" id="price-1">
                         <label class="custom-control-label" for="price-1">Dưới 250.000</label>
-                        <span class="badge border font-weight-normal">150</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-2">
+                        <input type="radio" class="custom-control-input" name="price-range" value="250000-500000" id="price-2">
                         <label class="custom-control-label" for="price-2">Từ 250.000 đến 500.000</label>
-                        <span class="badge border font-weight-normal">295</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-3">
+                        <input type="radio" class="custom-control-input" name="price-range" value="500000-1000000" id="price-3">
                         <label class="custom-control-label" for="price-3">Từ 500.000 đến 1.000.000</label>
-                        <span class="badge border font-weight-normal">246</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-4">
+                        <input type="radio" class="custom-control-input" name="price-range" value="1000000-2000000" id="price-4">
                         <label class="custom-control-label" for="price-4">Từ 1.000.000 đến 2.000.000</label>
-                        <span class="badge border font-weight-normal">145</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="price-5">
+                        <input type="radio" class="custom-control-input" name="price-range" value="2000000-" id="price-5">
                         <label class="custom-control-label" for="price-5">Trên 2.000.000</label>
-                        <span class="badge border font-weight-normal">168</span>
                     </div>
                 </form>
             </div>
-            <!-- Price End -->
+
+            <script>
+                document.querySelectorAll('input[name="price-range"]').forEach(function(radio) {
+                    radio.addEventListener('change', function() {
+                        const priceRange = this.value;
+                        fetchProducts(priceRange);
+                    });
+                });
+
+                function fetchProducts(priceRange) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("GET", `xu_ly_chuc_nang/loc_gia.php?price_range=${priceRange}`, true);
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            document.getElementById('product-list').innerHTML = xhr.responseText;
+                        }
+                    };
+                    xhr.send();
+                }
+            </script>
+
+            <!-- Lọc Giá -->
+
 
             <!-- Color Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Màu sắc</span></h5>
@@ -141,7 +157,7 @@
                 </div>
 
                 <?php
-                require_once('db_connect.php');//lệnh lấy kết nối database
+                require_once('database_connect/db_connect.php'); //lệnh lấy kết nối database
 
                 // Số sản phẩm trên mỗi trang
                 $productsPerPage = 9;
