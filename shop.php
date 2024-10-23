@@ -49,8 +49,7 @@
                         <input type="radio" class="custom-control-input" name="price-range" value="2000000-" id="price-5">
                         <label class="custom-control-label" for="price-5">Trên 2.000.000</label>
                     </div>
-                    <!-- Nút lọc -->
-                    <button type="submit" class="btn btn-primary mt-3">Lọc sản phẩm</button>
+                    
                 </form>
             </div>
             <!-- Price End -->
@@ -63,43 +62,335 @@
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="color-all">
                         <label class="custom-control-label" for="price-all">Tất cả</label>
-                        <span class="badge border font-weight-normal">1000</span>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham";
+                            $result = $conn->query($sql);
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $conn->close();
+                            ?>
+                        </span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-1">
                         <label class="custom-control-label" for="color-1">Hồng</label>
-                        <span class="badge border font-weight-normal">150</span>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Màu sắc cần tìm
+                            $color = "Hồng"; // Thay đổi màu sắc tương ứng với sản phẩm
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham WHERE MAU LIKE ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $color); // Liên kết tham số
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $stmt->close(); // Đóng statement
+                            $conn->close(); // Đóng kết nối
+                            ?>
+                        </span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-2">
                         <label class="custom-control-label" for="color-2">Trắng</label>
-                        <span class="badge border font-weight-normal">295</span>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Màu sắc cần tìm
+                            $color = "Trắng"; // Thay đổi màu sắc tương ứng với sản phẩm
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham WHERE MAU LIKE ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $color); // Liên kết tham số
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $stmt->close(); // Đóng statement
+                            $conn->close(); // Đóng kết nối
+                            ?>
+                        </span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-3">
                         <label class="custom-control-label" for="color-3">Đỏ</label>
-                        <span class="badge border font-weight-normal">246</span>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Màu sắc cần tìm
+                            $color = "Đỏ"; // Thay đổi màu sắc tương ứng với sản phẩm
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham WHERE MAU LIKE ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $color); // Liên kết tham số
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $stmt->close(); // Đóng statement
+                            $conn->close(); // Đóng kết nối
+                            ?>
+                        </span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-4">
                         <label class="custom-control-label" for="color-4">Xanh</label>
-                        <span class="badge border font-weight-normal">145</span>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Màu sắc cần tìm
+                            $color = "Xanh"; // Thay đổi màu sắc tương ứng với sản phẩm
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham WHERE MAU LIKE ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $color); // Liên kết tham số
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $stmt->close(); // Đóng statement
+                            $conn->close(); // Đóng kết nối
+                            ?>
+                        </span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-5">
                         <label class="custom-control-label" for="color-5">Vàng</label>
-                        <span class="badge border font-weight-normal">168</span>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Màu sắc cần tìm
+                            $color = "Vàng"; // Thay đổi màu sắc tương ứng với sản phẩm
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham WHERE MAU LIKE ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $color); // Liên kết tham số
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $stmt->close(); // Đóng statement
+                            $conn->close(); // Đóng kết nối
+                            ?>
+                        </span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-6">
-                        <label class="custom-control-label" for="color-5">Tím</label>
-                        <span class="badge border font-weight-normal">168</span>
+                        <label class="custom-control-label" for="color-6">Tím</label>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Màu sắc cần tìm
+                            $color = "Tím"; // Thay đổi màu sắc tương ứng với sản phẩm
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham WHERE MAU LIKE ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $color); // Liên kết tham số
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $stmt->close(); // Đóng statement
+                            $conn->close(); // Đóng kết nối
+                            ?>
+                        </span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-7">
-                        <label class="custom-control-label" for="color-5">Cam</label>
-                        <span class="badge border font-weight-normal">168</span>
+                        <label class="custom-control-label" for="color-7">Cam</label>
+                        <span class="badge border font-weight-normal">
+                            <?php
+                            $servername = "localhost"; // Địa chỉ máy chủ
+                            $username = "root"; // Tên đăng nhập của bạn
+                            $password = ""; // Mật khẩu của bạn
+                            $dbname = "banhoa"; // Tên cơ sở dữ liệu của bạn
+
+                            // Tạo kết nối
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            // Kiểm tra kết nối
+                            if ($conn->connect_error) {
+                                die("Kết nối thất bại: " . $conn->connect_error);
+                            }
+
+                            // Màu sắc cần tìm
+                            $color = "Cam"; // Thay đổi màu sắc tương ứng với sản phẩm
+
+                            // Truy vấn để đếm số sản phẩm
+                            $sql = "SELECT COUNT(*) as total FROM sanpham WHERE MAU LIKE ?";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bind_param("s", $color); // Liên kết tham số
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+
+                            if ($result) {
+                                // Lấy số lượng sản phẩm
+                                $row = $result->fetch_assoc();
+                                echo $row['total']; // Hiển thị số lượng sản phẩm
+                            } else {
+                                echo "0"; // Nếu không có sản phẩm nào
+                            }
+
+                            // Đóng kết nối
+                            $stmt->close(); // Đóng statement
+                            $conn->close(); // Đóng kết nối
+                            ?>
+                        </span>
                     </div>
+                    <!-- Nút lọc -->
+                    <button type="submit" class="btn btn-primary mt-3">Lọc sản phẩm</button>
                 </form>
             </div>
             <!-- Color End -->
@@ -197,11 +488,11 @@
                                         <?php
                                         // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
                                         if ($product['GiamGia'] == 20) {
-                                            $giachuagiam = $product['Gia'] + (0.20 * $product['Gia']); // Tính giá với giảm giá 20%
-                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " VNĐ</del>";
+                                            $giachuagiam = $product['Gia'] / 0.8; // Tính giá với giảm giá 20%
+                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
                                         } elseif ($product['GiamGia'] == 50) {
                                             $giachuagiam = $product['Gia'] + (1 * $product['Gia']); // Tính giá với giảm giá 50%
-                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " VNĐ</del>";
+                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
                                         }
                                         // Nếu GiamGia = 0, không hiển thị thẻ <del>
                                         ?>
