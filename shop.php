@@ -21,7 +21,7 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-4">
-            <!-- Lọc Giá -->
+            <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Khoảng giá</span></h5>
             <div class="bg-light p-4 mb-30">
                 <form id="price-filter-form">
@@ -49,30 +49,11 @@
                         <input type="radio" class="custom-control-input" name="price-range" value="2000000-" id="price-5">
                         <label class="custom-control-label" for="price-5">Trên 2.000.000</label>
                     </div>
+                    <!-- Nút lọc -->
+                    <button type="submit" class="btn btn-primary mt-3">Lọc sản phẩm</button>
                 </form>
             </div>
-
-            <script>
-                document.querySelectorAll('input[name="price-range"]').forEach(function(radio) {
-                    radio.addEventListener('change', function() {
-                        const priceRange = this.value;
-                        fetchProducts(priceRange);
-                    });
-                });
-
-                function fetchProducts(priceRange) {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("GET", `xu_ly_chuc_nang/loc_gia.php?price_range=${priceRange}`, true);
-                    xhr.onload = function() {
-                        if (xhr.status === 200) {
-                            document.getElementById('product-list').innerHTML = xhr.responseText;
-                        }
-                    };
-                    xhr.send();
-                }
-            </script>
-
-            <!-- Lọc Giá -->
+            <!-- Price End -->
 
 
             <!-- Color Start -->
@@ -139,9 +120,11 @@
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sắp xếp</button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Mới nhất</a>
-                                    <a class="dropdown-item" href="#">Phổ biến</a>
-                                    <a class="dropdown-item" href="#">Đánh giá tốt nhất</a>
+                                    <a class="dropdown-item" href="#">A->Z</a>
+                                    <a class="dropdown-item" href="#">Z->A</a>
+                                    <a class="dropdown-item" href="#">Giá từ thấp đến cao</a>
+                                    <a class="dropdown-item" href="#">Giá từ cao đến thấp</a>
+
                                 </div>
                             </div>
                             <div class="btn-group ml-2">
@@ -157,7 +140,7 @@
                 </div>
 
                 <?php
-                require_once('database_connect/db_connect.php'); //lệnh lấy kết nối database
+                require_once('database_connect/db_connect.php'); // Lệnh lấy kết nối database
 
                 // Số sản phẩm trên mỗi trang
                 $productsPerPage = 9;
@@ -188,7 +171,6 @@
                 // Đóng kết nối
                 mysqli_close($conn);
 
-
                 // Hiển thị kết quả (tùy chỉnh cách bạn hiển thị)
                 foreach ($products as $product) {
                 ?>
@@ -211,22 +193,28 @@
                                 <a class="h6 text-decoration-none text-truncate" href=""><?php echo $product['TenSanPham']; ?></a>
                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                     <h5><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h5>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small class="fa fa-star text-primary mr-1"></small>
-                                    <small>(99)</small>
+                                    <h6 class="text-muted ml-2">
+                                        <?php
+                                        // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
+                                        if ($product['GiamGia'] == 20) {
+                                            $giachuagiam = $product['Gia'] + (0.20 * $product['Gia']); // Tính giá với giảm giá 20%
+                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " VNĐ</del>";
+                                        } elseif ($product['GiamGia'] == 50) {
+                                            $giachuagiam = $product['Gia'] + (1 * $product['Gia']); // Tính giá với giảm giá 50%
+                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " VNĐ</del>";
+                                        }
+                                        // Nếu GiamGia = 0, không hiển thị thẻ <del>
+                                        ?>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 <?php
                 }
                 ?>
+
                 <!-- Thêm phần điều hướng trang ở đây -->
                 <div class="col-12">
                     <nav>
