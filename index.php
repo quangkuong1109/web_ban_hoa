@@ -46,7 +46,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="product-offer mb-30" style="height: 200px;">
-                    <img class="img-fluid" src="img/anh_for_web/rose_2.png.webp" alt="">
+                    <img class="img-fluid" src="img/anh_for_web/giam20.jpg" alt="">
                     <div class="offer-text">
                         <h6 class="text-white text-uppercase">Giảm 20%</h6>
                         <h3 class="text-white mb-3">Ưu đãi đặc biệt</h3>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="product-offer mb-30" style="height: 200px;">
-                    <img class="img-fluid" src="img/anh_for_web/rose_7.png.webp" alt="">
+                    <img class="img-fluid" src="img/anh_for_web/giam50.jpg" alt="">
                     <div class="offer-text">
                         <h6 class="text-white text-uppercase">Giảm 50%</h6>
                         <h3 class="text-white mb-3">Ưu đãi khủng</h3>
