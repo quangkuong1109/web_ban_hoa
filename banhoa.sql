@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 22, 2024 at 06:48 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 23, 2024 lúc 08:38 AM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `banhoa`
+-- Cơ sở dữ liệu: `banhoa`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitietdonhang`
+-- Cấu trúc bảng cho bảng `chitietdonhang`
 --
 
 CREATE TABLE `chitietdonhang` (
@@ -38,7 +38,7 @@ CREATE TABLE `chitietdonhang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhgia`
+-- Cấu trúc bảng cho bảng `danhgia`
 --
 
 CREATE TABLE `danhgia` (
@@ -53,7 +53,7 @@ CREATE TABLE `danhgia` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhmucsanpham`
+-- Cấu trúc bảng cho bảng `danhmucsanpham`
 --
 
 CREATE TABLE `danhmucsanpham` (
@@ -63,7 +63,7 @@ CREATE TABLE `danhmucsanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `danhmucsanpham`
+-- Đang đổ dữ liệu cho bảng `danhmucsanpham`
 --
 
 INSERT INTO `danhmucsanpham` (`MaDanhMuc`, `TenDanhMuc`, `MoTa`) VALUES
@@ -79,7 +79,7 @@ INSERT INTO `danhmucsanpham` (`MaDanhMuc`, `TenDanhMuc`, `MoTa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donhang`
+-- Cấu trúc bảng cho bảng `donhang`
 --
 
 CREATE TABLE `donhang` (
@@ -94,7 +94,7 @@ CREATE TABLE `donhang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giaohang`
+-- Cấu trúc bảng cho bảng `giaohang`
 --
 
 CREATE TABLE `giaohang` (
@@ -108,7 +108,7 @@ CREATE TABLE `giaohang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khachhang`
+-- Cấu trúc bảng cho bảng `khachhang`
 --
 
 CREATE TABLE `khachhang` (
@@ -124,7 +124,7 @@ CREATE TABLE `khachhang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quantrivien`
+-- Cấu trúc bảng cho bảng `quantrivien`
 --
 
 CREATE TABLE `quantrivien` (
@@ -135,7 +135,7 @@ CREATE TABLE `quantrivien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `quantrivien`
+-- Đang đổ dữ liệu cho bảng `quantrivien`
 --
 
 INSERT INTO `quantrivien` (`MaQuanTriVien`, `TenDangNhap`, `MatKhau`, `VaiTro`) VALUES
@@ -144,7 +144,7 @@ INSERT INTO `quantrivien` (`MaQuanTriVien`, `TenDangNhap`, `MatKhau`, `VaiTro`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sanpham`
+-- Cấu trúc bảng cho bảng `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -160,7 +160,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sanpham`
+-- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
 INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `Gia`, `HinhAnh`, `TonKho`, `GiamGia`) VALUES
@@ -200,7 +200,7 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `G
 (37, 'Hơn Cả Yêu', 3, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Cẩm chướng đơn đỏ : 5\r\n-Cát tường hồng viền: 3\r\n-Hồng da: 10\r\n-Hồng đỏ Ecuador DL: 20\r\n-Lan Moka đỏ: 2\r\n-Red Elegance : 15\r\n-Sen đá chuỗi ngọc bi : 3', 1800000, 'img/san_pham/tinh_yeu/hon_ca_yeu.jpg\r\n', 50, 0),
 (38, 'Jolie', 3, 'Hồng', 'Sản phẩm bao gồm:\r\n-Cúc calimero hồng : 10\r\n-Cúc mẫu đơn hồng nhạt DL : 5\r\n-Hoa baby : 2\r\n-Mõm sói song hỷ : 12\r\n-Pink OHara: 16', 1500000, 'img/san_pham/tinh_yeu/jolie.jpg\r\n', 60, 0),
 (39, 'Purple Love', 3, 'Tím', 'Sản phẩm bao gồm:\r\n-Hoa Sao tím: 5\r\n-Hồng tím cà: 100', 1800000, 'img/san_pham/tinh_yeu/purple_love.jpg\r\n', 50, 0),
-(40, 'Romantic Heart', 3, 'Hồng', 'Sản phẩm bao gồm:\r\n-Cúc mai trắng: 3\r\n-Hồng da: 7\r\n-Mõm sói song hỷ : 10\r\n-Đồng tiền tua hồng nhạt: 6', 500000, 'img/san_pham/tinh_yeu/romantic_love.jpg\r\n', 50, 0),
+(40, 'Romantic Heart', 3, 'Hồng', 'Sản phẩm bao gồm:\r\n-Cúc mai trắng: 3\r\n-Hồng da: 7\r\n-Mõm sói song hỷ : 10\r\n-Đồng tiền tua hồng nhạt: 6', 500000, 'img/san_pham/tinh_yeu/romantic_heart.jpg\r\n', 50, 0),
 (41, 'Rung Động', 3, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Cẩm chướng chùm đỏ : 10\r\n-Cúc rossi trắng: 5\r\n-Hồng trứng gà : 5\r\n-Hồng đỏ ớt : 15\r\n-Lá bạc : 1', 650000, 'img/san_pham/tinh_yeu/rung_dong.jpg\r\n', 70, 0),
 (42, 'Trăm Năm Tình Yêu', 3, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Hoa baby : 1\r\n-Hồng đỏ Pháp: 100', 1650000, 'img/san_pham/tinh_yeu/tram_nam_tinh_yeu.jpg\r\n', 60, 0),
 (43, 'Ánh Dương', 2, 'Vàng', 'Sản phẩm bao gồm:\r\n-Hướng dương (cành): 1\r\n-Lá huyết dụ : 3', 150000, 'img/san_pham/sinh_nhat/anh_duong.jpg\r\n', 100, 50),
@@ -225,7 +225,7 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `G
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thanhtoan`
+-- Cấu trúc bảng cho bảng `thanhtoan`
 --
 
 CREATE TABLE `thanhtoan` (
@@ -238,11 +238,11 @@ CREATE TABLE `thanhtoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `chitietdonhang`
+-- Chỉ mục cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   ADD PRIMARY KEY (`MaChiTietDonHang`),
@@ -250,7 +250,7 @@ ALTER TABLE `chitietdonhang`
   ADD KEY `fk_chitietdonhang_sanpham` (`MaSanPham`);
 
 --
--- Indexes for table `danhgia`
+-- Chỉ mục cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD PRIMARY KEY (`MaDanhGia`),
@@ -258,27 +258,27 @@ ALTER TABLE `danhgia`
   ADD KEY `fk_danhgia_masanpham` (`MaSanPham`);
 
 --
--- Indexes for table `danhmucsanpham`
+-- Chỉ mục cho bảng `danhmucsanpham`
 --
 ALTER TABLE `danhmucsanpham`
   ADD PRIMARY KEY (`MaDanhMuc`);
 
 --
--- Indexes for table `donhang`
+-- Chỉ mục cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`MaDonHang`),
   ADD KEY `MaKhachHang` (`MaKhachHang`);
 
 --
--- Indexes for table `giaohang`
+-- Chỉ mục cho bảng `giaohang`
 --
 ALTER TABLE `giaohang`
   ADD PRIMARY KEY (`MaGiaoHang`),
   ADD KEY `fk_giaohang_madonhang` (`MaDonHang`);
 
 --
--- Indexes for table `khachhang`
+-- Chỉ mục cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`MaKhachHang`),
@@ -286,90 +286,90 @@ ALTER TABLE `khachhang`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Indexes for table `quantrivien`
+-- Chỉ mục cho bảng `quantrivien`
 --
 ALTER TABLE `quantrivien`
   ADD PRIMARY KEY (`MaQuanTriVien`),
   ADD UNIQUE KEY `TenDangNhap` (`TenDangNhap`);
 
 --
--- Indexes for table `sanpham`
+-- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`MaSanPham`),
   ADD KEY `MaDanhMuc` (`MaDanhMuc`);
 
 --
--- Indexes for table `thanhtoan`
+-- Chỉ mục cho bảng `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   ADD PRIMARY KEY (`MaThanhToan`),
   ADD KEY `fk_thanhtoan_madonhang` (`MaDonHang`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `chitietdonhang`
+-- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   MODIFY `MaChiTietDonHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `danhgia`
+-- AUTO_INCREMENT cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   MODIFY `MaDanhGia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `danhmucsanpham`
+-- AUTO_INCREMENT cho bảng `danhmucsanpham`
 --
 ALTER TABLE `danhmucsanpham`
   MODIFY `MaDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `donhang`
+-- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   MODIFY `MaDonHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `giaohang`
+-- AUTO_INCREMENT cho bảng `giaohang`
 --
 ALTER TABLE `giaohang`
   MODIFY `MaGiaoHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `khachhang`
+-- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
   MODIFY `MaKhachHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `quantrivien`
+-- AUTO_INCREMENT cho bảng `quantrivien`
 --
 ALTER TABLE `quantrivien`
   MODIFY `MaQuanTriVien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `sanpham`
+-- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   MODIFY `MaSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT for table `thanhtoan`
+-- AUTO_INCREMENT cho bảng `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `chitietdonhang`
+-- Các ràng buộc cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `MaDonHang` FOREIGN KEY (`MaDonHang`) REFERENCES `donhang` (`MaDonHang`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -378,32 +378,32 @@ ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `fk_chitietdonhang_sanpham` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `danhgia`
+-- Các ràng buộc cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD CONSTRAINT `fk_danhgia_makhachhang` FOREIGN KEY (`MaKhachHang`) REFERENCES `khachhang` (`MaKhachHang`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_danhgia_masanpham` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `donhang`
+-- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `MaKhachHang` FOREIGN KEY (`MaKhachHang`) REFERENCES `khachhang` (`MaKhachHang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `giaohang`
+-- Các ràng buộc cho bảng `giaohang`
 --
 ALTER TABLE `giaohang`
   ADD CONSTRAINT `fk_giaohang_madonhang` FOREIGN KEY (`MaDonHang`) REFERENCES `donhang` (`MaDonHang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `sanpham`
+-- Các ràng buộc cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `MaDanhMuc` FOREIGN KEY (`MaDanhMuc`) REFERENCES `danhmucsanpham` (`MaDanhMuc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `thanhtoan`
+-- Các ràng buộc cho bảng `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   ADD CONSTRAINT `fk_thanhtoan_madonhang` FOREIGN KEY (`MaDonHang`) REFERENCES `donhang` (`MaDonHang`) ON DELETE CASCADE ON UPDATE CASCADE;
