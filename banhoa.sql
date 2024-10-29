@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 23, 2024 lúc 08:38 AM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Oct 29, 2024 at 05:31 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `banhoa`
+-- Database: `banhoa`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietdonhang`
+-- Table structure for table `chitietdonhang`
 --
 
 CREATE TABLE `chitietdonhang` (
@@ -38,7 +38,7 @@ CREATE TABLE `chitietdonhang` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhgia`
+-- Table structure for table `danhgia`
 --
 
 CREATE TABLE `danhgia` (
@@ -53,7 +53,7 @@ CREATE TABLE `danhgia` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmucsanpham`
+-- Table structure for table `danhmucsanpham`
 --
 
 CREATE TABLE `danhmucsanpham` (
@@ -63,7 +63,7 @@ CREATE TABLE `danhmucsanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmucsanpham`
+-- Dumping data for table `danhmucsanpham`
 --
 
 INSERT INTO `danhmucsanpham` (`MaDanhMuc`, `TenDanhMuc`, `MoTa`) VALUES
@@ -79,7 +79,7 @@ INSERT INTO `danhmucsanpham` (`MaDanhMuc`, `TenDanhMuc`, `MoTa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `donhang`
+-- Table structure for table `donhang`
 --
 
 CREATE TABLE `donhang` (
@@ -94,21 +94,7 @@ CREATE TABLE `donhang` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giaohang`
---
-
-CREATE TABLE `giaohang` (
-  `MaGiaoHang` int(11) NOT NULL,
-  `MaDonHang` int(11) NOT NULL,
-  `NgayGiaoHangDuKien` datetime NOT NULL,
-  `DiaChiGiaoHang` text NOT NULL,
-  `TrangThaiGiaoHang` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `khachhang`
+-- Table structure for table `khachhang`
 --
 
 CREATE TABLE `khachhang` (
@@ -124,7 +110,22 @@ CREATE TABLE `khachhang` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `quantrivien`
+-- Table structure for table `lienhe`
+--
+
+CREATE TABLE `lienhe` (
+  `MaLienHe` int(11) NOT NULL,
+  `HoTen` varchar(200) NOT NULL,
+  `Email` varchar(300) NOT NULL,
+  `TieuDe` varchar(500) NOT NULL,
+  `NoiDung` text NOT NULL,
+  `NgayLienHe` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quantrivien`
 --
 
 CREATE TABLE `quantrivien` (
@@ -135,7 +136,7 @@ CREATE TABLE `quantrivien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `quantrivien`
+-- Dumping data for table `quantrivien`
 --
 
 INSERT INTO `quantrivien` (`MaQuanTriVien`, `TenDangNhap`, `MatKhau`, `VaiTro`) VALUES
@@ -144,7 +145,7 @@ INSERT INTO `quantrivien` (`MaQuanTriVien`, `TenDangNhap`, `MatKhau`, `VaiTro`) 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -160,7 +161,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `Gia`, `HinhAnh`, `TonKho`, `GiamGia`) VALUES
@@ -185,12 +186,12 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `G
 (20, 'Ngày Xanh', 6, 'Trắng', 'Sản phẩm bao gồm:\r\n-Cẩm chướng đơn xanh bơ : 10\r\n-Hoa mimi: 10\r\n-Hoa thạch thảo trắng: 5\r\n-Hồng trắng nhí: 15\r\n-Mõm sói trắng : 10', 880000, 'img/san_pham/chuc_suc_khoe/ngay_xanh.jpg\r\n', 70, 0),
 (21, 'Simple', 6, 'Cam', 'Sản phẩm bao gồm:\r\n-Hoa baby : 1\r\n-Hồng trứng gà : 10\r\n-Đinh lăng : 15', 350000, 'img/san_pham/chuc_suc_khoe/simple.jpg\r\n', 40, 50),
 (22, 'Tuổi Trẻ', 6, 'Vàng', 'Sản phẩm bao gồm:\r\n-Green wicky : 5\r\n-Hồng trứng gà : 11\r\n-Hồng vàng ánh trăng : 15\r\n-Hướng dương (cành): 6\r\n-Lan vũ nữ: 4\r\n-Mõm sói trắng : 10', 1000000, 'img/san_pham/chuc_suc_khoe/tuoi_tre.jpg\r\n', 80, 0),
-(23, 'Kệ Chúc Mừng', 5, 'Đỏ,Cam,Xanh', 'Sản phẩm bao gồm:\r\n-Hoa Cúc Lưới Xanh: 20\r\n-Môn đỏ: 10\r\n-Đồng tiền cam (20): 30', 100000, 'img/san_pham/khai_truong/ke_chuc_mung.jpg\r\n', 50, 0),
+(23, 'Kệ Chúc Mừng', 5, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Hoa Cúc Lưới Xanh: 20\r\n-Môn đỏ: 10\r\n-Đồng tiền cam (20): 30', 100000, 'img/san_pham/khai_truong/ke_chuc_mung.jpg\r\n', 50, 0),
 (24, 'Khởi Đầu Thuận Lợi', 5, 'Vàng', 'Sản phẩm bao gồm:\r\n-Cúc mai xanh : 10\r\n-Dương xỉ pháp : 40\r\n-Hồng vàng ánh trăng : 40\r\n-Lá mật cật : 5\r\n-Lan Moka vàng nến: 33\r\n-Mõm sói vàng: 20\r\n-Môn xanh: 22\r\n-Đồng tiền vàng : 60', 3500000, 'img/san_pham/khai_truong/khoi_dau_thuan_loi.jpg\r\n', 40, 20),
-(25, 'Thành Công Viên Mãn', 5, 'Vàng,Xanh', 'Sản phẩm bao gồm:\r\n-Cúc calimero xanh : 5\r\n-Hoa thiên điểu : 12\r\n-Hồng da: 25\r\n-Hồng vàng ánh trăng : 25\r\n-Lan vũ nữ: 15\r\n-Lily vàng thơm : 17\r\n-Môn xanh: 16', 2400000, 'img/san_pham/khai_truong/thanh_cong_vien_man.jpg\r\n', 50, 0),
+(25, 'Thành Công Viên Mãn', 5, 'Vàng', 'Sản phẩm bao gồm:\r\n-Cúc calimero xanh : 5\r\n-Hoa thiên điểu : 12\r\n-Hồng da: 25\r\n-Hồng vàng ánh trăng : 25\r\n-Lan vũ nữ: 15\r\n-Lily vàng thơm : 17\r\n-Môn xanh: 16', 2400000, 'img/san_pham/khai_truong/thanh_cong_vien_man.jpg\r\n', 50, 0),
 (26, 'Tương Lai Tươi Sáng', 5, 'Vàng', 'Sản phẩm bao gồm:\r\n-Hồng vàng ánh trăng : 50\r\n-Lan vũ nữ: 10\r\n-Lily vàng thơm : 30\r\n-Mõm sói trắng : 20\r\n-Môn xanh: 8', 680000, 'img/san_pham/khai_truong/tuong_lai_tuoi_sang.jpg\r\n', 50, 20),
 (27, 'Vạn Đạt', 5, 'Vàng', 'Sản phẩm bao gồm:\r\n-Hoa thiên điểu : 5\r\n-Hồng trứng gà : 22\r\n-Hồng vàng ánh trăng : 18\r\n-Lily vàng thơm : 18\r\n-Mõm sói vàng: 20', 1000000, 'img/san_pham/khai_truong/van_dat.jpg\r\n', 60, 0),
-(28, 'Vạn Sự Tốt Đẹp', 5, 'Đỏ,Vàng', 'Sản phẩm bao gồm:\r\n-Hoa thiên điểu : 10\r\n-Hồng trứng gà : 40\r\n-Hồng đỏ sa : 80\r\n-Lá phụ khác: 19\r\n-Lan Moka vàng nến: 4\r\n-Lan Moka đỏ: 5\r\n-Môn đỏ: 25', 3500000, 'img/san_pham/khai_truong/van_su_tot_dep.jpg\r\n', 60, 0),
+(28, 'Vạn Sự Tốt Đẹp', 5, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Hoa thiên điểu : 10\r\n-Hồng trứng gà : 40\r\n-Hồng đỏ sa : 80\r\n-Lá phụ khác: 19\r\n-Lan Moka vàng nến: 4\r\n-Lan Moka đỏ: 5\r\n-Môn đỏ: 25', 3500000, 'img/san_pham/khai_truong/van_su_tot_dep.jpg\r\n', 60, 0),
 (31, 'Congrats', 4, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Cẩm chướng chùm đỏ : 5\r\n-Hồng đỏ Pháp: 5\r\n-Hướng dương : 2\r\n-Lan Moka đỏ: 3\r\n-Red Elegance : 2', 500000, 'img/san_pham/tot_nghiep/congrats.jpg\r\n', 50, 0),
 (32, 'Hành Trình Mới', 4, 'Vàng', 'Sản phẩm bao gồm:\r\n-Cẩm chướng chùm cam viền: 10\r\n-Cúc mai xanh : 10\r\n-Hồng shimmer DL: 15\r\n-Hướng dương : 8', 1000000, 'img/san_pham/tot_nghiep/hanh_trinh_moi.jpg\r\n', 50, 20),
 (33, 'Hy Vọng', 4, 'Vàng', 'Sản phẩm bao gồm:\r\n-Cát tường trắng: 2\r\n-Hoa baby : 1\r\n-Hoa Sao tím: 1\r\n-Hồng da: 10\r\n-Hồng trứng gà : 3\r\n-Hướng dương : 3\r\n-Lá phụ khác: 5\r\n-Mõm sói vàng: 10', 650000, 'img/san_pham/tot_nghiep/hy_vong.jpg\r\n', 50, 50),
@@ -209,12 +210,12 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `G
 (46, 'Gặp Gỡ', 2, 'Hồng', 'Sản phẩm bao gồm:\r\n-Hoa baby : 0.5\r\n-Pink OHara: 1', 150000, 'img/san_pham/sinh_nhat/gap_go.jpg\r\n', 50, 0),
 (47, 'My Sun', 2, 'Vàng', 'Sản phẩm bao gồm:\r\n-Hoa Sao tím: 1\r\n-Hướng dương : 1', 200000, 'img/san_pham/sinh_nhat/my_sun.jpg\r\n', 90, 0),
 (48, 'Ngày Bên Em', 2, 'Tím', 'Sản phẩm bao gồm:\r\n-Cát tường hồng viền: 5\r\n-Hoa Sao tím: 1\r\n-Mõm sói song hỷ : 10\r\n-Purple Ohara : 15', 1000000, 'img/san_pham/sinh_nhat/ngay_ben_em.jpg\r\n', 50, 0),
-(49, 'Take My Hand', 2, 'Trắng,Vàng', 'Sản phẩm bao gồm:\r\n-Cúc rossi trắng: 3\r\n-Hoa sao vàng: 1\r\n-Hồng Pink Mondial : 1', 150000, 'img/san_pham/sinh_nhat/take_my_hand.jpg\r\n', 50, 0),
+(49, 'Take My Hand', 2, 'Trắng', 'Sản phẩm bao gồm:\r\n-Cúc rossi trắng: 3\r\n-Hoa sao vàng: 1\r\n-Hồng Pink Mondial : 1', 150000, 'img/san_pham/sinh_nhat/take_my_hand.jpg\r\n', 50, 0),
 (50, 'Tình Cờ', 2, 'Tím', 'Sản phẩm bao gồm:\r\n-Hoa thạch thảo tím: 1\r\n-Purple Ohara : 1', 150000, 'img/san_pham/sinh_nhat/tinh_co.jpg\r\n', 60, 0),
 (51, 'Warm Hugs', 2, 'Trắng', 'Sản phẩm bao gồm:\r\n-Cẩm chướng đơn trắng : 5\r\n-Hoa baby : 1\r\n-Hồng shimmer DL: 7', 300000, 'img/san_pham/sinh_nhat/warm_hugs.jpg\r\n', 50, 0),
 (52, 'Dynamic', 1, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Hồng đỏ Pháp: 25\r\n-Lá bạc : 3', 500000, 'img/san_pham/cuoi/dynamic.jpg\r\n', 100, 0),
 (53, 'Everyday With You', 1, 'Xanh', 'Sản phẩm bao gồm:\r\n-Hoa baby : 1\r\n-Hồng trắng cồ: 3', 200000, 'img/san_pham/cuoi/everyday_with_you.jpg\r\n', 50, 20),
-(54, 'Gửi Người Tôi Yêu', 1, 'Trắng,Đỏ,Tím', 'Sản phẩm bao gồm:\r\n-Cẩm chướng đơn hồng: 12\r\n-Hoa Sao tím: 2\r\n-Hồng da (50): 20\r\n-Hồng đỏ sa : 13', 850000, 'img/san_pham/cuoi/gui_nguoi_toi_yeu.jpg\r\n', 50, 0),
+(54, 'Gửi Người Tôi Yêu', 1, 'Tím', 'Sản phẩm bao gồm:\r\n-Cẩm chướng đơn hồng: 12\r\n-Hoa Sao tím: 2\r\n-Hồng da (50): 20\r\n-Hồng đỏ sa : 13', 850000, 'img/san_pham/cuoi/gui_nguoi_toi_yeu.jpg\r\n', 50, 0),
 (55, 'Nắng Hồng', 1, 'Hồng', 'Sản phẩm bao gồm:\r\n-Cẩm chướng chùm hồng nhạt : 10\r\n-Cúc calimero trắng: 5\r\n-Hoa baby : 1\r\n-Hoa thạch thảo tím: 3\r\n-Hồng da: 17', 550000, 'img/san_pham/cuoi/nang_hong.jpg\r\n', 50, 20),
 (56, 'Pretty Clouds', 1, 'Đỏ', 'Sản phẩm bao gồm:\r\n-Hoa baby : 4\r\n-Hồng đỏ Pháp: 1', 450000, 'img/san_pham/cuoi/pretty_clouds.jpg\r\n', 50, 50),
 (57, 'Priceless Heart', 1, 'Hồng', 'Sản phẩm bao gồm:\r\n-Cúc Tana: 8\r\n-Cát tường hồng viền: 7\r\n-Hồng da: 20\r\n-Hồng da cồ: 15\r\n-Hồng sen mới: 15', 1800000, 'img/san_pham/cuoi/priceless_heart.jpg\r\n', 50, 0),
@@ -225,7 +226,7 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `G
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thanhtoan`
+-- Table structure for table `thanhtoan`
 --
 
 CREATE TABLE `thanhtoan` (
@@ -238,11 +239,11 @@ CREATE TABLE `thanhtoan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `chitietdonhang`
+-- Indexes for table `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   ADD PRIMARY KEY (`MaChiTietDonHang`),
@@ -250,7 +251,7 @@ ALTER TABLE `chitietdonhang`
   ADD KEY `fk_chitietdonhang_sanpham` (`MaSanPham`);
 
 --
--- Chỉ mục cho bảng `danhgia`
+-- Indexes for table `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD PRIMARY KEY (`MaDanhGia`),
@@ -258,27 +259,20 @@ ALTER TABLE `danhgia`
   ADD KEY `fk_danhgia_masanpham` (`MaSanPham`);
 
 --
--- Chỉ mục cho bảng `danhmucsanpham`
+-- Indexes for table `danhmucsanpham`
 --
 ALTER TABLE `danhmucsanpham`
   ADD PRIMARY KEY (`MaDanhMuc`);
 
 --
--- Chỉ mục cho bảng `donhang`
+-- Indexes for table `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`MaDonHang`),
   ADD KEY `MaKhachHang` (`MaKhachHang`);
 
 --
--- Chỉ mục cho bảng `giaohang`
---
-ALTER TABLE `giaohang`
-  ADD PRIMARY KEY (`MaGiaoHang`),
-  ADD KEY `fk_giaohang_madonhang` (`MaDonHang`);
-
---
--- Chỉ mục cho bảng `khachhang`
+-- Indexes for table `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`MaKhachHang`),
@@ -286,90 +280,96 @@ ALTER TABLE `khachhang`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Chỉ mục cho bảng `quantrivien`
+-- Indexes for table `lienhe`
+--
+ALTER TABLE `lienhe`
+  ADD PRIMARY KEY (`MaLienHe`);
+
+--
+-- Indexes for table `quantrivien`
 --
 ALTER TABLE `quantrivien`
   ADD PRIMARY KEY (`MaQuanTriVien`),
   ADD UNIQUE KEY `TenDangNhap` (`TenDangNhap`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`MaSanPham`),
   ADD KEY `MaDanhMuc` (`MaDanhMuc`);
 
 --
--- Chỉ mục cho bảng `thanhtoan`
+-- Indexes for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   ADD PRIMARY KEY (`MaThanhToan`),
   ADD KEY `fk_thanhtoan_madonhang` (`MaDonHang`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `chitietdonhang`
+-- AUTO_INCREMENT for table `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   MODIFY `MaChiTietDonHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `danhgia`
+-- AUTO_INCREMENT for table `danhgia`
 --
 ALTER TABLE `danhgia`
   MODIFY `MaDanhGia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `danhmucsanpham`
+-- AUTO_INCREMENT for table `danhmucsanpham`
 --
 ALTER TABLE `danhmucsanpham`
   MODIFY `MaDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `donhang`
+-- AUTO_INCREMENT for table `donhang`
 --
 ALTER TABLE `donhang`
   MODIFY `MaDonHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `giaohang`
---
-ALTER TABLE `giaohang`
-  MODIFY `MaGiaoHang` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `khachhang`
+-- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
   MODIFY `MaKhachHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `quantrivien`
+-- AUTO_INCREMENT for table `lienhe`
+--
+ALTER TABLE `lienhe`
+  MODIFY `MaLienHe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `quantrivien`
 --
 ALTER TABLE `quantrivien`
   MODIFY `MaQuanTriVien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
   MODIFY `MaSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT cho bảng `thanhtoan`
+-- AUTO_INCREMENT for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `chitietdonhang`
+-- Constraints for table `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `MaDonHang` FOREIGN KEY (`MaDonHang`) REFERENCES `donhang` (`MaDonHang`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -378,32 +378,26 @@ ALTER TABLE `chitietdonhang`
   ADD CONSTRAINT `fk_chitietdonhang_sanpham` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `danhgia`
+-- Constraints for table `danhgia`
 --
 ALTER TABLE `danhgia`
   ADD CONSTRAINT `fk_danhgia_makhachhang` FOREIGN KEY (`MaKhachHang`) REFERENCES `khachhang` (`MaKhachHang`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_danhgia_masanpham` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `donhang`
+-- Constraints for table `donhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `MaKhachHang` FOREIGN KEY (`MaKhachHang`) REFERENCES `khachhang` (`MaKhachHang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `giaohang`
---
-ALTER TABLE `giaohang`
-  ADD CONSTRAINT `fk_giaohang_madonhang` FOREIGN KEY (`MaDonHang`) REFERENCES `donhang` (`MaDonHang`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `sanpham`
+-- Constraints for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `MaDanhMuc` FOREIGN KEY (`MaDanhMuc`) REFERENCES `danhmucsanpham` (`MaDanhMuc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `thanhtoan`
+-- Constraints for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
   ADD CONSTRAINT `fk_thanhtoan_madonhang` FOREIGN KEY (`MaDonHang`) REFERENCES `donhang` (`MaDonHang`) ON DELETE CASCADE ON UPDATE CASCADE;

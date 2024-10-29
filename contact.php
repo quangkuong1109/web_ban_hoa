@@ -13,6 +13,43 @@
     </div>
     <!-- Breadcrumb End -->
 
+    <?php
+        // 1. Kết nối đến MySQL
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "banhoa";
+
+        // Tạo kết nối
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Lấy giá trị của các input
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = isset($_POST['name']) ? mysqli_real_escape_string($conn, $_POST['name']) : '';
+            $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : '';
+            $subject = isset($_POST['subject']) ? mysqli_real_escape_string($conn, $_POST['subject']) : '';
+            $message = isset($_POST['message']) ? mysqli_real_escape_string($conn, $_POST['message']) : '';
+
+            // 2. Thực hiện truy vấn SQL
+            $insert_query = "INSERT INTO lienhe (HoTen, Email, TieuDe, NoiDung) VALUES ('$name', '$email', '$subject', '$message')";
+            $result = $conn->query($insert_query);
+
+            if ($result === true) {
+                echo "Thêm thành công";
+            } else {
+                echo "Thất bại";
+            }
+
+            // 4. Đóng kết nối
+            $conn->close();
+        } 
+    ?>
+
 
     <!-- Contact Start -->
     <div class="container-fluid">
@@ -24,23 +61,23 @@
                     <form name="sentMessage" id="contactForm" novalidate="novalidate">
                         <div class="control-group">
                             <input type="text" class="form-control" id="name" placeholder="Tên của bạn"
-                                required="required" data-validation-required-message="Vui lòng nhập tên của bạn" />
+                                required="required" data-validation-required-message="Vui lòng nhập tên của bạn" value="<?php echo htmlspecialchars($name ?? ''); ?>" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <input type="email" class="form-control" id="email" placeholder="Địa chỉ Email"
-                                required="required" data-validation-required-message="Vui lòng nhập địa chỉ Email của bạn" />
+                                required="required" data-validation-required-message="Vui lòng nhập địa chỉ Email của bạn" value="<?php echo htmlspecialchars($email ?? '') ;?>" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <input type="text" class="form-control" id="subject" placeholder="Tiêu đề"
-                                required="required" data-validation-required-message="Vui lòng nhập 1 tiêu đề" />
+                                required="required" data-validation-required-message="Vui lòng nhập 1 tiêu đề" value="<?php echo htmlspecialchars($subject ?? '') ;?>" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
                             <textarea class="form-control" rows="8" id="message" placeholder="Lời nhắn"
                                 required="required"
-                                data-validation-required-message="Vui lòng nhập lời nhắn của bạn"></textarea>
+                                data-validation-required-message="Vui lòng nhập lời nhắn của bạn" value="<?php echo htmlspecialchars($message ?? '') ;?>"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>

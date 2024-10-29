@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Đăng kí nhận ưu đãi</h5>
-                        <p>Hãy đăng kí hộp thư điện tử của tôi để nhận được những ưu đãi sớm nhất</p>
+                        <p>Hãy đăng kí hộp thư điện tử của chúng tôi để nhận được những ưu đãi sớm nhất</p>
                         <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Your Email Address">
