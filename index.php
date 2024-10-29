@@ -170,46 +170,55 @@ $danhmuc = [
     <div class="row px-xl-5">
         <?php
         require_once('database/db_connect.php');
+        
+        // Tạo mảng để lưu dữ liệu
+        $products = [];
+
+        // Lấy dữ liệu từ câu truy vấn và lưu vào mảng
         $sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 8";
         $ketqua = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_row($ketqua)) {
-            ?>
+            $products[] = $row;
+        }
+
+        // Sử dụng vòng lặp for để duyệt qua các phần tử trong mảng $products
+        for ($i = 0; $i < count($products); $i++) {
+            // $product = $products[$i];
+        ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="<?php echo $row[6]; ?>" alt=""><!--row[6] là trường HinhAnh-->
+                        <img class="img-fluid w-100" src="<?php echo $products[$i][6]; ?>" alt=""><!--product[6] là trường HinhAnh-->
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($row[1]); ?>">
-                                <i class="fa fa-search"></i>
-                            </a>
+                            <a class="btn btn-outline-dark btn-square" href="javascript:void(0)" onclick="addToCart('<?php echo $products[$i][0]; ?>', '<?php echo $products[$i][5]; ?>')"><i class="fa fa-shopping-cart"></i></a>
+
+                            <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($products[$i][1]); ?>"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="detail.php"><?php echo $row[1]; ?></a><!--row[1] là trường TenSanPham-->
+                        <a class="h6 text-decoration-none text-truncate" href="detail.php"><?php echo $products[$i][1]; ?></a><!--product[1] là trường TenSanPham-->
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5><?php echo number_format($row[5], 0, ',', '.') . " đ"; ?></h5><!--row[5] là trường Gia-->
+                            <h5><?php echo number_format($products[$i][5], 0, ',', '.') . " đ"; ?></h5><!--product[5] là trường Gia-->
                             <h6 class="text-muted ml-2"><del>
-                                <?php
+                                    <?php
                                     // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
-                                    if ($row[8] == 20) { //row[8] là GiamGia
-                                        $giachuagiam = $row[5] / 0.8; // Tính giá với giảm giá 20%,row[5] là trường Gia
+                                    if ($products[$i][8] == 20) { //product[8] là GiamGia
+                                        $giachuagiam = $products[$i][5] / 0.8; // Tính giá với giảm giá 20%, product[5] là trường Gia
                                         echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
-                                    } elseif ($row[8] == 50) {
-                                        $giachuagiam = $row[5] * 2; // Tính giá với giảm giá 50%
+                                    } elseif ($products[$i][8] == 50) {
+                                        $giachuagiam = $products[$i][5] * 2; // Tính giá với giảm giá 50%
                                         echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
                                     }
-                                    // Nếu GiamGia = 0, không hiển thị thẻ <del>
                                     ?>
                                 </del></h6>
-                            </div>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
     </div>
-    <!-- Products End -->
+</div>
+
 
 
     <!-- Offer Start -->
@@ -284,6 +293,7 @@ $danhmuc = [
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="cart_functions/add_to_cart.js"></script>
 </body>
 
 </html>

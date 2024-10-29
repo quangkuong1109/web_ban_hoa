@@ -229,6 +229,79 @@ session_start();
     </div>
     <!-- Topbar End -->
 
+    <?php require_once("database/db_connect.php"); 
+
+        ///////////////LẤY TÊN DANH MỤC SẢN PHẨM ĐỂ LOAD VÀO CHỦ ĐỀ/////////////////////
+        $sql = "SELECT TenDanhMuc FROM danhmucsanpham";
+        $result = $conn->query($sql);
+
+        // Tạo mảng để lưu dữ liệu
+        $tenDanhMucArray = array();
+
+        // Duyệt qua từng hàng dữ liệu và lưu vào mảng
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $tenDanhMucArray[] = $row['TenDanhMuc'];
+            }
+        } else {
+            echo "0 results";
+        }
+
+        $result->free(); // GIẢI PHÓNG DỮ LIỆU 
+
+        ///////////////////////////LẤY DỮ LIỆU SẢN PHẨM/////////////////////////////
+        $sql_hoa = "SELECT MaSanPham, TenSanPham, MaDanhMuc, Gia, HinhAnh, TonKho FROM sanpham";
+        $result_hoa = $conn->query($sql_hoa);
+
+        $sanPhamArray_id_ten = array(); 
+        $sanPhamArray_id_anh = array();
+        $sanPhamArray_id_gia = array();
+
+        if ($result_hoa->num_rows > 0) {
+            while($row_hoa = $result_hoa->fetch_assoc()) {
+                // Lưu tên và hình ảnh với khóa là MaSanPham
+                $sanPhamArray_id_ten[$row_hoa["MaSanPham"]] = $row_hoa["TenSanPham"];
+                $sanPhamArray_id_anh[$row_hoa["MaSanPham"]] = $row_hoa["HinhAnh"];
+                $sanPhamArray_id_gia[$row_hoa["MaSanPham"]] = $row_hoa["Gia"];
+            }
+        } else {
+            echo "0 results";
+        }
+
+        // Giải phóng bộ nhớ của kết quả truy vấn
+        $result_hoa->free();
+
+        /////////////////////////LẤY DỮ LIỆU GIỎ HÀNG////////////////////////////
+
+        // Thực hiện truy vấn SQL lấy dữ liệu từ giỏ hàng
+        $get_giohang_query = "SELECT MaSanPham, SoLuong, Gia FROM chitietdonhang";
+        $result_get_giohang = $conn->query($get_giohang_query);
+
+        // Tạo các mảng để lưu dữ liệu
+        $maSP_giohang = array();
+        $soluongSP_giohang = array();
+        $giaSP_giohang = array();
+
+        // Duyệt qua từng hàng dữ liệu và lưu vào các mảng
+        if ($result_get_giohang->num_rows > 0) {
+            while($row = $result_get_giohang->fetch_assoc()) {
+                $maSP_giohang[] = $row["MaSanPham"];
+                $soluongSP_giohang[] = $row["SoLuong"];
+                $giaSP_giohang[] = $row["Gia"];
+            }
+        } else {
+            echo "0 results";
+        }
+
+        // Tạo mảng chỉ lấy phần tử duy nhất của mảng mã sản phẩm
+        $maSP_giohang_unique = array_unique($maSP_giohang);
+        $maSP_giohang_unique = array_values($maSP_giohang_unique);
+
+        // Đếm số lần xuất hiện của mỗi phần tử trong mảng mã sản phẩm của giỏ hàng
+        $count_maSP_giohang = array_count_values($maSP_giohang);
+
+    ?>
+
     <!-- Navbar Start -->
     <div class="container-fluid bg-dark mb-30">
         <div class="row px-xl-5">
@@ -279,7 +352,7 @@ session_start();
                             </a>
                             <a id="open-side-menu" href="#" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">3</span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><?php echo count($maSP_giohang); ?></span>
                             </a>
                         </div>
                     </div>
@@ -296,25 +369,23 @@ session_start();
         <a href="#" class="close-side"><i class="fa fa-times"></i></a>
         <li class="cart-box">
             <ul class="cart-list">
+            <?php  
+                $sum_gia = 0;
+                for ($i=0; $i < count($maSP_giohang_unique); $i++) { 
+                    // code...
+            ?>
                 <li>
-                    <a href="#" class="photo"><img src="img/anh_for_web/rose_3.png.webp" class="cart-thumb" alt="" /></a>
-                    <h6><a href="#">Delica omtantur </a></h6>
-                    <p>1x - <span class="price">$80.00</span></p>
+                    <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP_giohang_unique[$i]] ?>" class="cart-thumb" alt="" /></a>
+                    <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP_giohang_unique[$i]]; ?></a></h6>
+                    <p><?php echo $count_maSP_giohang[$maSP_giohang_unique[$i]]; ?>x - <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] );?></span></p>
                 </li>
-                <li>
-                    <a href="#" class="photo"><img src="img/anh_for_web/rose_4.png.webp" class="cart-thumb" alt="" /></a>
-                    <h6><a href="#">Omnes ocurreret</a></h6>
-                    <p>1x - <span class="price">$60.00</span></p>
-                </li>
-                <li>
-                    <a href="#" class="photo"><img src="img/anh_for_web/rose_5.png.webp" class="cart-thumb" alt="" /></a>
-                    <h6><a href="#">Agam facilisis</a></h6>
-                    <p>1x - <span class="price">$40.00</span></p>
-                </li>
+                <?php $sum_gia = $sum_gia + ($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] * $count_maSP_giohang[$maSP_giohang_unique[$i]]); ?>
+            <?php } ?>
                 <li class="total">
-                    <a href="cart.php" class="btn btn-default hvr-hover btn-cart">Xem giỏ hàng</a>
-                    <span class="float-right"><strong>Tổng</strong>: $180.00</span>
+                        <a href="cart.php" class="btn btn-default hvr-hover btn-cart">Xem giỏ hàng</a>
+                        <span class="float-right"><strong>Tổng</strong>: <?php echo number_format($sum_gia); ?></span>
                 </li>
+
             </ul>
         </li>
     </div>
