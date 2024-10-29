@@ -115,9 +115,11 @@ CREATE TABLE `khachhang` (
 
 CREATE TABLE `lienhe` (
   `MaLienHe` int(11) NOT NULL,
-  `MaKhachHang` int(11) NOT NULL,
+  `HoTen` varchar(200) NOT NULL,
+  `Email` varchar(300) NOT NULL,
+  `TieuDe` varchar(500) NOT NULL,
   `NoiDung` text NOT NULL,
-  `NgayLienHe` date NOT NULL
+  `NgayLienHe` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
