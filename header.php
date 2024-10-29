@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,6 +167,16 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
+                <?php
+            // Kiểm tra xem người dùng đã đăng nhập chưa
+            if (isset($_SESSION['tennguoidung'])) {
+                // Nếu đã đăng nhập, hiển thị tên người dùng
+                echo '<a class="text-body mr-3" href="">Xin chào, ' . htmlspecialchars($_SESSION['tennguoidung']) . '</a>';
+            } else {
+                // Nếu chưa đăng nhập, hiển thị đường dẫn đăng nhập
+                echo '<a class="text-body mr-3" href="dangnhap_dangky.php">Đăng nhập</a>';
+            }
+            ?>
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài khoản</button>
