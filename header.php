@@ -168,8 +168,8 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài khoản</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="dangnhap_dangky.php">Đăng nhập</button>
-                            <a class="dropdown-item" href="dangnhap_dangky.php">Đăng ký</button>
+                            <a class="dropdown-item" href="dangnhap.php">Đăng nhập</button>
+                            <a class="dropdown-item" href="dangky.php">Đăng ký</button>
                         </div>
                     </div>
                 </div>
