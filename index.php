@@ -1,6 +1,6 @@
 <?php require_once ('header.php');?>
 
-// Hiệu ứng cho icon phía trên chủ đề
+<!-- Hiệu ứng cho icon phía trên chủ đề -->
 <style type="text/css">
     .xoay {
             transition: transform 0.5s; /* Thời gian xoay khi hover */
