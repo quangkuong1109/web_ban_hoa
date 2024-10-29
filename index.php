@@ -133,18 +133,17 @@ $danhmuc = [
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Chủ đề</span></h2>
     <div class="row px-xl-5 pb-3">
         <?php
-        foreach ($danhmuc as $madanhmuc) { //chạy vòng lặp kiểm tra theo mã danh mục để đếm số lượng sản phẩm theo mã danh mục
-            // Chuẩn bị câu truy vấn đếm số sản phẩm theo MaDanhMuc
-            $sql = "SELECT count(*) as tong FROM sanpham WHERE MaDanhMuc = ?"; // lấy về số lượng sản phẩm theo mã danh mục
+        foreach ($danhmuc as $madanhmuc) {
+            $sql = "SELECT count(*) as tong FROM sanpham WHERE MaDanhMuc = ?"; 
             $stmt = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($stmt, "i", $madanhmuc["id"]);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_bind_result($stmt, $tong);
             mysqli_stmt_fetch($stmt);
             mysqli_stmt_close($stmt);
-        ?>
+            ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <a class="text-decoration-none" href="">
+                <a class="text-decoration-none" href="shop.php?theme=<?php echo urlencode($madanhmuc['name']); ?>">
                     <div class="cat-item img-zoom d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
                             <img class="img-fluid" src="<?php echo $madanhmuc["img"]; ?>" alt="">
@@ -173,7 +172,7 @@ $danhmuc = [
         $sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 8";
         $ketqua = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_row($ketqua)) {
-        ?>
+            ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
@@ -188,7 +187,7 @@ $danhmuc = [
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5><?php echo number_format($row[5], 0, ',', '.') . " đ"; ?></h5><!--row[5] là trường Gia-->
                             <h6 class="text-muted ml-2"><del>
-                                    <?php
+                                <?php
                                     // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
                                     if ($row[8] == 20) { //row[8] là GiamGia
                                         $giachuagiam = $row[5] / 0.8; // Tính giá với giảm giá 20%,row[5] là trường Gia
@@ -200,88 +199,88 @@ $danhmuc = [
                                     // Nếu GiamGia = 0, không hiển thị thẻ <del>
                                     ?>
                                 </del></h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
-    </div>
-</div>
-<!-- Products End -->
-
-
-<!-- Offer Start -->
-<div class="container-fluid pt-5 pb-3">
-    <div class="row px-xl-5">
-        <div class="col-md-6">
-            <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="img/vuonhoa1.jpg" alt="">
-                <div class="offer-text">
-                    <h6 class="text-white text-uppercase">Save 20%</h6>
-                    <h3 class="text-white mb-3">Special Offer</h3>
-                    <a href="" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="product-offer mb-30" style="height: 300px;">
-                <img class="img-fluid" src="img/vuonhoa2.jpg" alt="">
-                <div class="offer-text">
-                    <h6 class="text-white text-uppercase">Save 20%</h6>
-                    <h3 class="text-white mb-3">Special Offer</h3>
-                    <a href="" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
-</div>
-<!-- Offer End -->
+    <!-- Products End -->
 
 
-
-
-
-<!-- Vendor Start -->
-<div class="container-fluid py-5">
-    <div class="row px-xl-5">
-        <div class="col">
-            <div class="owl-carousel vendor-carousel">
-                <div class="bg-light p-4">
-                    <img src="img/dai_ly/vendor1.jpg" alt="">
+    <!-- Offer Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <div class="row px-xl-5">
+            <div class="col-md-6">
+                <div class="product-offer mb-30" style="height: 300px;">
+                    <img class="img-fluid" src="img/vuonhoa1.jpg" alt="">
+                    <div class="offer-text">
+                        <h6 class="text-white text-uppercase">Save 20%</h6>
+                        <h3 class="text-white mb-3">Special Offer</h3>
+                        <a href="" class="btn btn-primary">Shop Now</a>
+                    </div>
                 </div>
-                <div class="bg-light p-4">
-                    <img src="img/dai_ly/vendor2.jpg" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/dai_ly/vendor3.jpg" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/dai_ly/vendor4.jpg" alt="">
+            </div>
+            <div class="col-md-6">
+                <div class="product-offer mb-30" style="height: 300px;">
+                    <img class="img-fluid" src="img/vuonhoa2.jpg" alt="">
+                    <div class="offer-text">
+                        <h6 class="text-white text-uppercase">Save 20%</h6>
+                        <h3 class="text-white mb-3">Special Offer</h3>
+                        <a href="" class="btn btn-primary">Shop Now</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Vendor End -->
-
-<?php include 'footer.php'; ?>
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <!-- Offer End -->
 
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-<!-- Contact Javascript File -->
-<script src="mail/jqBootstrapValidation.min.js"></script>
-<script src="mail/contact.js"></script>
 
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5">
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel vendor-carousel">
+                    <div class="bg-light p-4">
+                        <img src="img/dai_ly/vendor1.jpg" alt="">
+                    </div>
+                    <div class="bg-light p-4">
+                        <img src="img/dai_ly/vendor2.jpg" alt="">
+                    </div>
+                    <div class="bg-light p-4">
+                        <img src="img/dai_ly/vendor3.jpg" alt="">
+                    </div>
+                    <div class="bg-light p-4">
+                        <img src="img/dai_ly/vendor4.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+    <?php include 'footer.php'; ?>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
 
 </html>

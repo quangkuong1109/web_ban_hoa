@@ -239,14 +239,14 @@ session_start();
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
-                        <a href="" class="nav-item nav-link">Hoa cưới</a>
-                        <a href="" class="nav-item nav-link">Hoa sinh nhật</a>
-                        <a href="" class="nav-item nav-link">Hoa tình yêu</a>
-                        <a href="" class="nav-item nav-link">Hoa chia buồn</a>
-                        <a href="" class="nav-item nav-link">Hoa tốt nghiệp</a>
-                        <a href="" class="nav-item nav-link">Hoa khai trương</a>
-                        <a href="" class="nav-item nav-link">Hoa chúc sức khỏe</a>
-                        <a href="" class="nav-item nav-link">Hoa cảm ơn</a>
+                        <a href="shop.php?theme=Hoa%20cưới" class="nav-item nav-link">Hoa cưới</a>
+                        <a href="shop.php?theme=Hoa%20sinh%20nhật" class="nav-item nav-link">Hoa sinh nhật</a>
+                        <a href="shop.php?theme=Hoa%20tình%20yêu" class="nav-item nav-link">Hoa tình yêu</a>
+                        <a href="shop.php?theme=Hoa%20chia%20buồn" class="nav-item nav-link">Hoa chia buồn</a>
+                        <a href="shop.php?theme=Hoa%20tốt%20nghiệp" class="nav-item nav-link">Hoa tốt nghiệp</a>
+                        <a href="shop.php?theme=Hoa%20khai%20trương" class="nav-item nav-link">Hoa khai trương</a>
+                        <a href="shop.php?theme=Hoa%20chúc%20sức%20khỏe" class="nav-item nav-link">Hoa chúc sức khỏe</a>
+                        <a href="shop.php?theme=Hoa%20cảm%20ơn" class="nav-item nav-link">Hoa cảm ơn</a>
                     </div>
                 </nav>
             </div>
