@@ -158,6 +158,7 @@ $danhmuc = [
         <?php } ?>
     </div>
 </div>
+
 <!-- Categories End -->
 
 
@@ -179,7 +180,9 @@ $danhmuc = [
                         <img class="img-fluid w-100" src="<?php echo $row[6]; ?>" alt=""><!--row[6] là trường HinhAnh-->
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($row[1]); ?>">
+                                <i class="fa fa-search"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="text-center py-4">

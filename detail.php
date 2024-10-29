@@ -13,25 +13,39 @@
         </div>
     </div>
     <!-- Breadcrumb End -->
+            <?php
+            require_once('database/db_connect.php'); // Kết nối cơ sở dữ liệu
 
+            // Kiểm tra xem tên sản phẩm có được truyền qua URL không
+            if (isset($_GET['productName'])) {
+                $productName = urldecode($_GET['productName']);
+
+                // Truy vấn sản phẩm dựa trên tên sản phẩm
+                $sql = "SELECT TenSanPham, Gia, HinhAnh, MoTa FROM sanpham WHERE TenSanPham = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("s", $productName);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    $product = $result->fetch_assoc();
+                } else {
+                    echo "Không tìm thấy sản phẩm.";
+                }
+            } else {
+                echo "Không có sản phẩm nào được chọn.";
+            }
+            ?>
 
     <!-- Shop Detail Start -->
+    <?php if (!empty($product)): ?>
     <div class="container-fluid pb-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
                         <div class="carousel-item active">
-                            <img class="w-100 h-100" src="img/anh_for_web/rose_3.png.webp" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/anh_for_web/rose_4.png.webp" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/anh_for_web/rose_5.png.webp" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/anh_for_web/rose_6.png.webp" alt="Image">
+                            <img class="w-100 h-100" src="<?php echo $product['HinhAnh']; ?>" alt="Image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -45,7 +59,7 @@
 
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
-                    <h3>Hoa cải</h3>
+                    <h3><?php echo htmlspecialchars($product['TenSanPham']); ?></h3>
                     <div class="d-flex mb-3">
                         <div class="text-primary mr-2">
                             <small class="fas fa-star"></small>
@@ -56,36 +70,10 @@
                         </div>
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                    <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p>
+                    <h3 class="font-weight-semi-bold mb-4"><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h3>
+                    <p class="mb-4"><?php echo htmlspecialchars($product['MoTa']); ?></p>
+                    <?php endif; ?>
                     
-                    <div class="d-flex mb-4">
-                        <strong class="text-dark mr-3">Màu sắc:</strong>
-                        <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                <label class="custom-control-label" for="color-1">Black</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-2" name="color">
-                                <label class="custom-control-label" for="color-2">White</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-3" name="color">
-                                <label class="custom-control-label" for="color-3">Red</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-4" name="color">
-                                <label class="custom-control-label" for="color-4">Blue</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-5" name="color">
-                                <label class="custom-control-label" for="color-5">Green</label>
-                            </div>
-                        </form>
-                    </div>
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">

@@ -272,7 +272,9 @@
                                                     <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToLove('<?php echo $product['TenSanPham']; ?>')">
                                                         <i class="fa fa-heart"></i>
                                                     </a>
-                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($product['TenSanPham']); ?>">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
