@@ -168,16 +168,21 @@ session_start();
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <?php
-            // Kiểm tra xem người dùng đã đăng nhập chưa
-            if (isset($_SESSION['tennguoidung'])) {
-                // Nếu đã đăng nhập, hiển thị tên người dùng
-                echo '<a class="text-body mr-3" href="">Xin chào, ' . htmlspecialchars($_SESSION['tennguoidung']) . '</a>';
-            } else {
-                // Nếu chưa đăng nhập, hiển thị đường dẫn đăng nhập
-                echo '<a class="text-body mr-3" href="dangnhap_dangky.php">Đăng nhập</a>';
-            }
-            ?>
-                <div class="d-inline-flex align-items-center">
+                // Kiểm tra xem người dùng đã đăng nhập chưa
+                if (isset($_SESSION['tennguoidung'])) {
+                    // Nếu đã đăng nhập, hiển thị tên người dùng và nút Đăng xuất
+                    echo '<div class="d-inline-flex align-items-center">';
+                    echo '<p class="text-body mr-3 mb-0">Xin chào  ' . htmlspecialchars($_SESSION['tennguoidung']) . '</p>';
+                    echo '<a class="text-body mr-3" href="logout.php">Đăng xuất</a>';
+                    echo '</div>';
+                } else {
+                    unset($_SESSION['tennguoidung']);
+                    // Nếu chưa đăng nhập, hiển thị đường dẫn đăng nhập
+                    echo '<a class="text-body mr-3" href="dangnhap.php">Đăng nhập</a>';
+                }
+                ?>
+
+                <!--<div class="d-inline-flex align-items-center">
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài khoản</button>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -185,7 +190,7 @@ session_start();
                             <a class="dropdown-item" href="dangky.php">Đăng ký</button>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
