@@ -158,6 +158,7 @@
                 $priceRange = isset($_GET['price-range']) ? $_GET['price-range'] : 'all';
                 $theme = isset($_GET['theme']) ? $_GET['theme'] : 'all';
                 $sort = isset($_GET['sapxep']) ? $_GET['sapxep'] : '';
+                $discount = isset($_GET['discount']) ? $_GET['discount'] : 'all';
 
                     // Điều kiện lọc giá
                 $priceCondition = "";
@@ -179,18 +180,25 @@
                     $themeCondition = "d.TenDanhMuc = '$theme'";
                 }
 
-                    // Kết hợp điều kiện lọc
-                $whereClause = "";
-                if ($priceCondition && $themeCondition) {
-                    $whereClause = "WHERE $priceCondition AND $themeCondition";
-                } elseif ($priceCondition) {
-                    $whereClause = "WHERE $priceCondition";
-                } elseif ($themeCondition) {
-                    $whereClause = "WHERE $themeCondition";
+                // Điều kiện lọc giảm giá
+                $discountCondition = "";
+                if ($discount != 'all') {
+                    if ($discount == 'no_discount') {
+                        $discountCondition = "GiamGia = 0"; // Sản phẩm không có giảm giá
+                    } else {
+                        $discountCondition = "GiamGia = $discount"; // Sản phẩm có giảm giá cụ thể
+                    }
                 }
 
+                // Kết hợp điều kiện lọc
+                $whereClause = "";
+                if ($priceCondition) $whereClause .= $priceCondition;
+                if ($themeCondition) $whereClause .= ($whereClause ? " AND " : "") . $themeCondition;
+                if ($discountCondition) $whereClause .= ($whereClause ? " AND " : "") . $discountCondition;
 
-                    // Điều kiện sắp xếp
+                $whereClause = $whereClause ? "WHERE $whereClause" : "";
+
+
                     // Điều kiện sắp xếp
                 $orderBy = "";
                 if ($sort === 'asc') {
@@ -246,10 +254,10 @@
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sắp xếp</button>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=asc">Giá từ thấp đến cao</a>
-                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=desc">Giá từ cao đến thấp</a>
-                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=name_asc">Tên từ A-Z</a>
-                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=name_desc" >Tên từ Z-A</a>
+                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=asc">Giá từ Thấp -> Cao</a>
+                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=desc">Giá từ Cao -> Thấp</a>
+                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=name_asc">Tên từ A -> Z</a>
+                                                    <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=name_desc" >Tên từ Z -> A</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -279,7 +287,12 @@
                                             </div>
                                             <div class="text-center py-4">
                                                 <a class="h6 text-decoration-none text-truncate" href="detail.php?productName=<?php echo urlencode($product['TenSanPham']); ?>">
-                                                    <?php echo $product['TenSanPham']; ?>
+                                                    <?php echo $product['TenSanPham']; 
+                                                        // Kiểm tra và hiển thị giảm giá nếu có
+                                                    if (!empty($product['GiamGia']) && $product['GiamGia'] > 0) {
+                                                        echo '<span class="discount-badge"> (' . $product['GiamGia'] . '% OFF)</span>';
+                                                    }
+                                                    ?>
                                                 </a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                                     <h5><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h5>
@@ -404,6 +417,19 @@
                         padding: 10px 20px;
                         border-radius: 5px;
                         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+                    }
+                </style>
+                <style>
+                    .discount-badge {
+                        color: red; /* Đổi màu sang đỏ */
+                        animation: blink 0.5s step-start infinite; /* Hiệu ứng nhấp nháy */
+                    }
+
+                    /* Hiệu ứng nhấp nháy */
+                    @keyframes blink {
+                        50% {
+                            opacity: 0;
+                        }
                     }
                 </style>
 
