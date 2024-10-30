@@ -21,7 +21,7 @@
                 $productName = urldecode($_GET['productName']);
 
                 // Truy vấn sản phẩm dựa trên tên sản phẩm
-                $sql = "SELECT TenSanPham, Gia, HinhAnh, MoTa FROM sanpham WHERE TenSanPham = ?";
+                $sql = "SELECT MaSanPham, TenSanPham, Gia, HinhAnh, MoTa FROM sanpham WHERE TenSanPham = ?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("s", $productName);
                 $stmt->execute();
@@ -88,7 +88,11 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
+                        <a href="javascript:void(0);" onclick="addToCart('<?php echo $product['TenSanPham']; ?>','<?php echo $product['MaSanPham']; ?>','<?php echo $product['Gia']; ?>')" class="btn btn-primary px-3">
+                            <i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng
+                        </a>
+
+
                     </div>
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Chia sẻ:</strong>
@@ -221,6 +225,21 @@
     </div>
     <!-- Shop Detail End -->
 
+    <?php // CÓ THỂ BẠN SẼ THÍCH
+        require_once('database/db_connect.php');
+        
+        // Tạo mảng để lưu dữ liệu
+        $products = [];
+
+        // Lấy dữ liệu từ câu truy vấn và lưu vào mảng
+        $sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 8";
+        $ketqua = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_row($ketqua)) {
+            $products[] = $row;
+        }
+
+        
+    ?>
 
     <!-- Products Start -->
     <div class="container-fluid py-5">
@@ -228,136 +247,75 @@
         <div class="row px-xl-5">
             <div class="col">
                 <div class="owl-carousel related-carousel">
+
+                    <?php  // VÒNG LẶP IN TỪNG THÔNG TIN SẢN PHẨM NGẪU NHIÊN
+                        for ($i=0; $i < count($products); $i++) { 
+                            // code...
+                    ?>
                     <div class="product-item bg-light">
                         <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/anh_for_web/rose_5.png.webp" alt="">
+                            <img class="img-fluid w-100" src="<?php echo $products[$i][6]; ?>" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="javascript:void(0)" onclick="addToCart('<?php echo $products[$i][1]; ?>', '<?php echo $products[$i][0]; ?>', '<?php echo $products[$i][5]; ?>')"><i class="fa fa-shopping-cart"></i></a>
+
+                                <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToLove('<?php echo $products[$i][1]; ?>')"><i class="far fa-heart"></i></a>
+
+                                <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($products[$i][1]); ?>"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                            <a class="h6 text-decoration-none text-truncate" href="detail.php?productName=<?php echo urlencode($products[$i][1]); ?>"><?php echo $products[$i][1]; 
+                            // Kiểm tra và hiển thị giảm giá nếu có
+                            if (!empty($products[$i][8]) && $products[$i][8] > 0) {
+                                echo '<span class="discount-badge"> (' . $products[$i][8] . '% OFF)</span>';
+                            }
+                            ?>    
+                            </a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
+                            <h5><?php echo number_format($products[$i][5], 0, ',', '.') . " đ"; ?></h5><!--product[5] là trường Gia-->
+                            <h6 class="text-muted ml-2"><del>
+                                <?php
+                                    // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
+                                    if ($products[$i][8] == 20) { //product[8] là GiamGia
+                                        $giachuagiam = $products[$i][5] / 0.8; // Tính giá với giảm giá 20%, product[5] là trường Gia
+                                        echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
+                                    } elseif ($products[$i][8] == 50) {
+                                        $giachuagiam = $products[$i][5] * 2; // Tính giá với giảm giá 50%
+                                        echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
+                                    }
+                                    ?>
+                                </del></h6>
                             </div>
                         </div>
                     </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/anh_for_web/rose_6.png.webp" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/anh_for_web/rose_7.png.webp" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/anh_for_web/rose_8.png.webp" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/anh_for_web/rose_2.png.webp" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <?php } // KẾT THÚC THÔNG TIN 1 SẢN PHẨM + VÒNG LẶP ?>
+
                 </div>
             </div>
         </div>
     </div>
     <!-- Products End -->
+
+    <style>
+        .discount-badge {
+            color: red; /* Đổi màu sang đỏ */
+            animation: blink 0.5s step-start infinite; /* Hiệu ứng nhấp nháy */
+        }
+
+        /* Hiệu ứng nhấp nháy */
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <div id="toast" class="toast" style="position: fixed; bottom: 20px; right: 20px; z-index: 1050;">
+        <div class="toast-body">
+            <span id="toast-message"></span>
+        </div>
+    </div>
 
     <?php require_once('footer.php') ?>
 
@@ -377,6 +335,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="cart_functions/add_to_cart.js"></script>
 </body>
 
 </html>

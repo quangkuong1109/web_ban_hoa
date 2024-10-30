@@ -1,6 +1,5 @@
 <?php require_once('header.php'); ?>
 
-
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">
@@ -274,7 +273,7 @@
                                             <div class="product-img position-relative overflow-hidden">
                                                 <img class="img-fluid w-100" src="<?php echo $product['HinhAnh']; ?>" alt="">
                                                 <div class="product-action">
-                                                    <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToCart('<?php echo $product['TenSanPham']; ?>')">
+                                                    <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToCart('<?php echo $product['TenSanPham']; ?>','<?php echo $product['MaSanPham']; ?>','<?php echo $product['Gia']; ?>')">
                                                         <i class="fa fa-shopping-cart"></i>
                                                     </a>
                                                     <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToLove('<?php echo $product['TenSanPham']; ?>')">
@@ -344,70 +343,73 @@
                 </div>
 
                 <script>
-                    function addToCart(productName) {
-                        // Cập nhật thông báo
-                        $('#toast-message').text('Thêm sản phẩm "' + productName + '" vào giỏ hàng thành công!');
+                    // HỢP NHẤT HÀM addToCart NÀY VÀO FILE add_to_cart.js
+                    // function addToCart(productName) {
+                    //     // Cập nhật thông báo
+                    //     $('#toast-message').text('Thêm sản phẩm "' + productName + '" vào giỏ hàng thành công!');
 
-                        // Hiển thị toast
-                        $('#toast').toast({
-                            delay: 5000 // Thời gian hiển thị 5 giây
-                        });
-                        $('#toast').toast('show');
-                    }
+                    //     // Hiển thị toast
+                    //     $('#toast').toast({
+                    //         delay: 5000 // Thời gian hiển thị 5 giây
+                    //     });
+                    //     $('#toast').toast('show');
+                    // }
 
-                    function sortProducts(sortType) {
-                        // Lấy giá trị của các tham số hiện tại
-                        const urlParams = new URLSearchParams(window.location.search);
-                        const priceRange = urlParams.get('price-range') || 'all'; // Giá trị lọc giá
-                        const theme = urlParams.get('theme') || 'all'; // Giá trị lọc chủ đề
+                    // CẮT HÀM sortProducts SANG js/shop.js
+                    // function sortProducts(sortType) {
+                    //     // Lấy giá trị của các tham số hiện tại
+                    //     const urlParams = new URLSearchParams(window.location.search);
+                    //     const priceRange = urlParams.get('price-range') || 'all'; // Giá trị lọc giá
+                    //     const theme = urlParams.get('theme') || 'all'; // Giá trị lọc chủ đề
 
-                        // Cập nhật thông báo
-                        let message = '';
-                        switch (sortType) {
-                        case 'asc':
-                            message = 'Sắp xếp sản phẩm theo giá từ thấp đến cao!';
-                            break;
-                        case 'desc':
-                            message = 'Sắp xếp sản phẩm theo giá từ cao đến thấp!';
-                            break;
-                        case 'name_asc':
-                            message = 'Sắp xếp sản phẩm theo tên từ A-Z!';
-                            break;
-                        case 'name_desc':
-                            message = 'Sắp xếp sản phẩm theo tên từ Z-A!';
-                            break;
-                        }
+                    //     // Cập nhật thông báo
+                    //     let message = '';
+                    //     switch (sortType) {
+                    //     case 'asc':
+                    //         message = 'Sắp xếp sản phẩm theo giá từ thấp đến cao!';
+                    //         break;
+                    //     case 'desc':
+                    //         message = 'Sắp xếp sản phẩm theo giá từ cao đến thấp!';
+                    //         break;
+                    //     case 'name_asc':
+                    //         message = 'Sắp xếp sản phẩm theo tên từ A-Z!';
+                    //         break;
+                    //     case 'name_desc':
+                    //         message = 'Sắp xếp sản phẩm theo tên từ Z-A!';
+                    //         break;
+                    //     }
                         
-                        $('#toast-message').text(message);
+                    //     $('#toast-message').text(message);
 
-                        // Hiển thị toast
-                        $('#toast').toast({
-                            delay: 5000 // Thời gian hiển thị 5 giây
-                        });
-                        $('#toast').toast('show');
+                    //     // Hiển thị toast
+                    //     $('#toast').toast({
+                    //         delay: 5000 // Thời gian hiển thị 5 giây
+                    //     });
+                    //     $('#toast').toast('show');
 
-                        // Chuyển hướng đến trang với tham số lọc và sắp xếp
-                        window.location.href = `?page=1&price-range=${encodeURIComponent(priceRange)}&theme=${encodeURIComponent(theme)}&sapxep=${sortType}`;
-                    }
+                    //     // Chuyển hướng đến trang với tham số lọc và sắp xếp
+                    //     window.location.href = `?page=1&price-range=${encodeURIComponent(priceRange)}&theme=${encodeURIComponent(theme)}&sapxep=${sortType}`;
+                    // }
                 </script>
 
                 <script>
-                    function addToLove(productName) {
-                        // Cập nhật thông báo
-                        $('#toast-message').text('Thêm "' + productName + '" vào sản phẩm yêu thích thành công!');
+                    // CẮT HÀM addToLove SANG js/shop.js
+                    // function addToLove(productName) {
+                    //     // Cập nhật thông báo
+                    //     $('#toast-message').text('Thêm "' + productName + '" vào sản phẩm yêu thích thành công!');
 
-                        // Hiển thị toast
-                        $('#toast').toast({
-                            delay: 5000 // Thời gian hiển thị 3 giây
-                        });
-                        $('#toast').toast('show');
-                    }
+                    //     // Hiển thị toast
+                    //     $('#toast').toast({
+                    //         delay: 5000 // Thời gian hiển thị 3 giây
+                    //     });
+                    //     $('#toast').toast('show');
+                    // }
                 </script>
 
                 <style>
-                    .toast {
+                    /*CẮT .toast QUA css/thongbao_toast.css*/
+                   /* .toast {
                         display: none;
-                        /* Ẩn toast cho đến khi cần */
                         position: fixed;
                         bottom: 20px;
                         right: 20px;
@@ -417,7 +419,7 @@
                         padding: 10px 20px;
                         border-radius: 5px;
                         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-                    }
+                    }*/
                 </style>
                 <style>
                     .discount-badge {
@@ -432,7 +434,6 @@
                         }
                     }
                 </style>
-
             </div>
         </div>
 
@@ -447,7 +448,6 @@
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -460,6 +460,8 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script src="js/shop.js"></script>
+<script src="cart_functions/add_to_cart.js"></script>
 </body>
 
 </html>

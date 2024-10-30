@@ -1,0 +1,13 @@
+.toast {
+    display: none;
+    /* Ẩn toast cho đến khi cần */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050;
+    background-color: #ffd700;
+    color: #121212;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}

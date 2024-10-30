@@ -190,7 +190,7 @@ $danhmuc = [
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="<?php echo $products[$i][6]; ?>" alt=""><!--product[6] là trường HinhAnh-->
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href="javascript:void(0)" onclick="addToCart('<?php echo $products[$i][0]; ?>', '<?php echo $products[$i][5]; ?>')"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href="javascript:void(0)" onclick="addToCart('<?php echo $products[$i][1]; ?>', '<?php echo $products[$i][0]; ?>', '<?php echo $products[$i][5]; ?>')"><i class="fa fa-shopping-cart"></i></a>
 
                             <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($products[$i][1]); ?>"><i class="fa fa-search"></i></a>
                         </div>
@@ -226,6 +226,11 @@ $danhmuc = [
         </div>
     </div>
 
+    <div id="toast" class="toast" style="position: fixed; bottom: 20px; right: 20px; z-index: 1050;">
+        <div class="toast-body">
+            <span id="toast-message"></span>
+        </div>
+    </div>
 
 
     <!-- Offer Start -->
@@ -254,10 +259,6 @@ $danhmuc = [
         </div>
     </div>
     <!-- Offer End -->
-
-
-
-
 
     <!-- Vendor Start -->
     <div class="container-fluid py-5">
@@ -294,6 +295,7 @@ $danhmuc = [
             }
         }
     </style>
+
     <!-- Vendor End -->
 
     <?php include 'footer.php'; ?>

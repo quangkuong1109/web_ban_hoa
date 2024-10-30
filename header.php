@@ -28,6 +28,7 @@ session_start();
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/preloader.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/thongbao_toast.css">
 
     <!-- Chèn CSS cho side menu -->
     <style>
