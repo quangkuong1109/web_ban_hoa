@@ -184,7 +184,7 @@ $danhmuc = [
         // Sử dụng vòng lặp for để duyệt qua các phần tử trong mảng $products
         for ($i = 0; $i < count($products); $i++) {
             // $product = $products[$i];
-        ?>
+            ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
@@ -196,11 +196,13 @@ $danhmuc = [
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="detail.php"><?php echo $products[$i][1]; ?></a><!--product[1] là trường TenSanPham-->
+                        <a class="h6 text-decoration-none text-truncate" href="detail.php?productName=<?php echo urlencode($products[$i][1]); ?>">
+                            <?php echo $products[$i][1]; ?>
+                        </a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5><?php echo number_format($products[$i][5], 0, ',', '.') . " đ"; ?></h5><!--product[5] là trường Gia-->
                             <h6 class="text-muted ml-2"><del>
-                                    <?php
+                                <?php
                                     // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
                                     if ($products[$i][8] == 20) { //product[8] là GiamGia
                                         $giachuagiam = $products[$i][5] / 0.8; // Tính giá với giảm giá 20%, product[5] là trường Gia
@@ -211,13 +213,13 @@ $danhmuc = [
                                     }
                                     ?>
                                 </del></h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
+            <?php } ?>
+        </div>
     </div>
-</div>
 
 
 

@@ -278,7 +278,9 @@
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
-                                                <a class="h6 text-decoration-none text-truncate" href=""><?php echo $product['TenSanPham']; ?></a>
+                                                <a class="h6 text-decoration-none text-truncate" href="detail.php?productName=<?php echo urlencode($product['TenSanPham']); ?>">
+                                                    <?php echo $product['TenSanPham']; ?>
+                                                </a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                                     <h5><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h5>
                                                     <h6 class="text-muted ml-2">
