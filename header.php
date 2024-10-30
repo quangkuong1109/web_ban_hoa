@@ -211,15 +211,16 @@ session_start();
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="">
+                <form action="" onsubmit="return false;"> <!-- Ngăn chặn gửi form -->
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm loại hoa tại đây">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm loại hoa tại đây" oninput="searchProducts()">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
                     </div>
+                    <div id="suggestions" class="suggestions-box"></div> <!-- Khung hiện gợi ý sản phẩm -->
                 </form>
             </div>
             <div class="col-lg-4 col-6 text-right">
@@ -233,20 +234,20 @@ session_start();
     <?php require_once("database/db_connect.php"); 
 
         ///////////////LẤY TÊN DANH MỤC SẢN PHẨM ĐỂ LOAD VÀO CHỦ ĐỀ/////////////////////
-        $sql = "SELECT TenDanhMuc FROM danhmucsanpham";
-        $result = $conn->query($sql);
+    $sql = "SELECT TenDanhMuc FROM danhmucsanpham";
+    $result = $conn->query($sql);
 
         // Tạo mảng để lưu dữ liệu
-        $tenDanhMucArray = array();
+    $tenDanhMucArray = array();
 
         // Duyệt qua từng hàng dữ liệu và lưu vào mảng
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $tenDanhMucArray[] = $row['TenDanhMuc'];
-            }
-        } else {
-            echo "0 results";
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $tenDanhMucArray[] = $row['TenDanhMuc'];
         }
+    } else {
+        echo "0 results";
+    }
 
         $result->free(); // GIẢI PHÓNG DỮ LIỆU 
 
@@ -301,98 +302,192 @@ session_start();
         // Đếm số lần xuất hiện của mỗi phần tử trong mảng mã sản phẩm của giỏ hàng
         $count_maSP_giohang = array_count_values($maSP_giohang);
 
-    ?>
+        ?>
 
-    <!-- Navbar Start -->
-    <div class="container-fluid bg-dark mb-30">
-        <div class="row px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Chủ đề</h6>
-                    <i class="fa fa-angle-down text-dark"></i>
-                </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-                    <div class="navbar-nav w-100">
-                        <a href="shop.php?theme=Hoa%20cưới" class="nav-item nav-link">Hoa cưới</a>
-                        <a href="shop.php?theme=Hoa%20sinh%20nhật" class="nav-item nav-link">Hoa sinh nhật</a>
-                        <a href="shop.php?theme=Hoa%20tình%20yêu" class="nav-item nav-link">Hoa tình yêu</a>
-                        <a href="shop.php?theme=Hoa%20chia%20buồn" class="nav-item nav-link">Hoa chia buồn</a>
-                        <a href="shop.php?theme=Hoa%20tốt%20nghiệp" class="nav-item nav-link">Hoa tốt nghiệp</a>
-                        <a href="shop.php?theme=Hoa%20khai%20trương" class="nav-item nav-link">Hoa khai trương</a>
-                        <a href="shop.php?theme=Hoa%20chúc%20sức%20khỏe" class="nav-item nav-link">Hoa chúc sức khỏe</a>
-                        <a href="shop.php?theme=Hoa%20cảm%20ơn" class="nav-item nav-link">Hoa cảm ơn</a>
-                    </div>
-                </nav>
-            </div>
-
-            <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
-                        <img width="300px" height="60px" src="img/icon_logo.png">
+        <!-- Navbar Start -->
+        <div class="container-fluid bg-dark mb-30">
+            <div class="row px-xl-5">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
+                        <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Chủ đề</h6>
+                        <i class="fa fa-angle-down text-dark"></i>
                     </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link">Trang chủ</a>
-                            <a href="shop.php" class="nav-item nav-link">Sản phẩm</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thanh toán <i class="fa fa-angle-down mt-1"></i></a>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="cart.php" class="dropdown-item">Giỏ hàng</a>
-                                    <a href="checkout.php" class="dropdown-item">Thanh toán</a>
+                    <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                        <div class="navbar-nav w-100">
+                            <a href="shop.php?theme=Hoa%20cưới" class="nav-item nav-link">Hoa cưới</a>
+                            <a href="shop.php?theme=Hoa%20sinh%20nhật" class="nav-item nav-link">Hoa sinh nhật</a>
+                            <a href="shop.php?theme=Hoa%20tình%20yêu" class="nav-item nav-link">Hoa tình yêu</a>
+                            <a href="shop.php?theme=Hoa%20chia%20buồn" class="nav-item nav-link">Hoa chia buồn</a>
+                            <a href="shop.php?theme=Hoa%20tốt%20nghiệp" class="nav-item nav-link">Hoa tốt nghiệp</a>
+                            <a href="shop.php?theme=Hoa%20khai%20trương" class="nav-item nav-link">Hoa khai trương</a>
+                            <a href="shop.php?theme=Hoa%20chúc%20sức%20khỏe" class="nav-item nav-link">Hoa chúc sức khỏe</a>
+                            <a href="shop.php?theme=Hoa%20cảm%20ơn" class="nav-item nav-link">Hoa cảm ơn</a>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="col-lg-9">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                        <a href="" class="text-decoration-none d-block d-lg-none">
+                            <img width="300px" height="60px" src="img/icon_logo.png">
+                        </a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto py-0">
+                                <a href="index.php" class="nav-item nav-link">Trang chủ</a>
+                                <a href="shop.php" class="nav-item nav-link">Sản phẩm</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thanh toán <i class="fa fa-angle-down mt-1"></i></a>
+                                    <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                        <a href="cart.php" class="dropdown-item">Giỏ hàng</a>
+                                        <a href="checkout.php" class="dropdown-item">Thanh toán</a>
+                                    </div>
                                 </div>
+                                <a href="contact.php" class="nav-item nav-link">Liên hệ</a>
                             </div>
-                            <a href="contact.php" class="nav-item nav-link">Liên hệ</a>
+                            <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                                <a href="" class="btn px-0">
+                                    <i class="fas fa-heart text-primary"></i>
+                                    <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">3</span>
+                                </a>
+                                <a id="open-side-menu" href="#" class="btn px-0 ml-3">
+                                    <i class="fas fa-shopping-cart text-primary"></i>
+                                    <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><?php echo count($maSP_giohang); ?></span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="" class="btn px-0">
-                                <i class="fas fa-heart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">3</span>
-                            </a>
-                            <a id="open-side-menu" href="#" class="btn px-0 ml-3">
-                                <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><?php echo count($maSP_giohang); ?></span>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
+
+
             </div>
-
-
         </div>
-    </div>
-    <!-- Navbar End -->
+        <!-- Navbar End -->
 
-    <!-- Start Side Menu -->
-    <div class="side">
-        <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-        <li class="cart-box">
-            <ul class="cart-list">
-            <?php  
-                $sum_gia = 0;
-                for ($i=0; $i < count($maSP_giohang_unique); $i++) { 
+        <!-- Start Side Menu -->
+        <div class="side">
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box">
+                <ul class="cart-list">
+                    <?php  
+                    $sum_gia = 0;
+                    for ($i=0; $i < count($maSP_giohang_unique); $i++) { 
                     // code...
-            ?>
-                <li>
-                    <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP_giohang_unique[$i]] ?>" class="cart-thumb" alt="" /></a>
-                    <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP_giohang_unique[$i]]; ?></a></h6>
-                    <p><?php echo $count_maSP_giohang[$maSP_giohang_unique[$i]]; ?>x - <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] );?></span></p>
-                </li>
-                <?php $sum_gia = $sum_gia + ($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] * $count_maSP_giohang[$maSP_giohang_unique[$i]]); ?>
-            <?php } ?>
-                <li class="total">
+                        ?>
+                        <li>
+                            <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP_giohang_unique[$i]] ?>" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP_giohang_unique[$i]]; ?></a></h6>
+                            <p><?php echo $count_maSP_giohang[$maSP_giohang_unique[$i]]; ?>x - <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] );?></span></p>
+                        </li>
+                        <?php $sum_gia = $sum_gia + ($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] * $count_maSP_giohang[$maSP_giohang_unique[$i]]); ?>
+                    <?php } ?>
+                    <li class="total">
                         <a href="cart.php" class="btn btn-default hvr-hover btn-cart">Xem giỏ hàng</a>
                         <span class="float-right"><strong>Tổng</strong>: <?php echo number_format($sum_gia); ?></span>
-                </li>
+                    </li>
 
-            </ul>
-        </li>
-    </div>
-    <!-- End Side Menu -->
+                </ul>
+            </li>
+        </div>
+        <!-- End Side Menu -->
 
-    <script>
+        <style>
+            .suggestions-box {
+                border: 1px solid #ccc;
+                background: white;
+                position: absolute; /* Để có thể hiển thị bên dưới ô input */
+                z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
+                width: calc(100% - 2px); /* Để khung gợi ý rộng như ô input */
+                max-height: 300px; /* Giới hạn chiều cao của khung gợi ý */
+                overflow-y: auto; /* Thêm thanh cuộn nếu nội dung quá nhiều */
+            }
+
+            .suggestion-item {
+                padding: 10px; /* Khoảng cách bên trong từng item */
+                cursor: pointer; /* Hiển thị con trỏ khi di chuột vào item */
+            }
+
+            .suggestion-item:hover {
+                background: #ffd700; /* Màu nền khi hover */
+            }
+
+        </style>
+
+        <script>
+            function searchProducts() {
+                const input = document.getElementById('searchInput').value;
+                const suggestionsBox = document.getElementById('suggestions');
+
+                if (input.length === 0) {
+        suggestionsBox.innerHTML = ''; // Nếu không có gì nhập vào, ẩn khung gợi ý
+        return;
+    }
+
+    // Gọi AJAX để lấy sản phẩm
+    fetch(`search.php?query=${encodeURIComponent(input)}`)
+    .then(response => response.json())
+    .then(data => {
+            console.log(data); // Kiểm tra dữ liệu trả về
+            // Xóa khung gợi ý cũ
+            suggestionsBox.innerHTML = '';
+
+            // Nếu không có sản phẩm nào
+            if (data.length === 0) {
+                return;
+            }
+
+            // Hiện các sản phẩm phù hợp
+            data.forEach(product => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item d-flex align-items-center'; // Thêm lớp cho bố cục
+
+                // Tạo phần tử hình ảnh
+                const img = document.createElement('img');
+                img.src = product.HinhAnh; // Đường dẫn hình ảnh
+                img.alt = product.TenSanPham; // Tiêu đề hình ảnh
+                img.style.width = '70px'; // Kích thước hình ảnh
+                img.style.height = '70px'; // Kích thước hình ảnh
+                img.className = 'mr-2'; // Để có khoảng cách bên phải
+
+                // Tạo phần tử tên sản phẩm
+                const name = document.createElement('span');
+                name.textContent = product.TenSanPham; // Tên sản phẩm
+
+                // Tạo phần tử giá sản phẩm
+                const price = document.createElement('span');
+                price.textContent = ` -- $: ${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.Gia)}`; // Định dạng giá
+                price.className = 'ml-2'; // Để có khoảng cách bên trái
+
+                // Thêm hình ảnh và tên vào item
+                item.appendChild(img);
+                item.appendChild(name);
+                item.appendChild(price);
+
+                // Thêm sự kiện khi nhấn vào gợi ý
+                item.onclick = () => {
+                    document.getElementById('searchInput').value = product.TenSanPham;
+                    suggestionsBox.innerHTML = ''; // Ẩn gợi ý
+                };
+
+                // Thêm sự kiện khi nhấn vào gợi ý
+                item.onclick = () => {
+                    // Chuyển hướng đến trang detail.php với tên sản phẩm
+                    window.location.href = `detail.php?productName=${encodeURIComponent(product.TenSanPham)}`;
+                };
+                
+                suggestionsBox.appendChild(item);
+            });
+        })
+    .catch(error => {
+        console.error('Error fetching products:', error);
+    });
+}
+
+</script>
+<script>
+
         // Lấy các phần tử cần thiết từ HTML
         const sideMenu = document.querySelector('.side'); // Phần tử side menu
         const openBtn = document.getElementById('open-side-menu'); // Nút mở side menu
