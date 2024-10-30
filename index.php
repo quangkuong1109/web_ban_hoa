@@ -197,7 +197,12 @@ $danhmuc = [
                     </div>
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href="detail.php?productName=<?php echo urlencode($products[$i][1]); ?>">
-                            <?php echo $products[$i][1]; ?>
+                            <?php echo $products[$i][1]; 
+                            // Kiểm tra và hiển thị giảm giá nếu có
+                            if (!empty($products[$i][8]) && $products[$i][8] > 0) {
+                                echo '<span class="discount-badge"> (' . $products[$i][8] . '% OFF)</span>';
+                            }
+                            ?>
                         </a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5><?php echo number_format($products[$i][5], 0, ',', '.') . " đ"; ?></h5><!--product[5] là trường Gia-->
@@ -275,6 +280,20 @@ $danhmuc = [
             </div>
         </div>
     </div>
+
+    <style>
+        .discount-badge {
+            color: red; /* Đổi màu sang đỏ */
+            animation: blink 0.5s step-start infinite; /* Hiệu ứng nhấp nháy */
+        }
+
+        /* Hiệu ứng nhấp nháy */
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
     <!-- Vendor End -->
 
     <?php include 'footer.php'; ?>
