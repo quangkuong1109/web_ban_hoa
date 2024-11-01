@@ -438,7 +438,7 @@ session_start();
                         ?>
                         <li>
                             <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP]; ?>" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP]; ?></a></h6>
+                            <h6><a href="detail.php?productName=<?php echo urlencode($sanPhamArray_id_ten[$maSP]); ?>"><?php echo $sanPhamArray_id_ten[$maSP]; ?></a></h6>
                             <p>
                                 <?php echo $count_maSP_giohang[$maSP]; ?>x - 
                                 <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP]); ?></span>
@@ -489,7 +489,7 @@ session_start();
                             ?>
                             <li>
                                 <a href="#" class="photo"><img src="<?php echo $row['HinhAnh']; ?>" class="cart-thumb" alt="" /></a>
-                                <h6><a href="#"><?php echo $row['TenSanPham']; ?></a></h6>
+                                <h6><a href="detail.php?productName=<?php echo urlencode($row['TenSanPham']); ?>"><?php echo $row['TenSanPham']; ?></a></h6>
                                 <p>
                                     <span class="price"><?php echo number_format($row['Gia']); ?> VND</span>
                                 </p>

@@ -58,6 +58,11 @@
     border-bottom: 1px solid #ccc; /* Border dưới */
 }
 
+#thongbao {
+    width: 80%;
+    padding-left: 70px;
+}
+
 ////
 
 </style>
@@ -81,7 +86,10 @@
 <?php
 
     require_once("database/db_connect.php");
-    $ma_khach_hang = $_SESSION['makhachhang'];
+    // Kiểm tra nếu người dùng đã đăng nhập hay chưa
+    if (!isset($_SESSION['makhachhang'])) {
+        echo "<p id=\"thongbao\">Vui lòng đăng nhập để xem lịch sử đơn hàng.</p>";
+    }
 
     // Giả sử bạn đã có $ma_khach_hang từ session hoặc biến
     $sql_orders = "
