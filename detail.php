@@ -94,7 +94,7 @@
 
 
                     </div>
-                    <div class="d-flex pt-2">
+                    <div class="d-flex pt-2 mb-3">
                         <strong class="text-dark mr-2">Chia sẻ:</strong>
                         <div class="d-inline-flex">
                             <a class="text-dark px-2" href="">
@@ -111,6 +111,9 @@
                             </a>
                         </div>
                     </div>
+                    <h4 align="center" class="blink color-change" style="margin-top: 50px;">Free ship mọi đơn hàng trong nội thành Hà Nội</h4>
+                    <h3 align="center" class="blink color-change" style="margin-top: 20px;">ĐẶT HÀNG NGAY NHÉ</h3>
+
                 </div>
             </div>
         </div>
@@ -118,103 +121,46 @@
             <div class="col">
                 <div class="bg-light p-30">
                     <div class="nav nav-tabs mb-4">
-                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Mô tả</a>
-                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Thông tin</a>
-                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Đánh giá</a>
+                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Cách bảo quản</a>
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Ưu đãi</a>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
-                            <h4 class="mb-3">Mô tả</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                            <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                            <h3 class="mb-3" style="color: #DC143C; font-weight: bold;">Cách Bảo Quản</h3>
+                            <p style="color: #DC143C; font-weight: bold;">* Đối với bó hoa không bọc chân nước: bạn cắm chân hoa vào bình nước sạch, tối đa 2 ngày đổ nước cũ trong bình và thay nước mới.</p>
+                            <p style="color: #DC143C; font-weight: bold;">* Đối với bó hoa đã bọc sẵn chân nước: bó hoa có thể đứng được và bạn chỉ cần đổ nước trực tiếp vào chính giữa bó hoa. Tối đa 2 ngày đổ nước cũ trong bó hoa và thay nước mới.</p>
+                            <p style="color: #DC143C; font-weight: bold;">Lưu ý :</p>
+                            <p style="color: #DC143C; font-weight: bold;">* Tất cả các sản phẩm để nơi thoáng mát, nhiệt độ lý tưởng nhất là 22-24°C.</p>
+                            <p style="color: #DC143C; font-weight: bold;">* Tránh để hoa gần các thiết bị điện tử như tivi, tủ lạnh,... tránh ánh nắng trực tiếp từ mặt trời.</p>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
-                            <h4 class="mb-3">Thông tin sản phẩm</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                            <h3 class="mb-3" style="color: #DC143C; font-weight: bold;">Ưu Đãi Đặc Biệt Tại CDT Flower</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                            1. Tặng banner hoặc thiệp (trị giá 20.000đ - 50.000đ) miễn phí
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                            2. Giảm tiếp 3% cho đơn hàng Bạn tạo ONLINE lần thứ 2, 5% cho đơn hàng Bạn tạo ONLINE lần thứ 6 và 10% cho đơn hàng Bạn tạo ONLINE lần thứ 12.
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                            3. Miễn phí giao khu vực nội thành
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
-                                      </ul> 
+                                    </ul> 
                                 </div>
                                 <div class="col-md-6">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                            4. Giao gấp trong vòng 2 giờ
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                            5. Cam kết 100% hoàn lại tiền nếu Bạn không hài lòng
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
+                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                            6. Cam kết hoa tươi trên 3 ngày
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
-                                      </ul> 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-3">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">1 review for "Product Name"</h4>
-                                    <div class="media mb-4">
-                                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                        <div class="media-body">
-                                            <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                            <div class="text-primary mb-2">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
-                                            <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">Đánh giá</h4>
-                                    <small>Địa chỉ email của bạn sẽ không được công khai. Vui lòng điền đầy đủ những mục được đánh dấu *</small>
-                                    <div class="d-flex my-3">
-                                        <p class="mb-0 mr-2">Your Rating * :</p>
-                                        <div class="text-primary">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="message">Đánh giá của bạn *</label>
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Tên của bạn *</label>
-                                            <input type="text" class="form-control" id="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Địa chỉ Email *</label>
-                                            <input type="email" class="form-control" id="email">
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                                        </div>
-                                    </form>
+                                    </ul> 
                                 </div>
                             </div>
                         </div>
@@ -297,6 +243,40 @@
     </div>
     <!-- Products End -->
 
+    <style>
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .blink {
+            animation: blink 0.4s infinite;
+        }
+    </style>
+
+    <script>
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeColor() {
+            const elements = document.querySelectorAll('.color-change');
+            elements.forEach((element) => {
+                element.style.color = getRandomColor();
+            });
+        }
+
+        // Đổi màu sau mỗi 500ms
+        setInterval(changeColor, 500);
+    </script>
     <style>
         .discount-badge {
             color: red; /* Đổi màu sang đỏ */

@@ -51,12 +51,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+    // Tìm mã khách hàng mới
+    $sql = "SELECT MAX(MaKhachHang) AS MaxMaKhachHang FROM KhachHang";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $ma_khach_hang = $row['MaxMaKhachHang'] + 1;
+    } else {
+        // Nếu chưa có khách hàng nào, bắt đầu với mã 1
+        $ma_khach_hang = 1;
+    }
+
 
     // Nếu không có lỗi thì tiến hành thêm người dùng vào DB
     if (empty($errors)) {
-        $sql = "INSERT INTO KhachHang (TenKhachHang, Email, SoDienThoai, DiaChi, TenTaiKhoan, MatKhau) VALUES (?, ?, ?, ?, ?, ?)";
+        // Thêm người dùng mới vào cơ sở dữ liệu với mã khách hàng mới
+        $sql = "INSERT INTO KhachHang (MaKhachHang, TenKhachHang, Email, SoDienThoai, DiaChi, TenTaiKhoan, MatKhau) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ssssss', $ten_khach_hang, $email, $sdt, $dia_chi, $ten_tai_khoan, $mat_khau);
+        $stmt->bind_param('issssss', $ma_khach_hang, $ten_khach_hang, $email, $sdt, $dia_chi, $ten_tai_khoan, $mat_khau);
         if ($stmt->execute()) {
             $_SESSION['message'] = "Đăng ký thành công!";
             header('location:dangky.php');

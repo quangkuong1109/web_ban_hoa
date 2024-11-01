@@ -276,7 +276,7 @@
                                                     <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToCart('<?php echo $product['TenSanPham']; ?>','<?php echo $product['MaSanPham']; ?>','<?php echo $product['Gia']; ?>')">
                                                         <i class="fa fa-shopping-cart"></i>
                                                     </a>
-                                                    <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToLove('<?php echo $product['TenSanPham']; ?>')">
+                                                    <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToFavorites('<?php echo $product['TenSanPham']; ?>', '<?php echo $product['MaSanPham']; ?>')">
                                                         <i class="fa fa-heart"></i>
                                                     </a>
                                                     <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($product['TenSanPham']); ?>">
@@ -460,7 +460,7 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
-<script src="js/shop.js"></script>
+<script src="cart_functions/add_favorites.js"></script>
 <script src="cart_functions/add_to_cart.js"></script>
 </body>
 

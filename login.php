@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $matkhau = $_POST['matkhau'];
 
     // Truy vấn lấy tên tài khoản, mật khẩu và tên người dùng
-    $sql = "SELECT TenTaiKhoan, MatKhau, TenKhachHang FROM KhachHang WHERE TenTaiKhoan = ?"; // Không cần kiểm tra mật khẩu ở đây
+    $sql = "SELECT MaKhachHang, TenTaiKhoan, MatKhau, TenKhachHang FROM KhachHang WHERE TenTaiKhoan = ?"; // Không cần kiểm tra mật khẩu ở đây
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s', $taikhoan);
     
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Kiểm tra mật khẩu
         if ($matkhau === $user['MatKhau']) { // So sánh mật khẩu
             // Đăng nhập thành công, lưu tên người dùng vào session
+            $_SESSION['makhachhang'] = $user['MaKhachHang'];
             $_SESSION['tentaikhoan'] = $user['TenTaiKhoan'];
             $_SESSION['tennguoidung'] = $user['TenKhachHang']; // Lưu tên người dùng
             header('location:index.php'); 

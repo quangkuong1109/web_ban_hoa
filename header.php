@@ -173,7 +173,7 @@ session_start();
                 if (isset($_SESSION['tennguoidung'])) {
                     // Nếu đã đăng nhập, hiển thị tên người dùng và nút Đăng xuất
                     echo '<div class="d-inline-flex align-items-center">';
-                    echo '<p class="text-body mr-3 mb-0">Xin chào  ' . htmlspecialchars($_SESSION['tennguoidung']) . '</p>';
+                    echo '<p class="text-body mr-3 mb-0">Xin chào, ' . htmlspecialchars($_SESSION['tennguoidung']) . '</p>';
                     echo '<a class="text-body mr-3" href="logout.php">Đăng xuất</a>';
                     echo '</div>';
                 } else {
@@ -246,7 +246,7 @@ session_start();
             $tenDanhMucArray[] = $row['TenDanhMuc'];
         }
     } else {
-        echo "0 results";
+        //echo "0 results";
     }
 
         $result->free(); // GIẢI PHÓNG DỮ LIỆU 
@@ -267,7 +267,7 @@ session_start();
                 $sanPhamArray_id_gia[$row_hoa["MaSanPham"]] = $row_hoa["Gia"];
             }
         } else {
-            echo "0 results";
+            //echo "0 results";
         }
 
         // Giải phóng bộ nhớ của kết quả truy vấn
@@ -275,33 +275,90 @@ session_start();
 
         /////////////////////////LẤY DỮ LIỆU GIỎ HÀNG////////////////////////////
 
-        // Thực hiện truy vấn SQL lấy dữ liệu từ giỏ hàng
-        $get_giohang_query = "SELECT MaSanPham, SoLuong, Gia FROM chitietdonhang";
-        $result_get_giohang = $conn->query($get_giohang_query);
-
-        // Tạo các mảng để lưu dữ liệu
-        $maSP_giohang = array();
-        $soluongSP_giohang = array();
-        $giaSP_giohang = array();
-
-        // Duyệt qua từng hàng dữ liệu và lưu vào các mảng
-        if ($result_get_giohang->num_rows > 0) {
-            while($row = $result_get_giohang->fetch_assoc()) {
-                $maSP_giohang[] = $row["MaSanPham"];
-                $soluongSP_giohang[] = $row["SoLuong"];
-                $giaSP_giohang[] = $row["Gia"];
-            }
+        if (isset($_SESSION['makhachhang'])) {
+            $Ma_KH = $_SESSION['makhachhang'];
         } else {
-            echo "0 results";
+            $Ma_KH = "100";
         }
 
-        // Tạo mảng chỉ lấy phần tử duy nhất của mảng mã sản phẩm
-        $maSP_giohang_unique = array_unique($maSP_giohang);
-        $maSP_giohang_unique = array_values($maSP_giohang_unique);
+        // $Ma_KH = $_SESSION['makhachhang'];
+        // if (empty($Ma_KH)) {
+        //     $Ma_KH = "100";
+        // }
+        // Thực hiện truy vấn SQL lấy dữ liệu từ giỏ hàng
+            $get_giohang_query = "SELECT c.MaSanPham, SUM(c.SoLuong) AS TongSoLuong, c.Gia 
+                                  FROM chitietdonhang AS c
+                                  JOIN donhang AS d ON c.MaDonHang = d.MaDonHang
+                                  WHERE d.MaKhachHang = '$Ma_KH' AND d.TrangThai = 0
+                                  GROUP BY c.MaSanPham"; // Nhóm theo mã sản phẩm
 
-        // Đếm số lần xuất hiện của mỗi phần tử trong mảng mã sản phẩm của giỏ hàng
-        $count_maSP_giohang = array_count_values($maSP_giohang);
+            $result_get_giohang = $conn->query($get_giohang_query);
 
+            // Tạo các mảng để lưu dữ liệu
+            $maSP_giohang = array();
+            $soluongSP_giohang = array();
+            $giaSP_giohang = array();
+            
+
+            // Duyệt qua từng hàng dữ liệu và lưu vào các mảng
+            if ($result_get_giohang->num_rows > 0) {
+                while($row = $result_get_giohang->fetch_assoc()) {
+                    $maSP_giohang[] = $row["MaSanPham"];
+                    $soluongSP_giohang[] = $row["TongSoLuong"]; // Sử dụng tổng số lượng từ SQL
+                    $giaSP_giohang[] = $row["Gia"];
+                }
+            } else {
+                // echo "0 results";
+            }
+
+            // Tạo mảng chỉ lấy phần tử duy nhất của mảng mã sản phẩm
+            $maSP_giohang_unique = array_unique($maSP_giohang);
+            $maSP_giohang_unique = array_values($maSP_giohang_unique);
+
+            // Đếm số lần xuất hiện của mỗi phần tử trong mảng mã sản phẩm của giỏ hàng
+            $count_maSP_giohang = array_count_values($maSP_giohang);
+
+            // Gán số lượng cho từng mã sản phẩm duy nhất
+            $final_count_maSP_giohang = [];
+            foreach ($maSP_giohang_unique as $maSP) {
+                $final_count_maSP_giohang[$maSP] = 0; // Khởi tạo số lượng
+            }
+
+            foreach ($maSP_giohang as $key => $maSP) {
+                $final_count_maSP_giohang[$maSP] += $soluongSP_giohang[$key]; // Cộng dồn số lượng
+            }
+
+            // Số lượng sản phẩm hiện tại theo mã sản phẩm
+            $count_maSP_giohang = $final_count_maSP_giohang; 
+
+            // Truy vấn để lấy tên sản phẩm, giá và số lượng từ bảng giohang
+            $sql = "
+                SELECT 
+                    sp.TenSanPham, 
+                    sp.Gia
+                FROM 
+                    yeuthich AS yt
+                JOIN 
+                    sanpham AS sp ON yt.MaSanPham = sp.MaSanPham
+                WHERE 
+                    yt.MaKhachHang = ?
+                ";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $Ma_KH); // Sử dụng biến đã định nghĩa
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                $tong_so_luong = 0; // Biến để đếm tổng số lượng sản phẩm
+
+                // Kiểm tra nếu giỏ hàng không trống
+                if ($result->num_rows > 0) {
+                    // Duyệt qua các sản phẩm trong giỏ hàng
+                    while ($row = $result->fetch_assoc()) {
+                        // Cộng dồn số lượng sản phẩm vào biến tổng
+                        $tong_so_luong++;
+                    }
+                }
         ?>
 
         <!-- Navbar Start -->
@@ -338,19 +395,21 @@ session_start();
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="index.php" class="nav-item nav-link">Trang chủ</a>
                                 <a href="shop.php" class="nav-item nav-link">Sản phẩm</a>
-                                <div class="nav-item dropdown">
+                                <a href="cart.php" class="nav-item nav-link">Giỏ hàng</a>
+                                <a href="lichsu_donhang.php" class="nav-item nav-link">Lịch sử đơn hàng</a>
+                                <!-- <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thanh toán <i class="fa fa-angle-down mt-1"></i></a>
                                     <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                         <a href="cart.php" class="dropdown-item">Giỏ hàng</a>
                                         <a href="checkout.php" class="dropdown-item">Thanh toán</a>
                                     </div>
-                                </div>
+                                </div> -->
                                 <a href="contact.php" class="nav-item nav-link">Liên hệ</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                <a href="" class="btn px-0">
+                                <a id="open-side-menu-2" href="#" class="btn px-0">
                                     <i class="fas fa-heart text-primary"></i>
-                                    <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">3</span>
+                                    <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><?php echo $tong_so_luong; ?></span>
                                 </a>
                                 <a id="open-side-menu" href="#" class="btn px-0 ml-3">
                                     <i class="fas fa-shopping-cart text-primary"></i>
@@ -373,25 +432,79 @@ session_start();
                 <ul class="cart-list">
                     <?php  
                     $sum_gia = 0;
-                    for ($i=0; $i < count($maSP_giohang_unique); $i++) { 
-                    // code...
+                    for ($i = 0; $i < count($maSP_giohang_unique); $i++) { 
+                        // Mã sản phẩm duy nhất
+                        $maSP = $maSP_giohang_unique[$i];
                         ?>
                         <li>
-                            <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP_giohang_unique[$i]] ?>" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP_giohang_unique[$i]]; ?></a></h6>
-                            <p><?php echo $count_maSP_giohang[$maSP_giohang_unique[$i]]; ?>x - <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] );?></span></p>
+                            <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP]; ?>" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP]; ?></a></h6>
+                            <p>
+                                <?php echo $count_maSP_giohang[$maSP]; ?>x - 
+                                <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP]); ?></span>
+                            </p>
                         </li>
-                        <?php $sum_gia = $sum_gia + ($sanPhamArray_id_gia[$maSP_giohang_unique[$i]] * $count_maSP_giohang[$maSP_giohang_unique[$i]]); ?>
-                    <?php } ?>
+                        <?php 
+                        // Tính tổng giá trị
+                        $sum_gia += ($sanPhamArray_id_gia[$maSP] * $count_maSP_giohang[$maSP]);
+                    } ?>
                     <li class="total">
                         <a href="cart.php" class="btn btn-default hvr-hover btn-cart">Xem giỏ hàng</a>
                         <span class="float-right"><strong>Tổng</strong>: <?php echo number_format($sum_gia); ?></span>
                     </li>
-
                 </ul>
             </li>
         </div>
         <!-- End Side Menu -->
+
+        <!-- Start Side Menu for Favorites -->
+        <div class="side" id="favorites-side-menu" style="transform: translateX(100%); transition: transform 0.3s ease;">
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box">
+                <ul class="cart-list">
+                    <?php
+                    // Thực hiện truy vấn SQL để lấy danh sách sản phẩm yêu thích
+                    $sql = "
+                        SELECT 
+                            sp.TenSanPham, 
+                            sp.Gia,
+                            sp.HinhAnh
+                        FROM 
+                            yeuthich AS yt
+                        JOIN 
+                            sanpham AS sp ON yt.MaSanPham = sp.MaSanPham
+                        WHERE 
+                            yt.MaKhachHang = ?
+                    ";
+
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("i", $Ma_KH); // Sử dụng biến đã định nghĩa
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+
+                    // Kiểm tra nếu có sản phẩm yêu thích
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            // Cộng dồn số lượng sản phẩm vào biến tổng
+                            ?>
+                            <li>
+                                <a href="#" class="photo"><img src="<?php echo $row['HinhAnh']; ?>" class="cart-thumb" alt="" /></a>
+                                <h6><a href="#"><?php echo $row['TenSanPham']; ?></a></h6>
+                                <p>
+                                    <span class="price"><?php echo number_format($row['Gia']); ?> VND</span>
+                                </p>
+                            </li>
+                            <?php
+                        }
+                    } else {
+                        echo '<li>Chưa có sản phẩm yêu thích nào.</li>';
+                    }
+                    ?>
+                </ul>
+            </li>
+        </div>
+        <!-- End Side Menu for Favorites -->
+
 
         <style>
             .suggestions-box {
@@ -487,30 +600,31 @@ session_start();
 
 </script>
 <script>
+    // Lấy các phần tử cần thiết từ HTML
+    const sideMenu = document.querySelector('.side'); // Phần tử side menu giỏ hàng
+    const favoritesSideMenu = document.getElementById('favorites-side-menu'); // Phần tử side menu yêu thích
+    const openBtn = document.getElementById('open-side-menu'); // Nút mở side menu giỏ hàng
+    const openFavoritesBtn = document.getElementById('open-side-menu-2'); // Nút mở side menu yêu thích
+    const closeBtn = document.querySelector('.close-side'); // Nút đóng side menu giỏ hàng
 
-        // Lấy các phần tử cần thiết từ HTML
-        const sideMenu = document.querySelector('.side'); // Phần tử side menu
-        const openBtn = document.getElementById('open-side-menu'); // Nút mở side menu
-        const closeBtn = document.querySelector('.close-side'); // Nút đóng side menu
+    // Khi nhấp vào nút mở giỏ hàng, thêm class "active" để hiện side menu
+    openBtn.addEventListener('click', function() {
+        sideMenu.style.transform = 'translateX(0)'; // Di chuyển side menu giỏ hàng vào view
+    });
 
-        // Khi nhấp vào nút mở, thêm class "active" để hiện side menu
-        openBtn.addEventListener('click', function() {
-            sideMenu.style.transform = 'translateX(0)'; // Di chuyển side menu vào view
-        });
+    // Khi nhấp vào nút mở favorites, thêm class "active" để hiện side menu
+    openFavoritesBtn.addEventListener('click', function() {
+        favoritesSideMenu.style.transform = 'translateX(0)'; // Di chuyển side menu yêu thích vào view
+    });
 
-        // Khi nhấp vào nút đóng, xóa class "active" để ẩn side menu
-        closeBtn.addEventListener('click', function() {
-            sideMenu.style.transform = 'translateX(100%)'; // Di chuyển side menu ra khỏi view
-        });
+    // Khi nhấp vào nút đóng, xóa class "active" để ẩn side menu giỏ hàng
+    closeBtn.addEventListener('click', function() {
+        sideMenu.style.transform = 'translateX(100%)'; // Di chuyển side menu giỏ hàng ra khỏi view
+    });
 
-        // Thêm sự kiện cho tất cả các liên kết nav-link
-        document.querySelectorAll('.nav-item.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                // Xóa lớp active từ tất cả các liên kết
-                document.querySelectorAll('.nav-item.nav-link').forEach(nav => nav.classList.remove('active'));
-
-                // Thêm lớp active vào liên kết được nhấp
-                this.classList.add('active');
-            });
-        });
-    </script>
+    // Khi nhấp vào nút đóng cho favorites, xóa class "active" để ẩn side menu yêu thích
+    const closeFavoritesBtn = favoritesSideMenu.querySelector('.close-side'); // Nút đóng cho side menu yêu thích
+    closeFavoritesBtn.addEventListener('click', function() {
+        favoritesSideMenu.style.transform = 'translateX(100%)'; // Di chuyển side menu yêu thích ra khỏi view
+    });
+</script>

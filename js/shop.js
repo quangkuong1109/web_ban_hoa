@@ -28,13 +28,3 @@ function sortProducts(sortType) {
     // Chuyển hướng đến trang với tham số lọc và sắp xếp
     window.location.href = `?page=1&price-range=${encodeURIComponent(priceRange)}&theme=${encodeURIComponent(theme)}&sapxep=${sortType}`;
 }
-
-function addToLove(productName) {
-    // Cập nhật thông báo
-    $('#toast-message').text('Thêm "' + productName + '" vào sản phẩm yêu thích thành công!');
-    // Hiển thị toast
-    $('#toast').toast({
-        delay: 5000 // Thời gian hiển thị 3 giây
-    });
-    $('#toast').toast('show');
-}

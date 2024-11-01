@@ -1,12 +1,10 @@
-function addToCart(tenSanPham, maSanPham, giaSP) {
+function addToFavorites(tenSanPham, maSanPham) {
     // Tạo dữ liệu cần gửi
     const data = new URLSearchParams();
-    data.append("tenSanPham", tenSanPham);
     data.append("maSanPham", maSanPham);
-    data.append("giaSP", giaSP);
 
     // Gửi yêu cầu AJAX bằng fetch API
-    fetch("cart_functions/add_to_cart.php", {
+    fetch("cart_functions/add_favorites.php", {
         method: "POST",
         body: data,
         headers: {
@@ -16,12 +14,16 @@ function addToCart(tenSanPham, maSanPham, giaSP) {
     .then(response => response.text())
     .then(result => {
         if (result === "success") {
-            // Thêm vào giỏ hàng thành công
-            localStorage.setItem('cartMessage', `Thêm sản phẩm "${tenSanPham}" vào giỏ hàng thành công!`);
+            // Thêm vào danh mục yêu thích thành công
+            localStorage.setItem('favoritesMessage', `Thêm sản phẩm "${tenSanPham}" vào danh mục Yêu Thích thành công!`);
+            location.reload(true);
+        } else if (result === "product_exists") {
+            // Sản phẩm đã có trong danh mục yêu thích
+            localStorage.setItem('favoritesMessage', `Sản phẩm "${tenSanPham}" đã có trong danh mục Yêu Thích.`);
             location.reload(true);
         } else if (result === "not_logged_in") {
             // Người dùng chưa đăng nhập
-            localStorage.setItem('cartMessage', "Bạn cần *Đăng Nhập* trước khi thêm sản phẩm vào giỏ hàng");
+            localStorage.setItem('favoritesMessage', "Bạn cần *Đăng Nhập* trước khi thêm sản phẩm vào danh mục Yêu Thích.");
             location.reload(true);
         } else {
             alert("Có lỗi xảy ra, vui lòng thử lại.");
@@ -34,7 +36,7 @@ function addToCart(tenSanPham, maSanPham, giaSP) {
 
 // Hiển thị thông báo từ localStorage khi trang load
 window.addEventListener('load', () => {
-    const message = localStorage.getItem('cartMessage');
+    const message = localStorage.getItem('favoritesMessage');
     if (message) {
         setTimeout(() => {
             $('#toast-message').text(message);
@@ -43,7 +45,7 @@ window.addEventListener('load', () => {
             });
             $('#toast').toast('show');
 
-            localStorage.removeItem('cartMessage');
+            localStorage.removeItem('favoritesMessage');
         }, 500); // Độ trễ 1 giây
     }
 });
