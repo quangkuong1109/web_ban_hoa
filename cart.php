@@ -96,7 +96,11 @@
                                     echo "<tr><td colspan='5'>Giỏ hàng trống</td></tr>";
                                 }
                         // Thêm phần hiển thị tổng tiền hàng và tổng thanh toán
-                        $shippingFee = 100000; // Giả sử phí giao hàng là 10 đ
+                        if (isset($_SESSION['makhachhang'])){
+                            $shippingFee = 100000;  // Giả sử phí giao hàng là 10 đ
+                        }else{
+                            $shippingFee = 0;
+                        }
                         $totalPayment = $totalAmount + $shippingFee; // Tính tổng thanh toán
                         ?>
                     </tbody>
