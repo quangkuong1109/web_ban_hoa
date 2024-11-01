@@ -89,80 +89,80 @@
     // Kiểm tra nếu người dùng đã đăng nhập hay chưa
     if (!isset($_SESSION['makhachhang'])) {
         echo "<p id=\"thongbao\">Vui lòng đăng nhập để xem lịch sử đơn hàng.</p>";
-    }
+    }else{
+        // Giả sử bạn đã có $ma_khach_hang từ session hoặc biến
+        $sql_orders = "
+        SELECT 
+            dh.MaDonHang, 
+            dh.TongGiaTri, 
+            gh.DiaChi
+        FROM 
+            donhang AS dh
+        JOIN 
+            thanhtoan AS tt ON dh.MaDonHang = tt.MaDonHang
+        JOIN 
+            giaohang AS gh ON tt.MaThanhToan = gh.MaThanhToan
+        WHERE 
+            dh.MaKhachHang = ? AND tt.TrangThai = 'Đã Thanh Toán' ";
 
-    // Giả sử bạn đã có $ma_khach_hang từ session hoặc biến
-    $sql_orders = "
-    SELECT 
-        dh.MaDonHang, 
-        dh.TongGiaTri, 
-        gh.DiaChi
-    FROM 
-        donhang AS dh
-    JOIN 
-        thanhtoan AS tt ON dh.MaDonHang = tt.MaDonHang
-    JOIN 
-        giaohang AS gh ON tt.MaThanhToan = gh.MaThanhToan
-    WHERE 
-        dh.MaKhachHang = ? AND tt.TrangThai = 'Đã Thanh Toán' ";
+        $stmt = $conn->prepare($sql_orders);
+        $stmt->bind_param("i", $ma_khach_hang); // Biến khách hàng
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    $stmt = $conn->prepare($sql_orders);
-    $stmt->bind_param("i", $ma_khach_hang); // Biến khách hàng
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Bắt đầu hiển thị dữ liệu
-    while ($row = $result->fetch_assoc()) {
-        $maDonHang = $row['MaDonHang'];
-        $TongGiaTri = $row['TongGiaTri'];
-        $diaChi = $row['DiaChi'];       
-        
-        // Hiển thị thông tin đơn hàng
-        echo '<button class="accordion"><span style="color: red;">MÃ ĐƠN HÀNG: #' . $maDonHang . '</span> <i style="font-weight: bold;">- Địa chỉ nhận: ' . $diaChi . '</i></button>';
-        echo '<div class="panel">';
-        
-        // Truy vấn để lấy sản phẩm trong đơn hàng, bao gồm hình ảnh từ bảng sanpham
-        $sql_products = "
-            SELECT sp.TenSanPham, sp.Gia, ctdh.SoLuong, sp.HinhAnh
-            FROM chitietdonhang AS ctdh
-            JOIN sanpham AS sp ON ctdh.MaSanPham = sp.MaSanPham
-            WHERE ctdh.MaDonHang = ?";
+        // Bắt đầu hiển thị dữ liệu
+        while ($row = $result->fetch_assoc()) {
+            $maDonHang = $row['MaDonHang'];
+            $TongGiaTri = $row['TongGiaTri'];
+            $diaChi = $row['DiaChi'];       
             
-        $stmt_products = $conn->prepare($sql_products);
-        $stmt_products->bind_param("i", $maDonHang);
-        $stmt_products->execute();
-        $result_products = $stmt_products->get_result();
-        
-        // Bắt đầu hiển thị sản phẩm
-        while ($product = $result_products->fetch_assoc()) {
-            $tenSanPham = $product['TenSanPham'];
-            $giaSP = $product['Gia'];
-            $soLuong = $product['SoLuong'];
-            $tongSP = $giaSP * $soLuong; // Tính tổng cho sản phẩm
-            $hinhAnh = $product['HinhAnh']; // Lấy đường dẫn hình ảnh
+            // Hiển thị thông tin đơn hàng
+            echo '<button class="accordion"><span style="color: red;">MÃ ĐƠN HÀNG: #' . $maDonHang . '</span> <i style="font-weight: bold;">- Địa chỉ nhận: ' . $diaChi . '</i></button>';
+            echo '<div class="panel">';
+            
+            // Truy vấn để lấy sản phẩm trong đơn hàng, bao gồm hình ảnh từ bảng sanpham
+            $sql_products = "
+                SELECT sp.TenSanPham, sp.Gia, ctdh.SoLuong, sp.HinhAnh
+                FROM chitietdonhang AS ctdh
+                JOIN sanpham AS sp ON ctdh.MaSanPham = sp.MaSanPham
+                WHERE ctdh.MaDonHang = ?";
+                
+            $stmt_products = $conn->prepare($sql_products);
+            $stmt_products->bind_param("i", $maDonHang);
+            $stmt_products->execute();
+            $result_products = $stmt_products->get_result();
+            
+            // Bắt đầu hiển thị sản phẩm
+            while ($product = $result_products->fetch_assoc()) {
+                $tenSanPham = $product['TenSanPham'];
+                $giaSP = $product['Gia'];
+                $soLuong = $product['SoLuong'];
+                $tongSP = $giaSP * $soLuong; // Tính tổng cho sản phẩm
+                $hinhAnh = $product['HinhAnh']; // Lấy đường dẫn hình ảnh
 
+                echo '<table>';
+                echo '<tr>';
+                echo '<td><a href="#" class="photo"><img src="' . $hinhAnh . '" class="cart-thumb" alt="" /></a></td>'; // Hiển thị hình ảnh từ cơ sở dữ liệu
+                echo '<td><h6><a href="#">' . $tenSanPham . '</a></h6></td>';
+                echo '<td><p>' . $soLuong . 'x - ' . number_format($giaSP) . ' VND</p></td>';
+                echo '<td><p><strong style="color: #DC143C; font-weight: bold;">Tổng</strong>: ' . number_format($tongSP) . ' VND</p></td>';
+                echo '</tr>';
+                echo '</table>';
+            }
+
+            // Hiển thị thành tiền cho đơn hàng
             echo '<table>';
             echo '<tr>';
-            echo '<td><a href="#" class="photo"><img src="' . $hinhAnh . '" class="cart-thumb" alt="" /></a></td>'; // Hiển thị hình ảnh từ cơ sở dữ liệu
-            echo '<td><h6><a href="#">' . $tenSanPham . '</a></h6></td>';
-            echo '<td><p>' . $soLuong . 'x - ' . number_format($giaSP) . ' VND</p></td>';
-            echo '<td><p><strong style="color: #DC143C; font-weight: bold;">Tổng</strong>: ' . number_format($tongSP) . ' VND</p></td>';
+            echo '<td align="center"><p><b style="color: #DC143C; font-weight: bold;">Thành tiền:</b> ' . number_format($row['TongGiaTri']) . ' VND</p></td>';
             echo '</tr>';
             echo '</table>';
+            
+            echo '</div>'; // Kết thúc panel
         }
 
-        // Hiển thị thành tiền cho đơn hàng
-        echo '<table>';
-        echo '<tr>';
-        echo '<td align="center"><p><b style="color: #DC143C; font-weight: bold;">Thành tiền:</b> ' . number_format($row['TongGiaTri']) . ' VND</p></td>';
-        echo '</tr>';
-        echo '</table>';
-        
-        echo '</div>'; // Kết thúc panel
+        $stmt->close();
+        $conn->close();
     }
-
-    $stmt->close();
-    $conn->close();
 
  ?>
 <!-- Lịch sử đơn hàng -->

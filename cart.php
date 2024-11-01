@@ -130,7 +130,11 @@
                             <h5>Tổng thanh toán</h5>
                             <h5><?php echo number_format($totalPayment, 0, ',', '.') . " đ"; ?></h5> <!-- Hiển thị tổng thanh toán -->
                         </div>
-                        <a class="btn btn-block btn-primary font-weight-bold my-3 py-3" href="checkout.php">Thanh toán</a>
+                        <a class="btn btn-block btn-primary font-weight-bold my-3 py-3 
+                            <?php $is_logged_in = isset($_SESSION['makhachhang']);
+                             echo !$is_logged_in ? 'disabled' : ''; ?>"
+                            href="<?php echo $is_logged_in ? 'checkout.php' : '#'; ?>">Thanh toán
+                        </a>
                     </div>
                 </div>
             </div>
