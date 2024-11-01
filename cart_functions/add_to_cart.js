@@ -1,9 +1,12 @@
 function addToCart(tenSanPham, maSanPham, giaSP) {
+    const quantityInput = document.getElementById("soluong_sp");
+    const quantity = quantityInput ? quantityInput.value : 1;
     // Tạo dữ liệu cần gửi
     const data = new URLSearchParams();
     data.append("tenSanPham", tenSanPham);
     data.append("maSanPham", maSanPham);
     data.append("giaSP", giaSP);
+    data.append("soluong_sp", quantity);
 
     // Gửi yêu cầu AJAX bằng fetch API
     fetch("cart_functions/add_to_cart.php", {

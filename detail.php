@@ -73,17 +73,18 @@
                     <h3 class="font-weight-semi-bold mb-4"><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h3>
                     <p class="mb-4"><?php echo htmlspecialchars($product['MoTa']); ?></p>
                     <?php endif; ?>
-                    
+
+                    <form>
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
+                                <button type="button" class="btn btn-primary btn-minus">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
+                            <input type="text" id="soluong_sp" name="soluong_sp" class="form-control bg-secondary border-0 text-center" value="1">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
+                                <button type="button" class="btn btn-primary btn-plus">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -91,9 +92,9 @@
                         <a href="javascript:void(0);" onclick="addToCart('<?php echo $product['TenSanPham']; ?>','<?php echo $product['MaSanPham']; ?>','<?php echo $product['Gia']; ?>')" class="btn btn-primary px-3">
                             <i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng
                         </a>
-
-
                     </div>
+                    </form>
+
                     <div class="d-flex pt-2 mb-3">
                         <strong class="text-dark mr-2">Chia sẻ:</strong>
                         <div class="d-inline-flex">

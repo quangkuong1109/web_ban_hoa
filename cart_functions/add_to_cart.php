@@ -23,7 +23,8 @@ if ($conn->connect_error) {
 // Lấy dữ liệu từ yêu cầu POST
 $maSanPham = isset($_POST['maSanPham']) ? intval($_POST['maSanPham']) : null;
 $giaSP = isset($_POST['giaSP']) ? intval($_POST['giaSP']) : null;
-$soLuong = 1; // Số lượng tăng thêm
+$soLuong = isset($_POST['soluong_sp']) ? intval($_POST['soluong_sp']) : 1;
+// $soLuong = 1; // Số lượng tăng thêm
 
 // Kiểm tra dữ liệu hợp lệ
 if ($maSanPham && $giaSP) {

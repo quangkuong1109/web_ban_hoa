@@ -192,6 +192,9 @@ $danhmuc = [
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href="javascript:void(0)" onclick="addToCart('<?php echo $products[$i][1]; ?>', '<?php echo $products[$i][0]; ?>', '<?php echo $products[$i][5]; ?>')"><i class="fa fa-shopping-cart"></i></a>
 
+                            <a class="btn btn-outline-dark btn-square" href="javascript:void(0);" onclick="addToFavorites('<?php echo $products[$i][1]; ?>', '<?php echo $products[$i][0]; ?>')"><i class="fa fa-heart"></i>
+                            </a>
+
                             <a class="btn btn-outline-dark btn-square" href="detail.php?productName=<?php echo urlencode($products[$i][1]); ?>"><i class="fa fa-search"></i></a>
                         </div>
                     </div>
@@ -317,6 +320,7 @@ $danhmuc = [
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="cart_functions/add_to_cart.js"></script>
+    <script src="cart_functions/add_favorites.js"></script>
 </body>
 
 </html>
