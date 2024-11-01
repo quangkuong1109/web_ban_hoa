@@ -298,14 +298,10 @@
                                                     <h6 class="text-muted ml-2">
                                                         <?php
                                         // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
-                                                        if ($product['GiamGia'] == 20) {
-                                            $giachuagiam = $product['Gia'] / 0.8; // Tính giá với giảm giá 20%
-                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
-                                        } elseif ($product['GiamGia'] == 50) {
-                                            $giachuagiam = $product['Gia'] + (1 * $product['Gia']); // Tính giá với giảm giá 50%
+                                                        if ($product['GiamGia'] != 0) {
+                                            $giachuagiam = $product['Gia'] / (1 - ($product['GiamGia'] / 100)); // Tính giá với giảm giá 20%
                                             echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
                                         }
-                                        // Nếu GiamGia = 0, không hiển thị thẻ <del>
                                         ?>
                                     </h6>
                                 </div>
