@@ -90,6 +90,7 @@
     if (!isset($_SESSION['makhachhang'])) {
         echo "<p id=\"thongbao\">Vui lòng đăng nhập để xem lịch sử đơn hàng.</p>";
     }else{
+        $ma_khach_hang = $_SESSION['makhachhang'];
         // Giả sử bạn đã có $ma_khach_hang từ session hoặc biến
         $sql_orders = "
         SELECT 

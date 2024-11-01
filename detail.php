@@ -111,7 +111,7 @@
                             </a>
                         </div>
                     </div>
-                    <h4 align="center" class="blink color-change" style="margin-top: 50px;">Free ship mọi đơn hàng trong nội thành Hà Nội</h4>
+                    <h4 align="center" class="blink color-change" style="margin-top: 50px;">Free shipping mọi đơn hàng trong nội thành Hà Nội</h4>
                     <h3 align="center" class="blink color-change" style="margin-top: 20px;">ĐẶT HÀNG NGAY NHÉ</h3>
 
                 </div>
