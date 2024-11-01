@@ -12,7 +12,7 @@ session_start();
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/icon_flower.png" rel="icon">
+    <link href="img/flower_logo.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
