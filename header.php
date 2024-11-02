@@ -210,22 +210,24 @@ session_start();
                     <img width="300px" height="60px" src="img/icon_logo.png">
                 </a>
             </div>
-            
-            <!-- Khu vực chứa khung tìm kiếm và ảnh GIF -->
-            <div class="col-lg-4 col-6 text-left d-flex align-items-center" style="position: relative;">
-                <form action="" onsubmit="return false;" class="d-flex align-items-center w-100"> <!-- Ngăn chặn gửi form -->
-                    <div class="input-group" style="flex: 1;">
-                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm loại hoa tại đây" oninput="searchProducts()">
+
+            <!-- Khu vực chứa ảnh GIF đầu, thanh tìm kiếm, và ảnh GIF cuối -->
+            <div class="col-lg-4 col-6 d-flex align-items-center" style="position: relative;">
+                <img src="img/peach-cat.gif" alt="Peach Cat" width="100px" height="100px" class="mr-2"> <!-- Ảnh GIF bên trái -->
+                
+                <form action="" onsubmit="return false;" class="d-flex align-items-center w-100">
+                    <div class="input-group" style="flex: 1; position: relative; min-width: 300px;">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm loại hoa tại đây" oninput="searchProducts()"  style="flex: 1;">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
+                        <!-- Khung gợi ý sản phẩm bên dưới thanh tìm kiếm -->
+                        <div id="suggestions" class="suggestions-box"></div>
                     </div>
-                    <img src="img/cat-flowers.gif" alt="Cat Flowers" width="100px" height="100px" class="ml-2"> <!-- Ảnh GIF thêm vào bên cạnh -->
                 </form>
-                <!-- Đặt suggestions-box bên dưới khung tìm kiếm -->
-                <div id="suggestions" class="suggestions-box"></div> <!-- Khung hiện gợi ý sản phẩm -->
+                <img src="img/cat-flowers.gif" alt="Cat Flowers" width="100px" height="100px" class="ml-2"> <!-- Ảnh GIF bên phải -->
             </div>
 
             <div class="col-lg-4 col-6 text-right">
@@ -519,7 +521,7 @@ session_start();
             top: 100%; /* Đặt ngay bên dưới ô input */
             left: 10;
             z-index: 1000;
-            width: 75%; /* Đặt chiều rộng khung gợi ý bằng với chiều rộng của input-group */
+            width: 100%; /* Đặt chiều rộng khung gợi ý bằng với chiều rộng của input-group */
             max-height: 300px; /* Giới hạn chiều cao của khung gợi ý */
             overflow-y: auto; /* Thêm thanh cuộn nếu nội dung quá nhiều */
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ để phân biệt */
