@@ -12,7 +12,7 @@ session_start();
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/flower_logo.png" rel="icon">
+    <link href="img/icon_flower.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -210,9 +210,11 @@ session_start();
                     <img width="300px" height="60px" src="img/icon_logo.png">
                 </a>
             </div>
-            <div class="col-lg-4 col-6 text-left">
-                <form action="" onsubmit="return false;"> <!-- Ngăn chặn gửi form -->
-                    <div class="input-group">
+            
+            <!-- Khu vực chứa khung tìm kiếm và ảnh GIF -->
+            <div class="col-lg-4 col-6 text-left d-flex align-items-center" style="position: relative;">
+                <form action="" onsubmit="return false;" class="d-flex align-items-center w-100"> <!-- Ngăn chặn gửi form -->
+                    <div class="input-group" style="flex: 1;">
                         <input type="text" class="form-control" id="searchInput" placeholder="Tìm loại hoa tại đây" oninput="searchProducts()">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
@@ -220,9 +222,12 @@ session_start();
                             </span>
                         </div>
                     </div>
-                    <div id="suggestions" class="suggestions-box"></div> <!-- Khung hiện gợi ý sản phẩm -->
+                    <img src="img/cat-flowers.gif" alt="Cat Flowers" width="100px" height="100px" class="ml-2"> <!-- Ảnh GIF thêm vào bên cạnh -->
                 </form>
+                <!-- Đặt suggestions-box bên dưới khung tìm kiếm -->
+                <div id="suggestions" class="suggestions-box"></div> <!-- Khung hiện gợi ý sản phẩm -->
             </div>
+
             <div class="col-lg-4 col-6 text-right">
                 <p class="m-0">Chăm sóc khách hàng</p>
                 <h5 class="m-0">+012 345 6789</h5>
@@ -438,7 +443,7 @@ session_start();
                         ?>
                         <li>
                             <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP]; ?>" class="cart-thumb" alt="" /></a>
-                            <h6><a href="detail.php?productName=<?php echo urlencode($sanPhamArray_id_ten[$maSP]); ?>"><?php echo $sanPhamArray_id_ten[$maSP]; ?></a></h6>
+                            <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP]; ?></a></h6>
                             <p>
                                 <?php echo $count_maSP_giohang[$maSP]; ?>x - 
                                 <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP]); ?></span>
@@ -489,7 +494,7 @@ session_start();
                             ?>
                             <li>
                                 <a href="#" class="photo"><img src="<?php echo $row['HinhAnh']; ?>" class="cart-thumb" alt="" /></a>
-                                <h6><a href="detail.php?productName=<?php echo urlencode($row['TenSanPham']); ?>"><?php echo $row['TenSanPham']; ?></a></h6>
+                                <h6><a href="#"><?php echo $row['TenSanPham']; ?></a></h6>
                                 <p>
                                     <span class="price"><?php echo number_format($row['Gia']); ?> VND</span>
                                 </p>
@@ -507,25 +512,27 @@ session_start();
 
 
         <style>
-            .suggestions-box {
-                border: 1px solid #ccc;
-                background: white;
-                position: absolute; /* Để có thể hiển thị bên dưới ô input */
-                z-index: 1000; /* Đảm bảo nó nằm trên các phần tử khác */
-                width: calc(100% - 2px); /* Để khung gợi ý rộng như ô input */
-                max-height: 300px; /* Giới hạn chiều cao của khung gợi ý */
-                overflow-y: auto; /* Thêm thanh cuộn nếu nội dung quá nhiều */
-            }
+        .suggestions-box {
+            border: 1px solid #ccc;
+            background: white;
+            position: absolute;
+            top: 100%; /* Đặt ngay bên dưới ô input */
+            left: 10;
+            z-index: 1000;
+            width: 75%; /* Đặt chiều rộng khung gợi ý bằng với chiều rộng của input-group */
+            max-height: 300px; /* Giới hạn chiều cao của khung gợi ý */
+            overflow-y: auto; /* Thêm thanh cuộn nếu nội dung quá nhiều */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ để phân biệt */
+        }
 
-            .suggestion-item {
-                padding: 10px; /* Khoảng cách bên trong từng item */
-                cursor: pointer; /* Hiển thị con trỏ khi di chuột vào item */
-            }
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
 
-            .suggestion-item:hover {
-                background: #ffd700; /* Màu nền khi hover */
-            }
-
+        .suggestion-item:hover {
+            background: #ffd700;
+        }
         </style>
 
         <script>
