@@ -183,15 +183,6 @@ session_start();
                 }
                 ?>
 
-                <!--<div class="d-inline-flex align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài khoản</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="dangnhap.php">Đăng nhập</button>
-                            <a class="dropdown-item" href="dangky.php">Đăng ký</button>
-                        </div>
-                    </div>
-                </div>-->
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
@@ -404,13 +395,6 @@ session_start();
                                 <a href="shop.php" class="nav-item nav-link">Sản phẩm</a>
                                 <a href="cart.php" class="nav-item nav-link">Giỏ hàng</a>
                                 <a href="lichsu_donhang.php" class="nav-item nav-link">Lịch sử đơn hàng</a>
-                                <!-- <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thanh toán <i class="fa fa-angle-down mt-1"></i></a>
-                                    <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                        <a href="cart.php" class="dropdown-item">Giỏ hàng</a>
-                                        <a href="checkout.php" class="dropdown-item">Thanh toán</a>
-                                    </div>
-                                </div> -->
                                 <a href="contact.php" class="nav-item nav-link">Liên hệ</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
@@ -445,7 +429,9 @@ session_start();
                         ?>
                         <li>
                             <a href="#" class="photo"><img src="<?php echo $sanPhamArray_id_anh[$maSP]; ?>" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#"><?php echo $sanPhamArray_id_ten[$maSP]; ?></a></h6>
+                            <h6><a href="detail.php?productName=<?php echo urlencode($sanPhamArray_id_ten[$maSP]); ?>">
+                                <?php echo $sanPhamArray_id_ten[$maSP]; ?>
+                            </a></h6>
                             <p>
                                 <?php echo $count_maSP_giohang[$maSP]; ?>x - 
                                 <span class="price"><?php echo number_format($sanPhamArray_id_gia[$maSP]); ?></span>
@@ -496,7 +482,11 @@ session_start();
                             ?>
                             <li>
                                 <a href="#" class="photo"><img src="<?php echo $row['HinhAnh']; ?>" class="cart-thumb" alt="" /></a>
-                                <h6><a href="#"><?php echo $row['TenSanPham']; ?></a></h6>
+                                <h6>
+                                    <a href="detail.php?productName=<?php echo urlencode($row['TenSanPham']); ?>">
+                                        <?php echo $row['TenSanPham']; ?>
+                                    </a>
+                                </h6>
                                 <p>
                                     <span class="price"><?php echo number_format($row['Gia']); ?> VND</span>
                                 </p>
