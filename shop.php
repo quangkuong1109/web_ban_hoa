@@ -318,15 +318,15 @@
                     <nav>
                         <ul class="pagination justify-content-center">
                             <li class="page-item <?php if ($current_page <= 1) echo 'disabled'; ?>">
-                                <a class="page-link" href="?page=<?php echo $current_page - 1; ?>&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sort=<?php echo urlencode($sort); ?>">Trước</a>
+                                <a class="page-link" href="?page=<?php echo $current_page - 1; ?>&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=<?php echo urlencode($sort); ?>">Trước</a>
                             </li>
                             <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
                                 <li class="page-item <?php if ($i == $current_page) echo 'active'; ?>">
-                                    <a class="page-link" href="?page=<?php echo $i; ?>&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sort=<?php echo urlencode($sort); ?>"><?php echo $i; ?></a>
+                                    <a class="page-link" href="?page=<?php echo $i; ?>&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=<?php echo urlencode($sort); ?>"><?php echo $i; ?></a>
                                 </li>
                             <?php endfor; ?>
                             <li class="page-item <?php if ($current_page >= $totalPages) echo 'disabled'; ?>">
-                                <a class="page-link" href="?page=<?php echo $current_page + 1; ?>&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sort=<?php echo urlencode($sort); ?>">Trang tiếp</a>
+                                <a class="page-link" href="?page=<?php echo $current_page + 1; ?>&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=<?php echo urlencode($sort); ?>">Trang tiếp</a>
                             </li>
                         </ul>
                     </nav>
