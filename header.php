@@ -48,6 +48,10 @@ session_start();
             transition: transform 0.3s ease-in-out;
             /* Hiệu ứng chuyển động */
             z-index: 999;
+            overflow-y: auto;
+        }
+        .side-content {
+            padding: 20px; /* Khoảng cách bên trong sidebar */
         }
 
         .close-side {
