@@ -56,6 +56,7 @@
 
                         // Khởi tạo tổng tiền hàng
                                 $totalAmount = 0;
+                                $giohang = 0;
 
                         // Hiển thị sản phẩm trong giỏ hàng
                                 if (mysqli_num_rows($result) > 0) {
@@ -92,11 +93,12 @@
                                               </td>";
                                         echo "</tr>";
                                     }
+                                    $giohang++;
                                 } else {
                                     echo "<tr><td colspan='5'>Giỏ hàng trống</td></tr>";
                                 }
                         // Thêm phần hiển thị tổng tiền hàng và tổng thanh toán
-                        if (isset($_SESSION['makhachhang'])){
+                        if (isset($_SESSION['makhachhang']) & $giohang != 0){
                             $shippingFee = 100000;  // Giả sử phí giao hàng là 10 đ
                         }else{
                             $shippingFee = 0;
@@ -136,7 +138,7 @@
                         </div>
                         <a class="btn btn-block btn-primary font-weight-bold my-3 py-3 
                             <?php $is_logged_in = isset($_SESSION['makhachhang']);
-                             echo !$is_logged_in ? 'disabled' : ''; ?>"
+                             echo (!$is_logged_in || $giohang == 0) ? 'disabled' : ''; ?>"
                             href="<?php echo $is_logged_in ? 'checkout.php' : '#'; ?>">Thanh toán
                         </a>
                     </div>

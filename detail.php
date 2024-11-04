@@ -65,10 +65,10 @@
                             <small class="fas fa-star"></small>
                             <small class="fas fa-star"></small>
                             <small class="fas fa-star"></small>
+                            <small class="fas fa-star"></small>
                             <small class="fas fa-star-half-alt"></small>
-                            <small class="far fa-star"></small>
                         </div>
-                        <small class="pt-1">(99 Reviews)</small>
+                        <small class="pt-1">(99+ Reviews)</small>
                     </div>
                     <h3 class="font-weight-semi-bold mb-4"><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h3>
                     <?php

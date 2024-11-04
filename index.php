@@ -240,9 +240,8 @@ $danhmuc = [
                 <div class="product-offer mb-30" style="height: 300px;">
                     <img class="img-fluid" src="img/vuonhoa1.jpg" alt="">
                     <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Save 20%</h6>
-                        <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-primary">Shop Now</a>
+                        <h5 class="text-white">Với phương châm</h5>
+                        <h3 class="text-white mb-3">"Mang sắc hoa tới từng khoảnh khắc"</h3>
                     </div>
                 </div>
             </div>
@@ -250,9 +249,8 @@ $danhmuc = [
                 <div class="product-offer mb-30" style="height: 300px;">
                     <img class="img-fluid" src="img/vuonhoa2.jpg" alt="">
                     <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Save 20%</h6>
-                        <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-primary">Shop Now</a>
+                        <h5 class="text-white">Mang ý nghĩa</h5>
+                        <h3 class="text-white mb-3">"Nơi hạnh phúc bắt đầu từ những bông hoa!"</h3>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 
-<?php include 'header.php'; ?>
+<?php
+ ob_start(); // Bắt đầu output buffering
+ include 'header.php'; ?>
 
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
@@ -24,11 +26,11 @@
                     <div class="row" id="personal-info">
                         <div class="col-md-6 form-group">
                             <label>Tên</label>
-                            <input class="form-control" type="text" name="ten" placeholder="John" required>
+                            <input class="form-control" type="text" name="ten" placeholder="Thắng" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Họ</label>
-                            <input class="form-control" type="text" name="ho" placeholder="Doe" required>
+                            <input class="form-control" type="text" name="ho" placeholder="Phạm" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
@@ -261,10 +263,12 @@
         $stmt_giaohang->close();
 
         // Thông báo thành công
-        echo "<script>alert('Đặt hàng thành công!'); window.location.href='index.php';</script>";
+        header("Location: success.php");
+        exit();
     }
 
     // Đóng kết nối
+    ob_end_flush(); // Kết thúc output buffering và gửi đầu ra
     $conn->close();
     ?>
 
