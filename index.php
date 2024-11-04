@@ -212,13 +212,10 @@ $danhmuc = [
                             <h6 class="text-muted ml-2"><del>
                                 <?php
                                     // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
-                                    if ($products[$i][8] == 20) { //product[8] là GiamGia
-                                        $giachuagiam = $products[$i][5] / 0.8; // Tính giá với giảm giá 20%, product[5] là trường Gia
-                                        echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
-                                    } elseif ($products[$i][8] == 50) {
-                                        $giachuagiam = $products[$i][5] * 2; // Tính giá với giảm giá 50%
-                                        echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
-                                    }
+                                        if ($products[$i][8] != 0) {
+                                            $giachuagiam = $products[$i][5] / (1 - ($products[$i][8] / 100)); // Tính giá với giảm giá 20%
+                                            echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
+                                        }
                                     ?>
                                 </del></h6>
                             </div>
