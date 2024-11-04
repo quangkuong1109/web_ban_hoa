@@ -223,7 +223,9 @@ session_start();
 
             <div class="col-lg-4 col-6 text-right">
                 <p class="m-0">Chăm sóc khách hàng</p>
-                <h5 class="m-0">+012 345 6789</h5>
+                <h6 class="m-0">Mr. Cường: 0816261794</h6>
+                <h6 class="m-0">Mr. Duy: 0961077063</h6>
+                <h6 class="m-0">Mr. Thắng: 0834035090</h6>
             </div>
         </div>
     </div>

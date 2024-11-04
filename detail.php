@@ -71,7 +71,11 @@
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
                     <h3 class="font-weight-semi-bold mb-4"><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h3>
-                    <p class="mb-4"><?php echo htmlspecialchars($product['MoTa']); ?></p>
+                    <?php
+                    // Thay thế để thêm ngắt dòng trước mỗi dấu gạch ngang và bỏ khoảng trống dư thừa
+                    $moTaFormatted = nl2br(str_replace('- ', '<br>- ', htmlspecialchars($product['MoTa'])));
+                    ?>
+                    <p class="mb-4" style="color: red;"><?php echo $moTaFormatted; ?></p>
                     <?php endif; ?>
 
                     <form>
