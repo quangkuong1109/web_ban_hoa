@@ -199,12 +199,16 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+        <div class="row align-items-center bg-light px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
+                <a href="index.php" class="text-decoration-none me-0">
+                    <img width="130px" height="130px" src="img/logohoa.png">
+                </a>
                 <a href="index.php" class="text-decoration-none">
-                    <img width="300px" height="60px" src="img/icon_logo.png">
+                    <img width="210px" height="90px" src="img/chu.png">
                 </a>
             </div>
+
 
             <!-- Khu vực chứa ảnh GIF đầu, thanh tìm kiếm, và ảnh GIF cuối -->
             <div class="col-lg-4 col-6 d-flex align-items-center" style="position: relative;">
