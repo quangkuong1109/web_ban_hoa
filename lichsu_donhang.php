@@ -121,7 +121,7 @@
             $diaChi = $row['DiaChi'];       
             
             // Hiển thị thông tin đơn hàng
-            echo '<button class="accordion border-black"><span style="color: red;">MÃ ĐƠN HÀNG: #' . $maDonHang . '</span> <i style="font-weight: bold;">- Địa chỉ nhận: ' . $diaChi . '</i></button>';
+            echo '<button class="accordion border-black"><span style="color: red;">&#128230; MÃ ĐƠN HÀNG: #' . $maDonHang . '</span> <i style="font-weight: bold;">- Địa chỉ nhận: ' . $diaChi . '</i></button>';
             echo '<div class="panel">';
             
             // Truy vấn để lấy sản phẩm trong đơn hàng, bao gồm hình ảnh từ bảng sanpham
