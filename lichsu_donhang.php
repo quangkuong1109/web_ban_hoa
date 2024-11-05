@@ -21,8 +21,10 @@
 .active, .accordion:hover {
   background-color: #ffd333;
 }
-
-
+.border-black {
+    border: 2px solid #DDDDDD; /* Thay đổi độ dày và màu viền tại đây */
+    border-radius: 5px; /* Tùy chọn: làm tròn các góc của viền */
+}
 .panel {
   width: 80%;
   padding: 0 18px;
@@ -71,7 +73,7 @@
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
-            <nav class="breadcrumb bg-light mb-30">
+            <nav class="breadcrumb bg-light mb-30 border-black">
                 <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
                 <a class="breadcrumb-item text-dark" href="#">Lịch sử đơn hàng</a>
                 <!-- <span class="breadcrumb-item active">Shop List</span> -->
@@ -118,7 +120,7 @@
             $diaChi = $row['DiaChi'];       
             
             // Hiển thị thông tin đơn hàng
-            echo '<button class="accordion"><span style="color: red;">MÃ ĐƠN HÀNG: #' . $maDonHang . '</span> <i style="font-weight: bold;">- Địa chỉ nhận: ' . $diaChi . '</i></button>';
+            echo '<button class="accordion border-black"><span style="color: red;">MÃ ĐƠN HÀNG: #' . $maDonHang . '</span> <i style="font-weight: bold;">- Địa chỉ nhận: ' . $diaChi . '</i></button>';
             echo '<div class="panel">';
             
             // Truy vấn để lấy sản phẩm trong đơn hàng, bao gồm hình ảnh từ bảng sanpham

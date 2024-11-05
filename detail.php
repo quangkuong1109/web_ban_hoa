@@ -70,14 +70,14 @@
                         </div>
                         <small class="pt-1">(99+ Reviews)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4"><?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?></h3>
+                    <h3 class="font-weight-semi-bold mb-4" style="color: #FF8C00;"> Giá bán: <?php echo number_format($product['Gia'], 0, ',', '.') . " đ"; ?>/ Bó</h3>
                     <?php
                     // Thay thế để thêm ngắt dòng trước mỗi dấu gạch ngang và bỏ khoảng trống dư thừa
                     $moTaFormatted = nl2br(str_replace('- ', '<br>- ', htmlspecialchars($product['MoTa'])));
                     ?>
-                    <p class="mb-4" style="color: red;"><?php echo $moTaFormatted; ?></p>
+                    <p class="mb-4" style="color: #000000; font-weight: bold;"><?php echo $moTaFormatted; ?></p>
                     <?php endif; ?>
-
+                    <p style="color: #FF8C00; font-style: italic;" >Một số loại hoa, lá có thể được thay thế bằng loại hoa khác tùy vào tình hình thực tế.<br>Kiểu dáng và màu sắc giấy, nơ có thể thay đổi ở từng khu vực khác nhau, tuy nhiên vẫn đảm bảo kích cỡ chuẩn và tính thẩm mỹ cho sản phẩm.</p>
                     <form>
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
@@ -116,8 +116,8 @@
                             </a>
                         </div>
                     </div>
-                    <h4 align="center" class="blink color-change" style="margin-top: 50px;">Free shipping mọi đơn hàng trong nội thành Hà Nội</h4>
-                    <h3 align="center" class="blink color-change" style="margin-top: 20px;">ĐẶT HÀNG NGAY NHÉ</h3>
+                    <h4 align="center" class="blink color-change" style="margin-top: 50px; font-style: italic;">Free shipping mọi đơn hàng trong nội thành Hà Nội</h4>
+                    <h3 align="center" class="blink color-change" style="margin-top: 20px; font-style: italic;">ĐẶT HÀNG NGAY NHÉ &#10084;</h3>
 
                 </div>
             </div>
@@ -131,38 +131,38 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
-                            <h3 class="mb-3" style="color: #DC143C; font-weight: bold;">Cách Bảo Quản</h3>
-                            <p style="color: #DC143C; font-weight: bold;">* Đối với bó hoa không bọc chân nước: bạn cắm chân hoa vào bình nước sạch, tối đa 2 ngày đổ nước cũ trong bình và thay nước mới.</p>
-                            <p style="color: #DC143C; font-weight: bold;">* Đối với bó hoa đã bọc sẵn chân nước: bó hoa có thể đứng được và bạn chỉ cần đổ nước trực tiếp vào chính giữa bó hoa. Tối đa 2 ngày đổ nước cũ trong bó hoa và thay nước mới.</p>
-                            <p style="color: #DC143C; font-weight: bold;">Lưu ý :</p>
-                            <p style="color: #DC143C; font-weight: bold;">* Tất cả các sản phẩm để nơi thoáng mát, nhiệt độ lý tưởng nhất là 22-24°C.</p>
-                            <p style="color: #DC143C; font-weight: bold;">* Tránh để hoa gần các thiết bị điện tử như tivi, tủ lạnh,... tránh ánh nắng trực tiếp từ mặt trời.</p>
+                            <h3 class="mb-3" style="color: #FF8C00; font-weight: bold;">Cách Bảo Quản</h3>
+                            <p style="color: #000000; font-weight: bold;">* Đối với bó hoa không bọc chân nước: bạn cắm chân hoa vào bình nước sạch, tối đa 2 ngày đổ nước cũ trong bình và thay nước mới.</p>
+                            <p style="color: #000000; font-weight: bold;">* Đối với bó hoa đã bọc sẵn chân nước: bó hoa có thể đứng được và bạn chỉ cần đổ nước trực tiếp vào chính giữa bó hoa. Tối đa 2 ngày đổ nước cũ trong bó hoa và thay nước mới.</p>
+                            <p style="color: #000000; font-weight: bold;">Lưu ý :</p>
+                            <p style="color: #000000; font-weight: bold;">* Tất cả các sản phẩm để nơi thoáng mát, nhiệt độ lý tưởng nhất là 22-24°C.</p>
+                            <p style="color: #000000; font-weight: bold;">* Tránh để hoa gần các thiết bị điện tử như tivi, tủ lạnh,... tránh ánh nắng trực tiếp từ mặt trời.</p>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
-                            <h3 class="mb-3" style="color: #DC143C; font-weight: bold;">Ưu Đãi Đặc Biệt Tại CDT Flower</h3>
+                            <h3 class="mb-3" style="color: #FF8C00; font-weight: bold;">Ưu Đãi Đặc Biệt Tại CDT Flower</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                        <li class="list-group-item px-0" style="color: #000000; font-weight: bold;">
                                             1. Tặng banner hoặc thiệp (trị giá 20.000đ - 50.000đ) miễn phí
                                         </li>
-                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                        <li class="list-group-item px-0" style="color: #000000; font-weight: bold;">
                                             2. Giảm tiếp 3% cho đơn hàng Bạn tạo ONLINE lần thứ 2, 5% cho đơn hàng Bạn tạo ONLINE lần thứ 6 và 10% cho đơn hàng Bạn tạo ONLINE lần thứ 12.
                                         </li>
-                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                        <li class="list-group-item px-0" style="color: #000000; font-weight: bold;">
                                             3. Miễn phí giao khu vực nội thành
                                         </li>
                                     </ul> 
                                 </div>
                                 <div class="col-md-6">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                        <li class="list-group-item px-0" style="color: #000000; font-weight: bold;">
                                             4. Giao gấp trong vòng 2 giờ
                                         </li>
-                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                        <li class="list-group-item px-0" style="color: #000000; font-weight: bold;">
                                             5. Cam kết 100% hoàn lại tiền nếu Bạn không hài lòng
                                         </li>
-                                        <li class="list-group-item px-0" style="color: #DC143C; font-weight: bold;">
+                                        <li class="list-group-item px-0" style="color: #000000; font-weight: bold;">
                                             6. Cam kết hoa tươi trên 3 ngày
                                         </li>
                                     </ul> 

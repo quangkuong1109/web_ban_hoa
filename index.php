@@ -144,7 +144,7 @@ $danhmuc = [
             ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <a class="text-decoration-none" href="shop.php?theme=<?php echo urlencode($madanhmuc['name']); ?>">
-                    <div class="cat-item img-zoom d-flex align-items-center mb-4">
+                    <div class="cat-item img-zoom d-flex align-items-center mb-4 border-black">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
                             <img class="img-fluid" src="<?php echo $madanhmuc["img"]; ?>" alt="">
                         </div>
@@ -186,7 +186,7 @@ $danhmuc = [
             // $product = $products[$i];
             ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
+                <div class="product-item bg-light mb-4 border-black">
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="<?php echo $products[$i][6]; ?>" alt=""><!--product[6] là trường HinhAnh-->
                         <div class="product-action">
@@ -263,16 +263,16 @@ $danhmuc = [
         <div class="row px-xl-5">
             <div class="col">
                 <div class="owl-carousel vendor-carousel">
-                    <div class="bg-light p-4">
+                    <div class="bg-light p-4 border-black">
                         <img src="img/dai_ly/vendor1.jpg" alt="">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class="bg-light p-4 border-black">
                         <img src="img/dai_ly/vendor2.jpg" alt="">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class="bg-light p-4 border-black">
                         <img src="img/dai_ly/vendor3.jpg" alt="">
                     </div>
-                    <div class="bg-light p-4">
+                    <div class="bg-light p-4 border-black">
                         <img src="img/dai_ly/vendor4.jpg" alt="">
                     </div>
                 </div>
@@ -291,6 +291,10 @@ $danhmuc = [
             50% {
                 opacity: 0;
             }
+        }
+        .border-black {
+        border: 2px solid #DDDDDD; /* Thay đổi độ dày và màu viền tại đây */
+        border-radius: 5px; /* Tùy chọn: làm tròn các góc của viền */
         }
     </style>
 

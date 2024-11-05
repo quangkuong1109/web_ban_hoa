@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
-            <nav class="breadcrumb bg-light mb-30">
+            <nav class="breadcrumb bg-light mb-30 border-black">
                 <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
                 <a class="breadcrumb-item text-dark" href="#">Sản phẩm</a>
                 <!-- <span class="breadcrumb-item active">Shop List</span> -->
@@ -22,9 +22,9 @@
         <div class="col-lg-3 col-md-4">
             <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3">
-                <span class="bg-secondary pr-3">Khoảng giá</span>
+                <span class="bg-secondary pr-3">Khoảng giá &#128176;</span>
             </h5>
-            <div class="bg-light p-4 mb-30">
+            <div class="bg-light p-4 mb-30 border-black">
                 <form id="filter-form" method="GET" action="">
                     <!-- Giá mặc định là tất cả -->
                     <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
@@ -33,11 +33,11 @@
                     </div>
                     <?php
                     $priceRanges = [
-                        '0-250000' => 'Dưới 250.000',
-                        '250000-500000' => 'Từ 250.000 đến 500.000',
-                        '500000-1000000' => 'Từ 500.000 đến 1.000.000',
-                        '1000000-2000000' => 'Từ 1.000.000 đến 2.000.000',
-                        '2000000-' => 'Trên 2.000.000',
+                        '0-250000' => 'Dưới 250.000 đ',
+                        '250000-500000' => 'Từ 250.000 đến 500.000 đ',
+                        '500000-1000000' => 'Từ 500.000 đến 1.000.000 đ',
+                        '1000000-2000000' => 'Từ 1.000.000 đến 2.000.000 đ',
+                        '2000000-' => 'Trên 2.000.000 đ',
                     ];
                     
                     foreach ($priceRanges as $value => $label) {
@@ -47,14 +47,14 @@
                         echo '</div>';
                     }
                     ?>
-                </div>
+            </div>
                 <!-- Price End -->
 
                 <!-- Theme Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3">
-                    <span class="bg-secondary pr-3">Chủ đề Hoa</span>
+                    <span class="bg-secondary pr-3">Chủ đề Hoa &#127800;</span>
                 </h5>
-                <div class="bg-light p-4 mb-30">
+                <div class="bg-light p-4 mb-30 border-black">
                     <!-- Chủ đề mặc định là tất cả -->
                     <div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
                         <input type="radio" class="custom-control-input" name="theme" value="all" id="theme-all" checked>
@@ -62,6 +62,7 @@
                         <span class="badge border font-weight-normal"><?php echo getTotalProducts(); ?></span>
                     </div>
                     <?php
+                    // Mảng chứa tên chủ đề
                     $themes = [
                         'Hoa Cưới',
                         'Hoa Sinh Nhật',
@@ -72,17 +73,31 @@
                         'Hoa Cảm Ơn',
                         'Hoa Chia Buồn'
                     ];
-                    
+
+                    // Mảng chứa biểu tượng tương ứng với từng chủ đề
+                    $icons = [
+                        '💍', // Hoa Cưới
+                        '🎂', // Hoa Sinh Nhật
+                        '❤️', // Hoa Tình Yêu
+                        '🎓', // Hoa Tốt Nghiệp
+                        '🎉', // Hoa Khai Trương
+                        '😊', // Hoa Chúc Sức Khỏe
+                        '💐', // Hoa Cảm Ơn
+                        '🕊️'  // Hoa Chia Buồn
+                    ];
+
                     foreach ($themes as $index => $theme) {
+                        // Lấy biểu tượng tương ứng với tên chủ đề
+                        $icon = $icons[$index]; // Sử dụng chỉ số giống nhau để lấy biểu tượng
                         echo '<div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">';
-                        echo '<input type="radio" class="custom-control-input" name="theme" value="' . $theme . '" id="theme-' . ($index + 1) . '">';
-                        echo '<label class="custom-control-label" for="theme-' . ($index + 1) . '">' . $theme . '</label>';
+                        echo '<input type="radio" class="custom-control-input" name="theme" value="' . htmlspecialchars($theme) . '" id="theme-' . ($index + 1) . '">';
+                        echo '<label class="custom-control-label" for="theme-' . ($index + 1) . '">' . htmlspecialchars($theme) . ' ' . $icon . '</label>';
                         echo '<span class="badge border font-weight-normal">' . getThemeCount($theme) . '</span>';
                         echo '</div>';
                     }
                     ?>
                     <!-- Nút lọc -->
-                    <button type="submit" class="btn btn-primary mt-3">Lọc sản phẩm</button>
+                    <button type="submit" class="btn btn-primary mt-3 border-black">Lọc sản phẩm</button>
                 </form>
             </div>
             <!-- Theme End -->
@@ -243,15 +258,15 @@
                         <div class="col-lg-9 col-md-8">
                             <div class="row pb-3">
                                 <div class="col-12 pb-1">
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-4 ">
                                         <div>
                                             <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
                                             <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
                                         </div>
-                                        <div class="ml-2">
+                                        <div class="ml-2 ">
                                             <!-- Phần sắp xếp sản phẩm -->
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sắp xếp</button>
+                                                <button type="button" class="btn btn-sm btn-light dropdown-toggle border-black" data-toggle="dropdown">Sắp xếp</button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=asc">Giá từ Thấp -> Cao</a>
                                                     <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=desc">Giá từ Cao -> Thấp</a>
@@ -268,8 +283,8 @@
                                 foreach ($products as $product) {
                                     ?>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                                        <div class="product-item bg-light mb-4">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1 ">
+                                        <div class="product-item bg-light mb-4 border-black">
                                             <div class="product-img position-relative overflow-hidden">
                                                 <img class="img-fluid w-100" src="<?php echo $product['HinhAnh']; ?>" alt="">
                                                 <div class="product-action">
@@ -316,8 +331,8 @@
                 <!-- Phần điều hướng trang -->
                 <div class="col-12">
                     <nav>
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item <?php if ($current_page <= 1) echo 'disabled'; ?>">
+                        <ul class="pagination justify-content-center ">
+                            <li class="page-item  <?php if ($current_page <= 1) echo 'disabled'; ?>">
                                 <a class="page-link" href="?page=<?php echo $current_page - 1; ?>&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=<?php echo urlencode($sort); ?>">Trước</a>
                             </li>
                             <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
@@ -349,6 +364,10 @@
                         50% {
                             opacity: 0;
                         }
+                    }
+                    .border-black {
+                        border: 2px solid #DDDDDD; /* Thay đổi độ dày và màu viền tại đây */
+                        border-radius: 5px; /* Tùy chọn: làm tròn các góc của viền */
                     }
                 </style>
             </div>
