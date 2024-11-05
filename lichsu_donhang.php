@@ -80,6 +80,7 @@
             </nav>
         </div>
     </div>
+    <h3 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Lịch sử đơn hàng &#x231B;</span></h3>
 </div>
 <!-- Breadcrumb End -->
 

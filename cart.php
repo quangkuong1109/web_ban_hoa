@@ -8,8 +8,8 @@
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30 border-black">
                     <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
-                    <a class="breadcrumb-item text-dark" href="#">Thanh toán</a>
-                    <span class="breadcrumb-item active">Giỏ hàng</span>
+                    <a class="breadcrumb-item text-dark" href="#">Giỏ hàng</a>
+                    <span class="breadcrumb-item active">Thanh toán</span>
                 </nav>
             </div>
         </div>
@@ -19,6 +19,7 @@
 
     <!-- Cart Start -->
     <div class="container-fluid">
+        <h3 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Giỏ hàng sản phẩm &#x1F6D2;</span></h3>
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-light table-borderless table-hover text-center mb-0">
