@@ -230,7 +230,7 @@ session_start();
             </div>
 
             <div class="col-lg-4 col-6 text-right">
-                <p class="m-0"> 👨‍💼 Chăm sóc khách hàng</p>
+                <p class="m-0">Chăm sóc khách hàng</p>
                 <h6 class="m-0">Mr. Cường: &#128222;0816261794</h6>
             </div>
         </div>
