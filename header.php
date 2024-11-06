@@ -202,11 +202,11 @@ session_start();
         <div class="row align-items-center bg-light px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="index.php" class="text-decoration-none me-0">
-                    <img width="130px" height="130px" src="img/logohoa.png">
+                    <img width="320px" height="100px" src="img/logo_thang_2.png">
                 </a>
-                <a href="index.php" class="text-decoration-none">
+                <!-- <a href="index.php" class="text-decoration-none">
                     <img width="210px" height="90px" src="img/chu.png">
-                </a>
+                </a> -->
             </div>
 
 
@@ -392,7 +392,7 @@ session_start();
                 <div class="col-lg-9">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
                         <a href="" class="text-decoration-none d-block d-lg-none">
-                            <img width="300px" height="60px" src="img/icon_logo.png">
+                            <img width="300px" height="100px" src="img/logo_thang.png">
                         </a>
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
