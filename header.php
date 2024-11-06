@@ -145,6 +145,9 @@ session_start();
             color: white;
             box-shadow: 5px 5px 3px rgba(255, 243, 238, 0.8);
         }
+        button, a{
+      cursor: url('img/boahoa.png'), auto;
+        }
     </style>
 </head>
 
@@ -537,6 +540,50 @@ session_start();
         .suggestion-item:hover {
             background: #ffd700;
         }
+/* Định dạng trái tim */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    transform: rotate(45deg);
+    animation: fallAndFade 1.5s ease-out forwards;
+}
+
+/* Tạo nửa trên của trái tim bằng các góc tròn */
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+/* Đặt nửa trên của trái tim */
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -10px;
+}
+
+/* Hiệu ứng rơi xuống và mờ dần */
+@keyframes fallAndFade {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(45deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px) rotate(45deg);
+    }
+}
+
         </style>
 
         <script>
@@ -616,6 +663,25 @@ session_start();
                     window.location.href = 'remove_favorites.php?MaSanPham=' + productId;
                 }
         }
+document.addEventListener('click', function(event) {
+    // Tạo một phần tử `div` cho trái tim
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+
+    // Đặt vị trí của trái tim theo vị trí click chuột
+    heart.style.left = `${event.pageX - 10}px`;
+    heart.style.top = `${event.pageY - 10}px`;
+
+    // Thêm trái tim vào body
+    document.body.appendChild(heart);
+
+    // Xóa trái tim sau khi animation kết thúc
+    heart.addEventListener('animationend', () => {
+        heart.remove();
+    });
+});
+
+
 </script>
 <script>
     // Lấy các phần tử cần thiết từ HTML
