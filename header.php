@@ -466,7 +466,8 @@ session_start();
                     <?php
                     // Thực hiện truy vấn SQL để lấy danh sách sản phẩm yêu thích
                     $sql = "
-                        SELECT 
+                        SELECT
+                            yt.MaSanPham,
                             sp.TenSanPham, 
                             sp.Gia,
                             sp.HinhAnh
@@ -496,8 +497,11 @@ session_start();
                                     </a>
                                 </h6>
                                 <p>
-                                    <span class="price"><?php echo number_format($row['Gia']); ?> VND</span>
+                                    <span class="price" style="margin-right: 20px;"><?php echo number_format($row['Gia']); ?> VND</span>
                                 </p>
+                                <button class='btn btn-sm btn-danger' onclick="removeFromFavorites('<?= $row['MaSanPham'] ?>')">
+                                    <i class='fa fa-times'></i>
+                                </button>
                             </li>
                             <?php
                         }
@@ -604,7 +608,14 @@ session_start();
         console.error('Error fetching products:', error);
     });
 }
-
+</script>
+<script>
+    function removeFromFavorites(productId) {
+                if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi danh mục sản phẩm yêu thích không?")) {
+                    // Gửi yêu cầu đến PHP để xóa sản phẩm
+                    window.location.href = 'remove_favorites.php?MaSanPham=' + productId;
+                }
+        }
 </script>
 <script>
     // Lấy các phần tử cần thiết từ HTML
