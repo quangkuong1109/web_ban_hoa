@@ -133,14 +133,14 @@ $danhmuc = [
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Chủ đề</span></h2>
     <div class="row px-xl-5 pb-3">
         <?php
-        foreach ($danhmuc as $madanhmuc) {
-            $sql = "SELECT count(*) as tong FROM sanpham WHERE MaDanhMuc = ?"; 
-            $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, "i", $madanhmuc["id"]);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $tong);
-            mysqli_stmt_fetch($stmt);
-            mysqli_stmt_close($stmt);
+        foreach ($danhmuc as $madanhmuc) {//chạy vòng lặp
+            $sql = "SELECT count(*) as tong FROM sanpham WHERE MaDanhMuc = ?";//lấy biến đếm sản phẩm, lưu thành tổng với điều kiện mã danh mục
+            $stmt = mysqli_prepare($conn, $sql);//tạo câu lệnh chuẩn bị
+            mysqli_stmt_bind_param($stmt, "i", $madanhmuc["id"]);//gán giá trị cho mã danh mục["id"] theo kiểu int(i)
+            mysqli_stmt_execute($stmt);//thực thi lệnh truy vấn
+            mysqli_stmt_bind_result($stmt, $tong);//gán kết quả của stmt cho tong
+            mysqli_stmt_fetch($stmt);//lấy dữ liệu từ truy vấn và đưa vào biến tong
+            mysqli_stmt_close($stmt);//đóng câu lệnh
             ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <a class="text-decoration-none" href="shop.php?theme=<?php echo urlencode($madanhmuc['name']); ?>">
@@ -155,7 +155,7 @@ $danhmuc = [
                     </div>
                 </a>
             </div>
-        <?php } ?>
+        <?php }//kết thúc vòng lặp ?>
     </div>
 </div>
 
@@ -177,7 +177,7 @@ $danhmuc = [
         // Lấy dữ liệu từ câu truy vấn và lưu vào mảng
         $sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 8";
         $ketqua = mysqli_query($conn, $sql);
-        while ($row = mysqli_fetch_row($ketqua)) {
+        while ($row = mysqli_fetch_row($ketqua)) {//chạy các dòng dữ liệu từ $ketqua để lưu vào mảng product
             $products[] = $row;
         }
 
