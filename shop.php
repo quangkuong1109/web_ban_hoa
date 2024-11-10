@@ -43,6 +43,9 @@
                     foreach ($priceRanges as $value => $label) {
                         echo '<div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">';
                         echo '<input type="radio" class="custom-control-input" name="price-range" value="' . $value . '" id="price-' . array_search($value, array_keys($priceRanges)) . '">';
+
+                        //  search xác định ID của giá thông qua radio button được chọn để xử lý lọc --
+                        // key lấy giá trị giá ban đầu 0-20000
                         echo '<label class="custom-control-label" for="price-' . array_search($value, array_keys($priceRanges)) . '">' . $label . '</label>';
                         echo '</div>';
                     }
@@ -91,6 +94,7 @@
                         $icon = $icons[$index]; // Sử dụng chỉ số giống nhau để lấy biểu tượng
                         echo '<div class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">';
                         echo '<input type="radio" class="custom-control-input" name="theme" value="' . htmlspecialchars($theme) . '" id="theme-' . ($index + 1) . '">';
+
                         echo '<label class="custom-control-label" for="theme-' . ($index + 1) . '">' . htmlspecialchars($theme) . ' ' . $icon . '</label>';
                         echo '<span class="badge border font-weight-normal">' . getThemeCount($theme) . '</span>';
                         echo '</div>';
@@ -103,7 +107,7 @@
             <!-- Theme End -->
 
             <?php
-// Functions to handle database interactions
+            // Functions to handle database interactions
             function getDatabaseConnection() {
                 $servername = "localhost";
                 $username = "root";
@@ -130,10 +134,10 @@
             }
 
 
-// Hàm đếm số lượng sản phẩm theo chủ đề hoa
+            // Hàm đếm số lượng sản phẩm theo chủ đề hoa
             function getThemeCount($theme) {
                 $conn = getDatabaseConnection();
-    // Câu lệnh SQL để đếm số sản phẩm theo chủ đề
+            // Câu lệnh SQL để đếm số sản phẩm theo chủ đề
                 $sql = "SELECT COUNT(*) AS total FROM sanpham s 
                 INNER JOIN danhmucsanpham d ON s.MaDanhMuc = d.MaDanhMuc 
                 WHERE d.TenDanhMuc LIKE ?";
@@ -269,6 +273,7 @@
                                                 <button type="button" class="btn btn-sm btn-light dropdown-toggle border-black" data-toggle="dropdown">Sắp xếp</button>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=asc">Giá từ Thấp -> Cao</a>
+                                                    <!-- Sắp xếp nhưng vẫn giữ nguyên giá trị lọc ban đầu -->
                                                     <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=desc">Giá từ Cao -> Thấp</a>
                                                     <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=name_asc">Tên từ A -> Z</a>
                                                     <a class="dropdown-item" href="?page=1&price-range=<?php echo urlencode($priceRange); ?>&theme=<?php echo urlencode($theme); ?>&sapxep=name_desc" >Tên từ Z -> A</a>

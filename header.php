@@ -8,8 +8,6 @@ session_start();
     <meta charset="utf-8">
     <title>CDT Flower - Thế giới hoa tươi</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
     <link href="img/icon_flower.png" rel="icon">
@@ -242,23 +240,23 @@ session_start();
 
     <?php require_once("database/db_connect.php"); 
 
-        ///////////////LẤY TÊN DANH MỤC SẢN PHẨM ĐỂ LOAD VÀO CHỦ ĐỀ/////////////////////
-    $sql = "SELECT TenDanhMuc FROM danhmucsanpham";
-    $result = $conn->query($sql);
+    //     ///////////////LẤY TÊN DANH MỤC SẢN PHẨM ĐỂ LOAD VÀO CHỦ ĐỀ/////////////////////
+    // $sql = "SELECT TenDanhMuc FROM danhmucsanpham";
+    // $result = $conn->query($sql);
 
-        // Tạo mảng để lưu dữ liệu
-    $tenDanhMucArray = array();
+    //     // Tạo mảng để lưu dữ liệu
+    // $tenDanhMucArray = array();
 
-        // Duyệt qua từng hàng dữ liệu và lưu vào mảng
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $tenDanhMucArray[] = $row['TenDanhMuc'];
-        }
-    } else {
-        //echo "0 results";
-    }
+    //     // Duyệt qua từng hàng dữ liệu và lưu vào mảng
+    // if ($result->num_rows > 0) {
+    //     while($row = $result->fetch_assoc()) {
+    //         $tenDanhMucArray[] = $row['TenDanhMuc'];
+    //     }
+    // } else {
+    //     //echo "0 results";
+    // }
 
-        $result->free(); // GIẢI PHÓNG DỮ LIỆU 
+    //     $result->free(); // GIẢI PHÓNG DỮ LIỆU 
 
         ///////////////////////////LẤY DỮ LIỆU SẢN PHẨM/////////////////////////////
         $sql_hoa = "SELECT MaSanPham, TenSanPham, MaDanhMuc, Gia, HinhAnh, TonKho FROM sanpham";
@@ -290,10 +288,6 @@ session_start();
             $Ma_KH = "100";
         }
 
-        // $Ma_KH = $_SESSION['makhachhang'];
-        // if (empty($Ma_KH)) {
-        //     $Ma_KH = "100";
-        // }
         // Thực hiện truy vấn SQL lấy dữ liệu từ giỏ hàng
             $get_giohang_query = "SELECT c.MaSanPham, SUM(c.SoLuong) AS TongSoLuong, c.Gia 
                                   FROM chitietdonhang AS c
@@ -340,7 +334,7 @@ session_start();
             // Số lượng sản phẩm hiện tại theo mã sản phẩm
             $count_maSP_giohang = $final_count_maSP_giohang; 
 
-            // Truy vấn để lấy tên sản phẩm, giá và số lượng từ bảng giohang
+            // Truy vấn để lấy tên sản phẩm, giá từ bảng yeuthich
             $sql = "
                 SELECT 
                     sp.TenSanPham, 
@@ -412,27 +406,29 @@ session_start();
                                 <a id="open-side-menu-2" href="#" class="btn px-0">
                                     <i class="fas fa-heart text-primary"></i>
                                     <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><?php echo $tong_so_luong; ?></span>
+                                    <!-- số lượng sản phẩm yêu thích -->
                                 </a>
                                 <a id="open-side-menu" href="#" class="btn px-0 ml-3">
                                     <i class="fas fa-shopping-cart text-primary"></i>
                                     <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><?php echo count($maSP_giohang); ?></span>
+                                    <!-- số lượng sản phẩm giỏ hàng -->
                                 </a>
                             </div>
                         </div>
                     </nav>
                 </div>
-
-
             </div>
         </div>
         <!-- Navbar End -->
 
         <!-- Start Side Menu -->
+
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
                 <ul class="cart-list">
                     <?php  
+                    // hiển thị danh sách sản phẩm trong giỏ hàng
                     $sum_gia = 0;
                     for ($i = 0; $i < count($maSP_giohang_unique); $i++) { 
                         // Mã sản phẩm duy nhất
@@ -467,6 +463,7 @@ session_start();
             <li class="cart-box">
                 <ul class="cart-list">
                     <?php
+                    // giỏ hàng yêu thích hiển thị sản phẩm
                     // Thực hiện truy vấn SQL để lấy danh sách sản phẩm yêu thích
                     $sql = "
                         SELECT
@@ -588,7 +585,7 @@ session_start();
 
         <script>
             function searchProducts() {
-                const input = document.getElementById('searchInput').value;
+                const input = document.getElementById('searchInput').value; //Lấy giá trị của ô tìm kiếm
                 const suggestionsBox = document.getElementById('suggestions');
 
                 if (input.length === 0) {
@@ -597,12 +594,12 @@ session_start();
     }
 
     // Gọi AJAX để lấy sản phẩm
-    fetch(`search.php?query=${encodeURIComponent(input)}`)
-    .then(response => response.json())
+    fetch(`search.php?query=${encodeURIComponent(input)}`) //Gửi yêu cầu tới search.php với tham số query, là giá trị người dùng đã nhập.
+    .then(response => response.json()) //Chuyển đổi phản hồi từ máy chủ thành định dạng JSON để dễ xử lý.
     .then(data => {
             console.log(data); // Kiểm tra dữ liệu trả về
             // Xóa khung gợi ý cũ
-            suggestionsBox.innerHTML = '';
+            suggestionsBox.innerHTML = ''; //Xóa tất cả các gợi ý cũ.
 
             // Nếu không có sản phẩm nào
             if (data.length === 0) {
@@ -611,7 +608,7 @@ session_start();
 
             // Hiện các sản phẩm phù hợp
             data.forEach(product => {
-                const item = document.createElement('div');
+                const item = document.createElement('div'); // tạo một div để chứa thông tin từng sản phẩm
                 item.className = 'suggestion-item d-flex align-items-center'; // Thêm lớp cho bố cục
 
                 // Tạo phần tử hình ảnh
@@ -648,9 +645,10 @@ session_start();
                     window.location.href = `detail.php?productName=${encodeURIComponent(product.TenSanPham)}`;
                 };
                 
-                suggestionsBox.appendChild(item);
+                suggestionsBox.appendChild(item); // tạo item hoàn chỉnh về sản phẩm
             });
         })
+    //Nếu có lỗi xảy ra khi gọi dữ liệu, thông báo lỗi
     .catch(error => {
         console.error('Error fetching products:', error);
     });
@@ -663,8 +661,10 @@ session_start();
                     window.location.href = 'remove_favorites.php?MaSanPham=' + productId;
                 }
         }
-document.addEventListener('click', function(event) {
-    // Tạo một phần tử `div` cho trái tim
+
+    // Trái tim không liên quan
+    document.addEventListener('click', function(event) {
+    // Tạo một phần tử div cho trái tim
     const heart = document.createElement('div');
     heart.classList.add('heart');
 

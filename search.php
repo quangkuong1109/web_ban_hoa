@@ -22,5 +22,5 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 // Trả về dữ liệu ở định dạng JSON
 header('Content-Type: application/json'); // Đặt loại nội dung là JSON
-echo json_encode($products);
+echo json_encode($products); // trả về thành một chuỗi JSON
 ?>

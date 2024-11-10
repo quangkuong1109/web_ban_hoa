@@ -4,7 +4,8 @@ session_start(); // Khởi động phiên làm việc
 require_once("database/db_connect.php"); // Kết nối đến cơ sở dữ liệu
 
 if (isset($_GET['MaSanPham'])) {
-    $MaSanPham = mysqli_real_escape_string($conn, $_GET['MaSanPham']);
+
+    $MaSanPham = mysqli_real_escape_string($conn, $_GET['MaSanPham']); // lấy mã không lấy kí tự đặc biệt
     $Ma_KH = $_SESSION['makhachhang']; // Lấy ID người dùng từ phiên làm việc
 
     // Truy vấn để xóa sản phẩm khỏi giỏ hàng

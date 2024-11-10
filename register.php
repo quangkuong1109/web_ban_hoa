@@ -75,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             //Tìm mã đơn hàng trống từ 0 đến 999
         $ma_don_hang_moi = null;
+        // dùng bảng đơn hàng để tạo mã đơn mới ko trùng lặp
         for ($i = 0; $i <= 999; $i++) {
             // Kiểm tra xem mã đơn hàng $i đã tồn tại chưa
             $sql_kiem_tra = "SELECT MaDonHang FROM donhang WHERE MaDonHang = ?";

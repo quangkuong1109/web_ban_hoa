@@ -68,7 +68,7 @@
                                         echo "<td class='align-middle '>{$row['TenSanPham']}</td>";
                                         echo "<td class='align-middle'>" . number_format($row['Gia'], 0, ',', '.') . " đ</td>";
 
-                                // Thêm ô nhập số lượng với nút + và -
+                                        // Thêm ô nhập số lượng với nút + và -
                                         echo "<td class='align-middle'>
                                         <div class='input-group quantity mx-auto' style='width: 100px;'>
                                         <div class='input-group-btn'>
@@ -161,6 +161,7 @@
 
     <script>
         function updateQuantity(action, productId) {
+            //Lấy giá trị số lượng hiện tại
             const quantityInput = document.getElementById(`quantity_${productId}`);
             let quantity = parseInt(quantityInput.value);
 
@@ -171,17 +172,17 @@
             }
 
                 // Cập nhật số lượng hiển thị
-            quantityInput.value = quantity;
+            quantityInput.value = quantity; //Cập nhật lại giá trị của ô input với số lượng mới
 
                 // Gửi yêu cầu cập nhật số lượng lên server
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "update_cart.php", true);
+            const xhr = new XMLHttpRequest(); // tạo yêu cầu mới lên server
+            xhr.open("POST", "update_cart.php", true); // tạo AJAX gửi tới update với phương thức POST
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onload = function () {
-                if (xhr.status === 200) {
+                if (xhr.status === 200){ // nếu trạng thái thành công
                     const response = JSON.parse(xhr.responseText);
                     if (response.status === "error") {
-                        alert(response.message);
+                        alert(response.message); // xuất thông báo lỗi
                     } else {
                             // Nếu thành công, có thể cập nhật lại tổng giá hoặc các thông tin khác
                             location.reload(); // Tải lại trang để cập nhật giỏ hàng
@@ -190,7 +191,7 @@
                         alert("Có lỗi xảy ra, vui lòng thử lại.");
                     }
                 };
-                xhr.send(`productId=${productId}&quantity=${quantity}`);
+                xhr.send(`productId=${productId}&quantity=${quantity}`); // gửi dữ liệu đi
             }
 
         function removeFromCart(productId) {

@@ -3,6 +3,7 @@ session_start();
 require_once("database/db_connect.php"); // Kết nối với database
 $errors = []; 
 
+// nếu người dùng nhấn đăng nhập
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $taikhoan = $_POST['taikhoan'];
     $matkhau = $_POST['matkhau'];

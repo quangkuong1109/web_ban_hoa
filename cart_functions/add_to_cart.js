@@ -21,7 +21,7 @@ function addToCart(tenSanPham, maSanPham, giaSP) {
         if (result === "success") {
             // Thêm vào giỏ hàng thành công
             localStorage.setItem('cartMessage', `Thêm sản phẩm "${tenSanPham}" vào giỏ hàng thành công!`);
-            location.reload(true);
+            location.reload(true); // load lại trang giữ nguyên vị trí ban đầu
         } else if (result === "not_logged_in") {
             // Người dùng chưa đăng nhập
             localStorage.setItem('cartMessage', "Bạn cần *Đăng Nhập* trước khi thêm sản phẩm vào giỏ hàng");
@@ -47,6 +47,6 @@ window.addEventListener('load', () => {
             $('#toast').toast('show');
 
             localStorage.removeItem('cartMessage');
-        }, 500); // Độ trễ 1 giây
+        }, 500); // Độ trễ 0.5 giây
     }
 });

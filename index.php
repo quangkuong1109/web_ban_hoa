@@ -169,7 +169,7 @@ $danhmuc = [
     </h2>
     <div class="row px-xl-5">
         <?php
-        require_once('database/db_connect.php');
+        require_once('database/db_connect.php'); // kết nối csdl
         
         // Tạo mảng để lưu dữ liệu
         $products = [];
@@ -183,7 +183,6 @@ $danhmuc = [
 
         // Sử dụng vòng lặp for để duyệt qua các phần tử trong mảng $products
         for ($i = 0; $i < count($products); $i++) {
-            // $product = $products[$i];
             ?>
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4 border-black">
@@ -209,11 +208,15 @@ $danhmuc = [
                         </a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5><?php echo number_format($products[$i][5], 0, ',', '.') . " đ"; ?></h5><!--product[5] là trường Gia-->
+
+                            <!-- 0 là 0 chỉ định số thập phân
+                            , dùng nếu là số thập phân
+                            . dùng để chia phần nghìn số -->
                             <h6 class="text-muted ml-2"><del>
                                 <?php
                                     // Kiểm tra giảm giá và hiển thị giá chưa giảm nếu có
                                         if ($products[$i][8] != 0) {
-                                            $giachuagiam = $products[$i][5] / (1 - ($products[$i][8] / 100)); // Tính giá với giảm giá 20%
+                                            $giachuagiam = $products[$i][5] / (1 - ($products[$i][8] / 100)); // Tính giá với giảm giá
                                             echo "<del>" . number_format($giachuagiam, 0, ',', '.') . " đ</del>";
                                         }
                                     ?>
