@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 04, 2024 lúc 04:16 PM
+-- Thời gian đã tạo: Th10 10, 2024 lúc 06:43 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -34,6 +34,16 @@ CREATE TABLE `chitietdonhang` (
   `SoLuong` int(11) NOT NULL,
   `Gia` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietdonhang`
+--
+
+INSERT INTO `chitietdonhang` (`MaChiTietDonHang`, `MaDonHang`, `MaSanPham`, `SoLuong`, `Gia`) VALUES
+(64, 1, 53, 2, 200000),
+(65, 0, 53, 2, 200000),
+(66, 0, 59, 1, 1550000),
+(67, 0, 54, 1, 850000);
 
 -- --------------------------------------------------------
 
@@ -75,6 +85,16 @@ CREATE TABLE `donhang` (
   `TrangThai` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`MaDonHang`, `MaKhachHang`, `NgayDatHang`, `TongGiaTri`, `TrangThai`) VALUES
+(0, 1, '2024-11-05 13:49:50', 2900000, 1),
+(1, 1, '2024-11-05 13:48:12', 300000, 1),
+(2, 1, '2024-11-10 18:34:20', 0, 0),
+(5, 100, '2024-11-10 18:42:34', 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +109,14 @@ CREATE TABLE `giaohang` (
   `Email` varchar(100) NOT NULL,
   `DiaChi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giaohang`
+--
+
+INSERT INTO `giaohang` (`MaGiaoHang`, `MaThanhToan`, `HoTen`, `SoDienThoai`, `Email`, `DiaChi`) VALUES
+(20, 11, '123 Phạm', '0834035090', 'boymediumpmt@gmail.com', '321, vĩnh hưng, hoàng mai, Hà nội'),
+(21, 12, '1 1', '1', '1@gmail', '1, 1, 1, 1');
 
 -- --------------------------------------------------------
 
@@ -166,7 +194,7 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaDanhMuc`, `Mau`, `MoTa`, `G
 (14, 'Tiễn đưa', 8, 'Hồng', 'Sản phẩm bao gồm:\r\n- Cẩm chướng đơn tím: 20\r\n- Cúc calimero tím: 12\r\n- Cúc trắng: 5\r\n- Hoa Sao tím: 2\r\n- Hồng tím cà: 30\r\n- Hồng trắng cồ: 10', 600000, 'img/san_pham/chia_buon/tien_dua.jpg', 50, 5),
 (15, 'Ước Nguyện', 8, 'Đỏ', 'Sản phẩm bao gồm:\r\n- Cát tường trắng: 4\r\n- Cúc calimero trắng: 5\r\n- Cúc trắng: 15\r\n- Hoa baby: 1\r\n- Hồng trắng cồ: 28\r\n- Lan vườn tím: 10', 450000, 'img/san_pham/chia_buon/uoc_nguyen.jpg', 60, 0),
 (16, 'Vô Thường', 8, 'Trắng', 'Sản phẩm bao gồm:\r\n- Cúc trắng: 15\r\n- Hoa mimi: 15\r\n- Hồng tím cà: 18\r\n- Lan trắng vườn: 10\r\n- Lily hồng: 3', 500000, 'img/san_pham/chia_buon/vo_thuong.jpg', 70, 50),
-(17, 'Yên Nghỉ', 8, 'Trắng', 'Sản phẩm bao gồm:\r\n- Cẩm chướng đơn xanh bơ: 10\r\n- Cúc trắng: 20\r\n- Hoa Cúc Nút Xanh: 10\r\n- Lan hồ điệp trắng: 4\r\n- Lan trắng vườn: 15\r\n- Đồng tiền trắng: 30', 800000, 'img/san_pham/chia_buon/uoc_nguyen.jpg', 100, 0),
+(17, 'Yên Nghỉ', 8, 'Trắng', 'Sản phẩm bao gồm:\r\n- Cẩm chướng đơn xanh bơ: 10\r\n- Cúc trắng: 20\r\n- Hoa Cúc Nút Xanh: 10\r\n- Lan hồ điệp trắng: 4\r\n- Lan trắng vườn: 15\r\n- Đồng tiền trắng: 30', 800000, 'img/san_pham/chia_buon/yen_nghi.jpg', 100, 0),
 (18, 'Sức Khỏe Dồi Dào', 6, 'Trắng', 'Sản phẩm bao gồm:\r\n- Hồng da: 5\r\n- Ly trắng đơn: 3\r\n- Mõm sói vàng: 5', 300000, 'img/san_pham/chuc_suc_khoe/hoa_tang_su_kien.jpg\r\n', 60, 12),
 (19, 'Kem Hoa', 6, 'Đỏ', 'Sản phẩm bao gồm:\r\n- Hoa thạch thảo trắng: 2\r\n- Hồng đỏ ớt: 10\r\n- Đinh lăng: 7', 280000, 'img/san_pham/chuc_suc_khoe/kem_hoa.jpg\r\n', 60, 70),
 (20, 'Ngày Xanh', 6, 'Trắng', 'Sản phẩm bao gồm:\r\n- Cẩm chướng đơn xanh bơ: 10\r\n- Hoa mimi: 10\r\n- Hoa thạch thảo trắng: 5\r\n- Hồng trắng nhí: 15\r\n- Mõm sói trắng: 10', 880000, 'img/san_pham/chuc_suc_khoe/ngay_xanh.jpg\r\n', 70, 25),
@@ -224,6 +252,14 @@ CREATE TABLE `thanhtoan` (
   `TrangThai` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `thanhtoan`
+--
+
+INSERT INTO `thanhtoan` (`MaThanhToan`, `MaDonHang`, `PhuongThucThanhToan`, `NgayThanhToan`, `SoTien`, `TrangThai`) VALUES
+(11, 1, 'Thanh toán khi nhận hàng', '2024-11-05 13:49:50', 300000, 'Đã Thanh Toán'),
+(12, 0, 'Thanh toán khi nhận hàng', '2024-11-10 18:34:20', 2900000, 'Đã Thanh Toán');
+
 -- --------------------------------------------------------
 
 --
@@ -235,6 +271,18 @@ CREATE TABLE `yeuthich` (
   `MaSanPham` int(11) NOT NULL,
   `MaKhachHang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `yeuthich`
+--
+
+INSERT INTO `yeuthich` (`MaYeuThich`, `MaSanPham`, `MaKhachHang`) VALUES
+(8, 53, 1),
+(10, 56, 1),
+(11, 58, 1),
+(12, 43, 1),
+(13, 46, 1),
+(14, 31, 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -312,25 +360,25 @@ ALTER TABLE `yeuthich`
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
-  MODIFY `MaChiTietDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `MaChiTietDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT cho bảng `giaohang`
 --
 ALTER TABLE `giaohang`
-  MODIFY `MaGiaoHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `MaGiaoHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
-  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `yeuthich`
 --
 ALTER TABLE `yeuthich`
-  MODIFY `MaYeuThich` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `MaYeuThich` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
