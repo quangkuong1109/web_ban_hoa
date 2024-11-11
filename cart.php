@@ -114,9 +114,9 @@
             <div class="col-lg-4">
                 <form class="mb-30" action="">
                     <div class="input-group">
-                        <input type="text" class="form-control border-0 p-4" placeholder="Mã giảm giá">
+                        <input type="text" class="form-control border-0 p-4" placeholder="Mã giảm giá" disabled>
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Mã giảm giá</button>
+                            <button class="btn btn-primary" disabled>Mã giảm giá</button>
                         </div>
                     </div>
                 </form>
